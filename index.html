@@ -21,14 +21,28 @@
             background: #EFFAEC;
             border: 1px solid #56713A;
             border-radius: 10px;
-            margin: 5px 0px;
+            
             width: 100%;
-            height: 35px;
+            height: 40px;
             
         }
         ::placeholder {
             color: #5F8953;
             padding: 2px;
+        }
+        #decide_btn{
+            background: #D54B73;
+            border-radius: 20px;
+        }
+        #guest_btn{
+            background: #5F8953;
+            border-radius: 20px;
+        }
+        input{
+            margin: 5px 0px;
+        }
+        button{
+            margin: 3px 0px;
         }
 
     </style>
@@ -86,12 +100,15 @@
                         <img src = "media/food.svg" style="width: 90%;">
                     </div>
                 </div>
-
                 <div class="col">
                     <div class="container mt-4 mb-4" id="login">
                         <img src="media/cat.svg" style="width: 70%; margin-top: -35px;">
-                        <input type="text" name="username" id="username" placeholder="Username">
-                        <input type="text" name="password" id="password" placeholder="Password">
+                        <div class="container text-center">
+                            <input type="text" name="username" id="username" placeholder="Username">
+                            <input type="text" name="password" id="password" placeholder="Password">
+                            <button type="submit" class="btn btn-dark w-75" id="decide_btn">Help me decide again!</button><br>
+                            <button type="submit" class="btn btn-dark w-75" id="guest_btn">Continue as a Guest</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,7 +128,6 @@
         <!-- end row 2 -->
     </div>
     <!-- end pink container -->
-    <h1>Hi everyone i am jewel can yall see this</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
