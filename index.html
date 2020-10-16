@@ -43,8 +43,37 @@
         }
         button{
             margin: 3px 0px;
+            transition: all 0.2s ease-in-out;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            width: 75%;
+            height: 40px;
         }
-
+        button:hover {
+            animation: swing 1s ease;
+            animation-iteration-count: 1;
+        }
+        @keyframes swing {
+            15% {
+            transform: translateX(5px);
+            }
+            30% {
+            transform: translateX(-5px);
+            }
+            50% {
+            transform: translateX(3px);
+            }
+            65% {
+            transform: translateX(-3px);
+            }
+            80% {
+            transform: translateX(2px);
+            }
+            100% {
+            transform: translateX(0);
+            }
+        }
     </style>
 
     <title>Hello, world!</title>
@@ -106,8 +135,8 @@
                         <div class="container text-center">
                             <input type="text" name="username" id="username" placeholder="Username">
                             <input type="text" name="password" id="password" placeholder="Password">
-                            <button type="submit" class="btn btn-dark w-75" id="decide_btn">Help me decide again!</button><br>
-                            <button type="submit" class="btn btn-dark w-75" id="guest_btn">Continue as a Guest</button>
+                            <button type="submit"  id="decide_btn">Help me decide again!</button><br>
+                            <button type="submit"  id="guest_btn">Continue as a Guest</button>
                         </div>
                     </div>
                 </div>
