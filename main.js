@@ -44,66 +44,138 @@ function defaultview(choiceArray) {
 
 }
 
-function getRotation(){
-    var elements = document.getElementsByClassName("wheelIcon");
+var count_repeat = 1;
 
-    @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          
-        }
-    console.log(elements);
-    alert('got elements')
+// This function is called when user chooses the "I dont want this cuisine!!" button
+function repeatspin(choiceArray) {
+	var wheelstr = '';
+	for (choiceObject of choiceArray) {
+		wheelstr += `
+		<div class="sec">
+			<span class="fa text wheelIcon">
+				${choiceObject.icon}
+			</span>
+		</div>
+			`;
+	}
+	// add into wheel html
+	document.getElementById("inner-wheel").innerHTML = wheelstr;
 
-    var iconAngle = new Object();
+	// text beside wheel
 
-		for (var i=0; i<elements.length; i++){
-
-			var el = elements[i];
-			var st = window.getComputedStyle(el, null);
-			var tr = st.getPropertyValue("-webkit-transform") ||
-					st.getPropertyValue("-moz-transform") ||
-					st.getPropertyValue("-ms-transform") ||
-					st.getPropertyValue("-o-transform") ||
-					st.getPropertyValue("transform") ||
-					"FAIL";
-		
-			// With rotate(30deg)...
-			// matrix(0.866025, 0.5, -0.5, 0.866025, 0px, 0px)
-			console.log('Matrix: ' + tr);
-		
-			// rotation matrix - http://en.wikipedia.org/wiki/Rotation_matrix
-		
-			var values = tr.split('(')[1].split(')')[0].split(',');
-			var a = values[0];
-			var b = values[1];
-			var c = values[2];
-			var d = values[3];
-		
-			var scale = Math.sqrt(a*a + b*b);
-		
-			console.log('Scale: ' + scale);
-		
-			// arc sin, convert from radians to degrees, round
-			var sin = b/scale;
-			// next line works for 30deg but not 130deg (returns 50);
-			// var angle = Math.round(Math.asin(sin) * (180/Math.PI));
-			var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-		
-			console.log('Rotate: ' + angle + 'deg');
-
-			iconAngle[el] = angle;
-		
+	// repeat once
+	if (count_repeat == 1) {
+		console.log("You have spinned " + count_repeat + " times!!!!");
+		var beside_wheel_str = `
+		<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+		<div id="beside_wheel_text">
+			<h4>You choose to spin again!</h4> 
+			Click the ✋ icon on the wheel to randomise your food choice!
+			<br>
+			Hope you will like the choice this time!
+		</div>
+		`;
+	}
+	else {
+		// less than 5 times
+		if (count_repeat < 5) {
+			var beside_wheel_str = `
+			<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+			<div id="beside_wheel_text">
+				<h4>You have spinned ${count_repeat} times already!!!</h4> 
+				Click the ✋ icon on the wheel to randomise your food choice!
+				<br>
+				Hope you will like the choice this time!
+			</div>
+			`;
 		}
-    console.log(iconAngle);
-    return iconAngle;
-    
+		// 5 times alr - exaggerate more
+		else {
+			var beside_wheel_str = `
+			<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+			<div id="beside_wheel_text">
+				<h4>OMG! You have spinned <b>${count_repeat} times</b> already!!!</h4> 
+				Click the ✋ icon on the wheel to randomise your food choice!
+				<br>
+				Hope you will like the choice this time!
+			</div>
+			`;
+		}
+		
+	}
+
+	
+
+
+	document.getElementById("wheeltextdiv").innerHTML = beside_wheel_str;
+
+	count_repeat ++;
 }
 
-var mycounter = 0;
+// Jewel - I commented this out because theres some error in this function that idk how to fix
+
+// function getRotation(){
+//     var elements = document.getElementsByClassName("wheelIcon");
+
+//     @for $i from 1 through 6 {
+//         &:nth-child(#{$i}) {
+          
+//         }
+//     console.log(elements);
+//     alert('got elements')
+
+//     var iconAngle = new Object();
+
+// 		for (var i=0; i<elements.length; i++){
+
+// 			var el = elements[i];
+// 			var st = window.getComputedStyle(el, null);
+// 			var tr = st.getPropertyValue("-webkit-transform") ||
+// 					st.getPropertyValue("-moz-transform") ||
+// 					st.getPropertyValue("-ms-transform") ||
+// 					st.getPropertyValue("-o-transform") ||
+// 					st.getPropertyValue("transform") ||
+// 					"FAIL";
+		
+// 			// With rotate(30deg)...
+// 			// matrix(0.866025, 0.5, -0.5, 0.866025, 0px, 0px)
+// 			console.log('Matrix: ' + tr);
+		
+// 			// rotation matrix - http://en.wikipedia.org/wiki/Rotation_matrix
+		
+// 			var values = tr.split('(')[1].split(')')[0].split(',');
+// 			var a = values[0];
+// 			var b = values[1];
+// 			var c = values[2];
+// 			var d = values[3];
+		
+// 			var scale = Math.sqrt(a*a + b*b);
+		
+// 			console.log('Scale: ' + scale);
+		
+// 			// arc sin, convert from radians to degrees, round
+// 			var sin = b/scale;
+// 			// next line works for 30deg but not 130deg (returns 50);
+// 			// var angle = Math.round(Math.asin(sin) * (180/Math.PI));
+// 			var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+		
+// 			console.log('Rotate: ' + angle + 'deg');
+
+// 			iconAngle[el] = angle;
+		
+// 		}
+//     console.log(iconAngle);
+//     return iconAngle;
+    
+// 	}
+// }
+
 
 $(document).ready(function(){
 	/*WHEEL SPIN FUNCTION*/
 	$('#spin').click(function(){
+		// reset counter each time user spin the wheel
+		var mycounter = 0;
 
 		//add 1 every click
 		clicks ++;
@@ -112,6 +184,9 @@ $(document).ready(function(){
 	  generate random number between 1 - 360,
     then add to the new degree*/
 		var newDegree = degree*clicks;
+
+		console.log(newDegree);
+
 		var extraDegree = Math.floor(Math.random() * (360 - 1 + 1)) + 1;
 		totalDegree = newDegree+extraDegree;
 
@@ -132,14 +207,15 @@ $(document).ready(function(){
 					console.log("===========================");
 					console.log("MY COUNTER:", mycounter);
 					
-					
 				}
 
-				console.log(document.getElementsByClassName("sec"));
+				// console.log(document.getElementsByClassName("sec"));
 
 				var aoY = t.offset().top;
 				$("#txt").html(aoY);
-				if (mycounter == 6 ) {
+
+				// if counter is a multiple of 6 -- considering multiple spins
+				if (mycounter == 6) {
 					console.log("============ mycounter reached 6 ===============");
 
 					console.log("aoY is", aoY);
@@ -190,15 +266,15 @@ function randomize(choiceArray){
     return choiceArray[i];
 }
 
+
 function chosen_view() {
 	console.log("=== CHOSEN_VIEW() starts ===");
 
-    getRotation();
-    alert('got rotation')
+    // getRotation();
+    // alert('got rotation')
     var chosen_cuisine = randomize(choiceArray);
     // alert('called randomise')
     console.log(chosen_cuisine);
-
 	// insert text
 	var msg = `
 	<span class="fa text">${chosen_cuisine.icon}</span>
@@ -206,7 +282,8 @@ function chosen_view() {
 		<h4>Yay😋</h4> 
 		You are fated to eat <span  class="font-weight-bold">${chosen_cuisine.cuisine}</span> food!
 	</div>
-	<button type="button" class="btn" id="no_button">Confirm cuisine and proceed</button>
+	<button type="button" class="btn" id="yes_button">Confirm cuisine and proceed</button>
+	<button type="button" class="btn" id="no_button" onclick="repeatspin(choiceArray)">I don't want this! Choose again!</button>
 	`;
 	document.getElementById("wheeltextdiv").innerHTML = msg;
 
