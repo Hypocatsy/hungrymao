@@ -5,21 +5,21 @@ var clicks = 0;
 
 
 // put array info into wheel
-function defaultwheel() {
-	var choiceArray = [
-		{"cuisine" : "Chinese", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/chinese.png" height=50 width=50>' }, 
-		{"cuisine" : "Korean", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/korean.png" height=50 width=50>' }, 
-		{"cuisine" : "Japanese", "number": Math.random(0, 5), "icon": '<img src="../is216-Project/media/japanese.png" height=50 width=50>' }, 
-		{"cuisine" : "Italian", "number": Math.random(0, 5), "icon": '<img src="../is216-Project/media/italian.png" height=50 width=50>' }, 
-		{"cuisine" : "Indian", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/indian.png" height=50 width=50>' }, 
-		{"cuisine" : "Mexican", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/mexican.png" height=50 width=50>' }, 
+function defaultview() {
 
+	// Part 1: Wheel Info - cuisines and relevant icons
+	var choiceArray = [
+		{"cuisine" : "Chinese", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/wheel_icons/chinese.png" height="50" width="50">' }, 
+		{"cuisine" : "Korean", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/wheel_icons/korean.png" height="50" width="50">' }, 
+		{"cuisine" : "Japanese", "number": Math.random(0, 5), "icon": '<img src="../is216-Project/media/wheel_icons/japanese.png" height="50" width="50">' }, 
+		{"cuisine" : "Italian", "number": Math.random(0, 5), "icon": '<img src="../is216-Project/media/wheel_icons/italian.png" height="50" width="50">' }, 
+		{"cuisine" : "Indian", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/wheel_icons/indian.png" height="50" width="50">' }, 
+		{"cuisine" : "Mexican", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/wheel_icons/mexican.png" height="50" width="50">' }, 
 	];
 
-
-	var mystr = '';
+	var wheelstr = '';
 	for (choiceObject of choiceArray) {
-		mystr += `
+		wheelstr += `
 		<div class="sec">
 			<span class="fa text">
 				${choiceObject.icon}
@@ -27,12 +27,26 @@ function defaultwheel() {
 		</div>
 			`;
 	}
-	document.getElementById("inner-wheel").innerHTML = mystr;
+	// add into wheel html
+	document.getElementById("inner-wheel").innerHTML = wheelstr;
+
+
+	// Part 2: Text beside the wheel
+	var beside_wheel_str = `
+	<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+	<div id="beside_wheel_text">
+		<h4>Welcome!</h4> 
+		Click the ✋ icon on the wheel to randomise your food choice!
+	</div>
+	`;
+
+	document.getElementById("wheeltextdiv").innerHTML = beside_wheel_str;
+
 }
 
+var mycounter = 0;
 
 $(document).ready(function(){
-
 	/*WHEEL SPIN FUNCTION*/
 	$('#spin').click(function(){
 
@@ -59,6 +73,13 @@ $(document).ready(function(){
 				c++;
 				if (c === n) {
 					clearInterval(interval);
+					mycounter ++;
+					console.log("===========================");
+					console.log("MY COUNTER:", mycounter);
+					if (mycounter == 6) {
+						console.log("spin ends here");
+						chosen_view();
+					}
 				}
 
 				var aoY = t.offset().top;
@@ -76,6 +97,7 @@ $(document).ready(function(){
 					setTimeout(function () {
 						$('#spin').removeClass('spin');
 					}, 100);
+
 				}
 			}, 10);
 
@@ -84,10 +106,34 @@ $(document).ready(function(){
 			});
 
 			noY = t.offset().top;
-			console.log("noY is", noY);
+
+			
 		});
+
+		
+
+
 	});
 
 
 
+
 });//DOCUMENT READY
+
+
+function chosen_view(chosen_cuisine="Korean") {
+	console.log("=== CHOSEN_VIEW() starts ===");
+
+	// insert text
+	var msg = `
+	<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+	<div id="beside_wheel_text">
+		<h4>Yay!</h4> 
+		You are fated to eat ${chosen_cuisine}
+	</div>
+	<button type="button" class="btn" id="no_button">No! I want to spin again!!</button>
+	`;
+	document.getElementById("wheeltextdiv").innerHTML = msg;
+
+	console.log("=== CHOSEN_VIEW() ends ===");
+}

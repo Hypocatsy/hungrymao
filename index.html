@@ -17,7 +17,11 @@
 
     <!-- Main.js -->
     <script src="main.js"></script>
-    
+    <!-- Icon -->
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <!-- Font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
     <!-- Internal style -->
     <style>
         #login{
@@ -63,6 +67,30 @@
             animation: swing 1s ease;
             animation-iteration-count: 1;
         }
+
+        /* wheel stuff */
+        #wheeltextdiv {
+            text-align: center;
+            vertical-align: middle;
+        }
+        #fork_knife {
+            margin-top: 80px;
+            color:#56713A;
+        }
+        #beside_wheel_text {
+            margin-top: 20px;
+            color:#56713A;
+        }
+        /* Button */
+        #no_button {
+            background-color: #56713A;
+            border-radius: 30px;
+            color: white;
+        }
+
+
+
+
         @keyframes swing {
             15% {
             transform: translateX(5px);
@@ -88,7 +116,7 @@
     <title>Hello, world!</title>
   </head>
 
-  <body style="background-color: #FFFCF6;" onload="defaultwheel()">
+  <body style="background-color: #FFFCF6;" onload="defaultview()">
     <!-- <h1>Hello, world!</h1> -->
 
     <!-- Navigation -->
@@ -167,7 +195,7 @@
     </div>
     <!-- end pink container -->
  
-    <!-- START CONTAINER -->
+    <!-- WHEEL & TEXT CONTAINER -->
 
     <div class="container mt-4 mb-4">
         <!-- start row 1 -->
@@ -178,8 +206,8 @@
 
                     <div id="wheel">
                         <div id="inner-wheel">
-                            <!-- content is filled by main.js -> defaultwheel() function -->
-                        </div>
+                        <!-- content is filled by main.js - defaultview() function -->
+                </div>
             
                         <div id="spin">
                             <div id="inner-spin"></div>
@@ -195,12 +223,13 @@
             </div>
 
 
-            <div class="col">
-                
-                <div id="wrapper">
+            <div class="col" id="wheeltextdiv">
 
-                    <img src="media/sample.svg" style="width: 90%;">
-             </div>
+                    <!-- 
+                    Content is filled by main.js
+                        Havent spin wheel: defaultview() function 
+                        Spinned wheel: chosen_view() function 
+                    -->
                
            </div>
             
