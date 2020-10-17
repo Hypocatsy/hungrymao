@@ -1,10 +1,9 @@
-START OF SPINNING WHEEL */
 *{	margin:0;	padding:0; }
 
 body{
 	background:#eaeaea;
 	color:#fff;
-	font-size:20px;
+	/* font-size:20px; */
 	font-family: 'Arimo', sans-serif;
 }
 
@@ -52,7 +51,7 @@ a{
 #inner-wheel{
 	width:100%;
 	height:100%;
-
+	font-size: 10px;
 	-webkit-transition: all 6s cubic-bezier(0,.99,.44,.99);
 	-moz-transition:    all 6 cubic-bezier(0,.99,.44,.99);
 	-o-transition:      all 6s cubic-bezier(0,.99,.44,.99);
@@ -124,14 +123,15 @@ a{
 }
 
 #wheel div.sec .fa{
-	margin-top: -100px;
-	color: rgba(0,0,0,0.2);
+	margin-top: -90px;
+	color: rgba(0, 0, 0, 0.904);
 	position: relative;
 	z-index: 10000000;
 	display: block;
 	text-align: center;
-	font-size:36px;
-	margin-left:-15px;
+	font-size:15px;
+	
+	margin-left: -19px;
 
 	/*text-shadow: rgba(255, 255, 255, 0.1) 0px -1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px;*/
 }

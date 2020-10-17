@@ -3,6 +3,21 @@ var degree = 1800;
 //number of clicks = 0
 var clicks = 0;
 
+var choiceArray = ["Chinese", "Korean", "Japanese", "Italian", "Indian"];
+
+// put array info into wheel
+function defaultwheel() {
+	
+}
+var mywheel = document.getElementById("inner-wheel");
+var mystr = '';
+for (choice of choiceArray) {
+	mystr += `
+	<div class="sec"><span class="fa text">${choice}</span></div>
+	`;
+}
+mywheel.innerHTML = mystr;
+
 $(document).ready(function(){
 
 	/*WHEEL SPIN FUNCTION*/
