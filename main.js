@@ -137,7 +137,7 @@ function chosen_view() {
 	<span class="fa text">${chosen_cuisine.icon}</span>
 	<div id="beside_wheel_text">
 		<h4>Yay😋</h4> 
-		You are fated to eat ${chosen_cuisine.cuisine} food!
+		You are fated to eat <span  class="font-weight-bold">${chosen_cuisine.cuisine}</span> food!
 	</div>
 	<button type="button" class="btn" id="no_button">Confirm cuisine and proceed</button>
 	`;
