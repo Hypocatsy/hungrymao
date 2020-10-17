@@ -84,7 +84,7 @@ $(document).ready(function(){
 			});
 
 			noY = t.offset().top;
-
+			console.log("noY is", noY);
 		});
 	});
 
