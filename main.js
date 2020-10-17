@@ -3,20 +3,33 @@ var degree = 1800;
 //number of clicks = 0
 var clicks = 0;
 
-var choiceArray = ["Chinese", "Korean", "Japanese", "Italian", "Indian"];
 
 // put array info into wheel
 function defaultwheel() {
-	
+	var choiceArray = [
+		{"cuisine" : "Chinese", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/chinese.png" height=50 width=50>' }, 
+		{"cuisine" : "Korean", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/korean.png" height=50 width=50>' }, 
+		{"cuisine" : "Japanese", "number": Math.random(0, 5), "icon": '<img src="../is216-Project/media/japanese.png" height=50 width=50>' }, 
+		{"cuisine" : "Italian", "number": Math.random(0, 5), "icon": '<img src="../is216-Project/media/italian.png" height=50 width=50>' }, 
+		{"cuisine" : "Indian", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/indian.png" height=50 width=50>' }, 
+		{"cuisine" : "Mexican", "number": Math.random(0, 5),  "icon": '<img src="../is216-Project/media/mexican.png" height=50 width=50>' }, 
+
+	];
+
+
+	var mystr = '';
+	for (choiceObject of choiceArray) {
+		mystr += `
+		<div class="sec">
+			<span class="fa text">
+				${choiceObject.icon}
+			</span>
+		</div>
+			`;
+	}
+	document.getElementById("inner-wheel").innerHTML = mystr;
 }
-var mywheel = document.getElementById("inner-wheel");
-var mystr = '';
-for (choice of choiceArray) {
-	mystr += `
-	<div class="sec"><span class="fa text">${choice}</span></div>
-	`;
-}
-mywheel.innerHTML = mystr;
+
 
 $(document).ready(function(){
 

@@ -123,15 +123,14 @@ a{
 }
 
 #wheel div.sec .fa{
-	margin-top: -90px;
+	margin-top: -105px;
 	color: rgba(0, 0, 0, 0.904);
 	position: relative;
 	z-index: 10000000;
 	display: block;
 	text-align: center;
-	font-size:15px;
 	
-	margin-left: -19px;
+	margin-left: -25px;
 
 	/*text-shadow: rgba(255, 255, 255, 0.1) 0px -1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px;*/
 }
