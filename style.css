@@ -23,7 +23,7 @@ a{
 }
 
 #txt{
-	color:#eaeaea;
+	color:#57b9ca;
 }
 
 
@@ -34,7 +34,7 @@ a{
 	border-radius:50%;
 	position:relative;
 	overflow:hidden;
-	border:8px solid #fff;
+	border:8px solid #FDE6E6;
 	/*box-shadow:rgba(0,0,0,0.2) 0px 0px 20px, rgba(0,0,0,0.05) 0px 3px 0px;*/
 	transform: rotate(0deg);
 }
@@ -80,7 +80,7 @@ a{
 	-moz-transform: rotate(60deg);
 	-o-transform: rotate(60deg);
 	-ms-transform: rotate(60deg);
-	border-color: #2a96ff transparent;
+	border-color: #99c7f5 transparent;
 }
 #wheel div.sec:nth-child(2){
 	transform: rotate(120deg);
@@ -88,7 +88,7 @@ a{
 	-moz-transform: rotate(120deg);
 	-o-transform: rotate(120deg);
 	-ms-transform: rotate(120deg);
-	border-color: #b455a0 transparent;
+	border-color: #FFB6A5 transparent;
 }
 #wheel div.sec:nth-child(3){
 	transform: rotate(180deg);
@@ -96,7 +96,7 @@ a{
 	-moz-transform: rotate(180deg);
 	-o-transform: rotate(180deg);
 	-ms-transform: rotate(180deg);
-	border-color: #ff912f transparent;
+	border-color: #ffdec0 transparent;
 }
 #wheel div.sec:nth-child(4){
 	transform: rotate(240deg);
@@ -104,7 +104,7 @@ a{
 	-moz-transform: rotate(240deg);
 	-o-transform: rotate(240deg);
 	-ms-transform: rotate(240deg);
-	border-color: #b2d135 transparent;
+	border-color: #e7f7aa transparent;
 }
 #wheel div.sec:nth-child(5){
 	transform: rotate(300deg);
@@ -112,7 +112,7 @@ a{
 	-moz-transform: rotate(300deg);
 	-o-transform: rotate(300deg);
 	-ms-transform: rotate(300deg);
-	border-color: #ecb400 transparent;
+	border-color: #f5d775 transparent;
 }
 #wheel div.sec:nth-child(6){
 	transform: rotate(360deg);
@@ -120,7 +120,7 @@ a{
 	-moz-transform: rotate(360deg);
 	-o-transform: rotate(360deg);
 	-ms-transform: rotate(360deg);
-	border-color: #f35a6f transparent;
+	border-color: #f9bafc transparent;
 }
 
 #wheel div.sec .fa{
@@ -137,7 +137,7 @@ a{
 }
 
 #wheel div.sec .fa.text {
-	font-family: 'Arimo', sans-serif;
+    font-family: 'Arimo', sans-serif;
 }
 
 
@@ -166,7 +166,7 @@ a{
 
 
 #spin:after{
-	content:"TAP";
+	content:"✋";
 	text-align:center;
 	line-height:68px;
 	color:#CCC;
