@@ -76,15 +76,25 @@ $(document).ready(function(){
 					mycounter ++;
 					console.log("===========================");
 					console.log("MY COUNTER:", mycounter);
-					if (mycounter == 6) {
-						console.log("spin ends here");
-						chosen_view();
-					}
+					
+					
 				}
+
+				console.log(document.getElementsByClassName("sec"));
 
 				var aoY = t.offset().top;
 				$("#txt").html(aoY);
-				// console.log(aoY);
+				if (mycounter == 6 ) {
+					console.log("============ mycounter reached 6 ===============");
+
+					console.log("aoY is", aoY);
+
+					console.log("wheel html is here");
+					console.log(document.getElementById("spin"));
+
+					console.log("spin ends here");
+					chosen_view();
+				}
 
 				/*23.7 is the minumum offset number that
 				each section can get, in a 30 angle degree.
