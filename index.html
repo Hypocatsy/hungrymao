@@ -95,10 +95,6 @@
             border-radius: 30px;
             color: white;
         }
-
-
-
-
         @keyframes swing {
             15% {
             transform: translateX(5px);
@@ -118,6 +114,23 @@
             100% {
             transform: translateX(0);
             }
+        }
+        /* user input */
+        #location, #restrictions{
+            background: #FEF1EE;
+            border: 1px solid #56713A;
+            border-radius: 20px;
+            height: 50px;
+            margin: auto;
+            margin: 10px 0px;
+        }
+        #restrictions{
+            width: 250px
+        }
+        h3{
+            color: #395F2E; 
+            display: inline; 
+            margin: 0px 10px;
         }
     </style>
 
@@ -179,7 +192,7 @@
                         <img src="media/cat.svg" style="width: 70%; margin-top: -35px;">
                         <div class="container text-center">
                             <input type="text" name="username" id="username" placeholder="Username">
-                            <input type="text" name="password" id="password" placeholder="Password">
+                            <input type="text" name="password" id="password" placeholder="Password (hint: it's opensesame)">
                             <button type="submit"  id="decide_btn">Help me decide again!</button><br>
                             <button type="submit"  id="guest_btn">Continue as a Guest</button>
                         </div>
@@ -202,7 +215,15 @@
         <!-- end row 2 -->
     </div>
     <!-- end pink container -->
- 
+
+    <!-- User input -->
+    <div class="container mt-4 mb-4 text-center">
+        <h3>Current Location</h3> 
+        <input type="text" name="location" id="location" placeholder="633702">
+        <h3>Food Restrictions</h3> 
+        <input type="text" name="restrictions" id="restrictions" placeholder="Vegetarian, Hala, Vegan">
+    </div>
+    
     <!-- WHEEL & TEXT CONTAINER -->
 
     <div class="container mt-4 mb-4">
