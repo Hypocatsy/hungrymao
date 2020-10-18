@@ -85,7 +85,7 @@
             color:#56713A;
         }
         /* Button */
-        #yes_button {
+        #yes_button, #filter_button {
             background-color: #56713A;
             border-radius: 30px;
             color: white;
@@ -115,8 +115,12 @@
             transform: translateX(0);
             }
         }
-        /* user input */
-        #location, #restrictions{
+        /* user input & filtering by restrictions */
+        #inputcontainer {
+            padding-top: 20px;
+        }
+
+        #location {
             background: #FEF1EE;
             border: 1px solid #56713A;
             border-radius: 20px;
@@ -124,13 +128,23 @@
             margin: auto;
             margin: 10px 0px;
         }
-        #restrictions{
-            width: 250px
-        }
-        h3{
+        
+        h3 {
             color: #395F2E; 
             display: inline; 
             margin: 0px 10px;
+        }
+        
+        .col {
+            text-align: center;
+        }
+
+        .form-check {
+            text-align: left;
+            padding-left: 20%;
+        }
+        .form-check-label {
+            color:  #56713A;
         }
     </style>
 
@@ -216,12 +230,21 @@
     </div>
     <!-- end pink container -->
 
-    <!-- User input -->
-    <div class="container mt-4 mb-4 text-center">
-        <h3>Current Location</h3> 
-        <input type="text" name="location" id="location" placeholder="633702">
-        <h3>Food Restrictions</h3> 
-        <input type="text" name="restrictions" id="restrictions" placeholder="Vegetarian, Hala, Vegan">
+    <!-- User input & Filtering Container-->
+    <div class="container mt-4 mb-4" id="inputcontainer">
+        <div class="row">
+            <!-- User's Location -->
+            <div class="col">
+                <h3>Current Location</h3> 
+                <input type="text" name="location" id="location" placeholder="633702">
+            </div>
+            <!-- User's Food Restrictions -->
+            <div class="col">
+                <div id="filterdiv">
+                    <!-- content is filled by main.js - defaultview() function -->
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- WHEEL & TEXT CONTAINER -->

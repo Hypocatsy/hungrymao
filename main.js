@@ -18,12 +18,33 @@ var choiceArray = [
     {"cuisine" : "Mexican", "icon": '<img src="media/wheel_icons/mexican.png" height="50" width="50">' }, 
 ];
 
-// put array info into wheel
+const filterArray = ["vegetarian", "halal", "vegan"];
+
+// Filter, Wheel, Text beside wheel
 function defaultview(choiceArray) {
 
+	// Part 1: Filter
+	var filterstr = `
+	<h3>Food Restrictions</h3> 
+	`;
+	for (var option of filterArray) {
+		console.log(option);
+		filterstr += `
+		<div class="form-check">
+			<input type="checkbox" class="form-check-input" id="${option}">
+			<label class="form-check-label" for="${option}">${option}</label>
+	  	</div>
+		`;
+		console.log(filterstr);
+	}
+	filterstr += `
+	<button type="button" class="btn" id="filter_button">Filter</button>
+	`;
+
+	document.getElementById("filterdiv").innerHTML = filterstr;
 
 	var wheelstr = '';
-	for (choiceObject of choiceArray) {
+	for (var choiceObject of choiceArray) {
 		wheelstr += `
 		<div class="sec">
 			<span class="fa text wheelIcon">
@@ -32,11 +53,11 @@ function defaultview(choiceArray) {
 		</div>
 			`;
 	}
-	// add into wheel html
+	// Part 2: Wheel - add cuisines into wheel html
 	document.getElementById("inner-wheel").innerHTML = wheelstr;
 
 
-	// Part 2: Text beside the wheel
+	// Part 3: Text beside the wheel
 	var beside_wheel_str = `
 	<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 	<div id="beside_wheel_text">
@@ -54,7 +75,7 @@ var count_repeat = 1;
 // This function is called when user chooses the "I dont want this cuisine!!" button
 function repeatspin(choiceArray) {
 	var wheelstr = '';
-	for (choiceObject of choiceArray) {
+	for (var choiceObject of choiceArray) {
 		wheelstr += `
 		<div class="sec">
 			<span class="fa text wheelIcon">
