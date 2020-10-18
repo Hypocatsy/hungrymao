@@ -105,7 +105,7 @@ function repeatspin(choiceArray) {
 				<h4>OMG! You have spinned <b>${count_repeat} times</b> already!!!</h4> 
 				Click the ✋ icon on the wheel to randomise your food choice!
 				<br>
-				Hope you will like the choice this time!
+				Hope you will <span style = "color: #D54B73;">FINALLY</span> like the choice this time!
 			</div>
 			`;
 		}
