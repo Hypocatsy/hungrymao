@@ -328,4 +328,5 @@ function chosen_view() {
 	document.getElementById("wheeltextdiv").innerHTML = msg;
 
 	console.log("=== CHOSEN_VIEW() ends ===");
+	// console.log('test');
 }
