@@ -5,7 +5,7 @@ var clicks = 0;
 
 // Cat Array
 
-var catArray = ["media/memes/bear_cat.jpg", "media/memes/cute_cat.jpg", "media/memes/dude_cat.jpg", "media/memes/frown_cat.jpg", "media/memes/grumpy_cat.jpg", "media/memes/polite_cat.jpg", "media/memes/shocked_cat.jpg"];
+var catArray = ["media/memes/bear_cat.jpg", "media/memes/cute_cat.jpg", "media/memes/dude_cat.jpg", "media/memes/frown_cat.jpg", "media/memes/grumpy_cat.jpg", "media/memes/polite_cat.jpg", "media/memes/shocked_cat.jpg", "media/memes/close_cat.jpg", "media/memes/halloween_cat.jpg", "media/memes/heart_cat.jpg", "media/memes/thumbsup_cat.jpg"];
 
 // Part 1: Wheel Info - cuisines and relevant icons
 
