@@ -63,3 +63,86 @@
 
 //Japanese and within 1km of SMU (postal code 178903) and open now
 //https://api.yelp.com/v3/businesses/search?term=japanese&location=singapore+178903&radius=1000&open_now=true
+
+function business_search_yelp_api(){
+	// https://www.yelp.com/developers/documentation/v3/business_search (click for documentation)
+    // Step 1
+    var request = new XMLHttpRequest();
+
+    // Step 2
+    // Register function
+    request.onreadystatechange = function() {
+        // Step 5
+        if( request.readyState == 4 && request.status == 200 ) {
+            // Response is ready
+           
+            var json_obj = JSON.parse(request.responseText);
+
+        }
+
+    }
+
+	// Step 3
+	var base_url = "https://api.yelp.com/v3/businesses/search"; 
+	var final_url = base_url + ""; //many things like terms, long/lat...
+    
+    request.open("GET", final_url, true); // Asynch
+
+    // Step 4
+    request.send();	
+}
+
+function autocomplete_yelp_api(){
+	// https://www.yelp.com/developers/documentation/v3/autocomplete (click for documentation)
+    // Step 1
+    var request = new XMLHttpRequest();
+
+    // Step 2
+    // Register function
+    request.onreadystatechange = function() {
+        // Step 5
+        if( request.readyState == 4 && request.status == 200 ) {
+            // Response is ready
+           
+            var json_obj = JSON.parse(request.responseText);
+
+        }
+
+    }
+
+	// Step 3
+	var final_url = "https://api.yelp.com/v3/autocomplete"; 
+    
+    request.open("GET", final_url, true); // Asynch
+
+    // Step 4
+    request.send();	
+}
+
+function business_id_yelp_api(id){
+	// https://www.yelp.com/developers/documentation/v3/business (click this for documentation)
+    // Step 1
+    var request = new XMLHttpRequest();
+
+    // Step 2
+    // Register function
+    request.onreadystatechange = function() {
+        // Step 5
+        if( request.readyState == 4 && request.status == 200 ) {
+            // Response is ready
+           
+            var json_obj = JSON.parse(request.responseText);
+
+        }
+
+    }
+
+	// Step 3
+	var base_url = "https://api.yelp.com/v3/businesses/"; //{id}
+    var final_url = base_url + "";
+    
+    request.open("GET", final_url, true); // Asynch
+
+    // Step 4
+    request.send();	
+}
