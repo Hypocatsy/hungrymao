@@ -62,7 +62,40 @@
 // },
 
 //Japanese and within 1km of SMU (postal code 178903) and open now
-//https://api.yelp.com/v3/businesses/search?term=japanese&location=singapore+178903&radius=1000&open_now=true
+//https://api.yelp.com/v3/businesses/search?term=japanese&location=singapore+178903&radius=2000&open_now=true
+
+
+function getRestrictions(){
+
+    var restrictionsArr = [];
+    var items = document.querySelectorAll('input[type=checkbox]:checked')
+
+    for (var i = 0; i < items.length; i++) {
+        restrictionsArr.push(items[i].value);
+    }
+    return restrictionsArr;
+}
+
+var postal_code = document.getElementById('location').value;
+
+function addTerm(base_url, postal_code){
+
+    var chosen_cuisine = randomize(choiceArray);
+
+    part_url = base_url.concat('', chosen_cuisine);
+
+    restrictionsArr.forEach(restriction => {
+        
+        part_url.concat('+',restriction);
+    });
+
+    part_url.concat('&',`location=singapore+${postal_code}&radius=2000&open_now=true`);
+    return part_url;
+
+}
+
+
+
 
 function business_search_yelp_api(){
 	// https://www.yelp.com/developers/documentation/v3/business_search (click for documentation)
