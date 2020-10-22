@@ -65,6 +65,8 @@
 //https://api.yelp.com/v3/businesses/search?term=japanese&location=singapore+178903&radius=2000&open_now=true
 
 
+//Call getFinalUrl(base_url) to get final Url
+
 function getRestrictions(){
 
     var restrictionsArr = [];
@@ -76,22 +78,25 @@ function getRestrictions(){
     return restrictionsArr;
 }
 
-var postal_code = document.getElementById('location').value;
 
-function addTerm(base_url, postal_code){
+function getFinalUrl(base_url){
+
+    var restrictionsArr = getRestrictions();
 
     var chosen_cuisine = randomize(choiceArray);
 
-    part_url = base_url.concat('', chosen_cuisine);
+    final_url = base_url.concat('', chosen_cuisine);
 
     restrictionsArr.forEach(restriction => {
         
-        part_url.concat('+',restriction);
+        final_url.concat('+',restriction);
     });
 
-    part_url.concat('&',`location=singapore+${postal_code}&radius=2000&open_now=true`);
-    return part_url;
+    var postal_code = document.getElementById('location').value;
 
+    final_url.concat('&',`location=singapore+${postal_code}&radius=2000&open_now=true`);
+
+    return final_url;
 }
 
 
