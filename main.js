@@ -363,7 +363,7 @@ function call_api(cuisine){
 	base_url = "https://api.yelp.com/v3/businesses/search?term=";
 	url_with_cuisine = base_url + cuisine;
 
-	console.log(url_with_cuisine);
+	// console.log(url_with_cuisine);
 
 	if (restrictions.length != 0){
 		for (restriction of restrictions){
@@ -371,7 +371,7 @@ function call_api(cuisine){
 		}
 	}
 
-	console.log(url_with_cuisine);
+	// console.log(url_with_cuisine);
 
 	url_with_location = url_with_cuisine + "&location=" + country;
 	
@@ -382,7 +382,7 @@ function call_api(cuisine){
 	final_url = url_with_location + "&radius=" + radius + "&locale=" + locale;
 
 	
-	console.log(final_url);
+	// console.log(final_url);
 
 	axios.get(`${'https://cors-anywhere.herokuapp.com/'}${final_url}`, {
 	headers: {
@@ -429,7 +429,7 @@ function display_data(data){
 		var no_food_txt = "We could not find a picture of the food so here's a cat pic!";
 		got_img = false;
 	}
-	console.log(image_url);
+	// console.log(image_url);
 
 	if (rating == 0){
 		star = "media/yelp_stars/large_0.png";	
@@ -460,10 +460,10 @@ function display_data(data){
 	document.getElementById("yelp_result").innerHTML = ''; 
 
 	document.getElementById("yelp_result").innerHTML += 
-	`<img src="${image_url}" height="200" width="300"><br>`;
+	`<img src="${image_url}" height="200" width="300"><br><br>`;
 
 	if (got_img == false ){
-		document.getElementById("yelp_result").innerHTML += no_food_txt;
+		document.getElementById("yelp_result").innerHTML += no_food_txt + "<br>";
 	}
 
 	document.getElementById("yelp_result").innerHTML += 
