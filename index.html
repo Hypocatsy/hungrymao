@@ -55,14 +55,7 @@
             color: #5F8953;
             padding: 2px;
         }
-        #decide_btn{
-            background: #D54B73;
-            border-radius: 20px;
-        }
-        #guest_btn{
-            background: #5F8953;
-            border-radius: 20px;
-        }
+        
         input{
             margin: 5px 0px;
         }
@@ -72,14 +65,13 @@
             border: none;
             color: white;
             padding: 5px 15px;
-            /* width: 75%; */
             height: 40px;
+            font-size: 100%;
         }
         button:hover {
             animation: swing 1s ease;
             animation-iteration-count: 1;
         }
-
         /* wheel stuff */
         #wheeltextdiv {
             text-align: center;
@@ -94,7 +86,12 @@
             color:#56713A;
         }
         /* Button */
-        #yes_button, #filter_button, #yelp_button {
+        #decide_btn{
+            background: #D54B73;
+            border-radius: 30px;
+            color: white;
+        }
+        #guest_btn, #yes_button, #filter_button, #yelp_button {
             background-color: #56713A;
             border-radius: 30px;
             color: white;
@@ -226,8 +223,8 @@
                         <div class="container text-center">
                             <input type="text" name="username" id="username" placeholder="Username">
                             <input type="text" name="password" id="password" placeholder="Password (hint: it's opensesame)">
-                            <button type="submit"  id="decide_btn">Help me decide again!</button><br>
-                            <button type="submit"  id="guest_btn">Continue as a Guest</button>
+                            <button type="submit" class="btn text-nowrap" id="decide_btn">Help me decide again!</button><br>
+                            <button type="submit" class="btn text-nowrap" id="guest_btn">Continue as a Guest</button>
                         </div>
                     </div>
                 </div>
@@ -271,7 +268,7 @@
     <div class="container mt-4 mb-4">
         <!-- start row 1 -->
         <div class="row">
-            <div class="col">
+            <div class="col-md-6">
                  <!-- START WHEEL -->
                  <div id="wrapper">
 
@@ -294,7 +291,7 @@
             </div>
 
 
-            <div class="col pt-5" id="wheeltextdiv">
+            <div class="col-md-6 pt-5" id="wheeltextdiv">
 
                     <!-- 
                     Content is filled by main.js

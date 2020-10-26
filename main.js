@@ -40,7 +40,7 @@ function defaultview(choiceArray) {
 		// console.log(filterstr);
 	}
 	filterstr += `
-	<button type="button" class="btn" id="filter_button" onclick="getRestrictions()">Filter</button>
+	<button type="button" class="btn text-nowrap" id="filter_button" onclick="getRestrictions()">Filter</button>
 	`;
 
 	// console.log(filterstr);
@@ -327,8 +327,8 @@ function chosen_view() {
 		<h4>Yay😋</h4> 
 		You are fated to eat <span  class="font-weight-bold">${chosen_cuisine.cuisine}</span> food!
 	</div>
-	<button type="button" class="btn" id="yes_button" onclick=call_api("${chosen_cuisine.cuisine}")>Confirm cuisine and proceed</button>
-	<button type="button" class="btn" id="no_button" onclick="repeatspin(choiceArray)">I don't want this! Choose again!</button>
+	<button type="button" class="btn text-nowrap" id="yes_button" onclick=call_api("${chosen_cuisine.cuisine}")>Confirm cuisine and proceed</button>
+	<button type="button" class="btn text-nowrap" id="no_button" onclick="repeatspin(choiceArray)">I don't want this! Choose again!</button>
 	`;
 	document.getElementById("wheeltextdiv").innerHTML = msg;
 
@@ -472,7 +472,7 @@ function display_data(data){
 	 <img src="${star}"><br>
 	 <b>Price: ${price}</b><br>
 	 <b>Address: ${address} Singapore ${postal_code}</b><br>
-	 <button type="button" class="btn" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
+	 <button type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
 	`
 
 	;
