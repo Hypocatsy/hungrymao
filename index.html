@@ -36,6 +36,15 @@
     <!-- Animation-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
+     <!-- Google Maps API -->
+   
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug&callback=initMap">  
+    </script>
+
+     <!-- Delay loading dynamic map -->
+     <script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script>
+    
     <!-- Internal style -->
     <style>
         #login{
@@ -277,7 +286,7 @@
                     <div id="wheel">
                         <div id="inner-wheel">
                         <!-- content is filled by main.js - defaultview() function -->
-                </div>
+                         </div>
             
                         <div id="spin">
                             <div id="inner-spin"></div>
@@ -312,14 +321,20 @@
 <!-- Pink container - should only appear after api is called -->
 <div class="container-fluid" >
     <!-- start row 2 -->
-    <div class="row mt-4" style = "background-color: #FDE6E6;">
+    <div class="row mt-4 mx-auto" style = "background-color: #FDE6E6;" id="api_results"> 
         <div class="container" id="yelp_result">
             <!-- Testing (should only be visible if api is called) -->
         </div>
+            <!-- <div id="map" style = "width: 580px; height: 666px;"></div> -->
+
     </div>
     <!-- end row 2 -->
 </div>
 <!-- end pink container -->
+
+
+
+
 
 
 

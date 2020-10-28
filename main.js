@@ -351,8 +351,9 @@ function getRestrictions(){
 
 
 function call_api(cuisine){
+
 	const country = 'singapore';
-	const radius = '2000';
+	const radius = '3000';
 	const locale = 'en_SG';
 	let restrictions = getRestrictions();
 	// console.log(restrictions);
@@ -401,8 +402,10 @@ function call_api(cuisine){
 	})
 	.catch((err) => {
 		console.log ('error');
+		alert('error - no food to specifications');
 		//have to prompt a message like "sorry, no food with your specifications could be found"
 	})
+
 }
 
 function display_data(data){
@@ -423,13 +426,25 @@ function display_data(data){
 	let address = selected_restaurant.location.address1;
 	let postal_code = selected_restaurant.location.zip_code;
 	let price = selected_restaurant.price;
+
 	var star = "";
 	if (image_url == ""){
 		image_url = "media/no_food_sad_cat.jpg";
 		var no_food_txt = "We could not find a picture of the food so here's a cat pic!";
 		got_img = false;
 	}
-	// console.log(image_url);
+	
+	// google maps
+	let latitude = selected_restaurant.coordinates.latitude;
+	let longitude = selected_restaurant.coordinates.longitude;
+
+   if (!image_url==""){
+	   alert('call maps');
+	   initMap(latitude, longitude);
+	   alert('initmap done')
+   }
+//    google maps end
+	console.log(image_url);
 
 	if (rating == 0){
 		star = "media/yelp_stars/large_0.png";	
@@ -477,3 +492,42 @@ function display_data(data){
 
 	;
 }
+
+
+
+// Initialize and add the map
+function initMap(latitude, longitude, name) {
+
+	var api_results = document.getElementById("api_results");  
+	api_results.innerHTML += `<div id="map" style = "width: 200px; height: 400px;"></div>`;
+	
+	const myLocation = { lat: latitude, lng: longitude };
+	console.log(myLocation);
+	// The map, centered at myLocation
+	const map = new google.maps.Map(document.getElementById("map"), {
+	zoom: 10,
+	center: myLocation,
+	});
+	// The marker, positioned at myLocation
+	const marker = new google.maps.Marker({
+	position: myLocation,
+	map: map,
+	draggable: false
+	});
+
+	var information = new google.maps.InfoWindow();
+	infoWindow.setPosition(myLocation);
+	infoWindow.setContent(`${name}is here!`);
+	infoWindow.open(map);
+	map.setCenter(myLocation);
+
+	marker.addListener('click', function() {
+		information.open(map, marker);
+	});
+
+	// var information = new google.maps.InfoWindow({
+	// 	content: `<h4>${name} is here!</h4>`
+	// 	});
+		
+
+  }
