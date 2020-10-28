@@ -435,14 +435,14 @@ function display_data(data){
 	}
 	
 	// google maps
-	let latitude = selected_restaurant.coordinates.latitude;
-	let longitude = selected_restaurant.coordinates.longitude;
+// 	let latitude = selected_restaurant.coordinates.latitude;
+// 	let longitude = selected_restaurant.coordinates.longitude;
 
-   if (!image_url==""){
-	   alert('call maps');
-	   initMap(latitude, longitude);
-	   alert('initmap done')
-   }
+//    if (!image_url==""){
+// 	   alert('call maps');
+// 	   initMap(latitude, longitude);
+// 	   alert('initmap done')
+//    }
 //    google maps end
 	console.log(image_url);
 
@@ -496,38 +496,38 @@ function display_data(data){
 
 
 // Initialize and add the map
-function initMap(latitude, longitude, name) {
+// function initMap(latitude, longitude, name) {
 
-	var api_results = document.getElementById("api_results");  
-	api_results.innerHTML += `<div id="map" style = "width: 200px; height: 400px;"></div>`;
+// 	var api_results = document.getElementById("api_results");  
+// 	api_results.innerHTML += `<div id="map" style = "width: 200px; height: 400px;"></div>`;
 	
-	const myLocation = { lat: latitude, lng: longitude };
-	console.log(myLocation);
-	// The map, centered at myLocation
-	const map = new google.maps.Map(document.getElementById("map"), {
-	zoom: 10,
-	center: myLocation,
-	});
-	// The marker, positioned at myLocation
-	const marker = new google.maps.Marker({
-	position: myLocation,
-	map: map,
-	draggable: false
-	});
+// 	const myLocation = { lat: latitude, lng: longitude };
+// 	console.log(myLocation);
+// 	// The map, centered at myLocation
+// 	const map = new google.maps.Map(document.getElementById("map"), {
+// 	zoom: 10,
+// 	center: myLocation,
+// 	});
+// 	// The marker, positioned at myLocation
+// 	const marker = new google.maps.Marker({
+// 	position: myLocation,
+// 	map: map,
+// 	draggable: false
+// 	});
 
-	var information = new google.maps.InfoWindow();
-	infoWindow.setPosition(myLocation);
-	infoWindow.setContent(`${name}is here!`);
-	infoWindow.open(map);
-	map.setCenter(myLocation);
+// 	var information = new google.maps.InfoWindow();
+// 	infoWindow.setPosition(myLocation);
+// 	infoWindow.setContent(`${name}is here!`);
+// 	infoWindow.open(map);
+// 	map.setCenter(myLocation);
 
-	marker.addListener('click', function() {
-		information.open(map, marker);
-	});
+// 	marker.addListener('click', function() {
+// 		information.open(map, marker);
+// 	});
 
-	// var information = new google.maps.InfoWindow({
-	// 	content: `<h4>${name} is here!</h4>`
-	// 	});
+// 	// var information = new google.maps.InfoWindow({
+// 	// 	content: `<h4>${name} is here!</h4>`
+// 	// 	});
 		
 
-  }
+//   }
