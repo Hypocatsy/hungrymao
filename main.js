@@ -475,7 +475,7 @@ function display_data(data){
 	document.getElementById("yelp_result").innerHTML = ''; 
 
 	document.getElementById("yelp_result").innerHTML += 
-	`<img src="${image_url}" height="200" width="300"><br><br>`;
+	`<img style="margin-top: 5%;" src="${image_url}" height="200" width="300"><br><br>`;
 
 	if (got_img == false ){
 		document.getElementById("yelp_result").innerHTML += no_food_txt + "<br>";
@@ -487,7 +487,7 @@ function display_data(data){
 	 <img src="${star}"><br>
 	 <b>Price: ${price}</b><br>
 	 <b>Address: ${address} Singapore ${postal_code}</b><br>
-	 <button type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
+	 <button style="margin-top: 3%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
 	`
 
 	;
