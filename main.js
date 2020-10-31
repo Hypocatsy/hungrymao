@@ -20,6 +20,14 @@ var choiceArray = [
     {"cuisine" : "Mexican", "icon": '<img src="media/wheel_icons/mexican.png" height="50" width="50">' }, 
 ];
 
+var catArrayForWheel = ['<img src="media/wheel_icons_cats/black_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/brown_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/cat_with_yarn.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/grey_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/orange_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/yellow_cat.png" height="50" width="50">' 					
+];
+
 const filterArray = ["vegetarian", "halal", "vegan"];
 
 // Filter, Wheel, Text beside wheel
@@ -48,11 +56,11 @@ function defaultview(choiceArray) {
 	document.getElementById("filterdiv").innerHTML = filterstr;
 
 	var wheelstr = '';
-	for (var choiceObject of choiceArray) {
+	for (var catpic of catArrayForWheel) {
 		wheelstr += `
 		<div class="sec">
 			<span class="fa text wheelIcon">
-				${choiceObject.icon}
+				${catpic}
 			</span>
 		</div>
 			`;
@@ -402,7 +410,24 @@ function call_api(cuisine){
 	})
 	.catch((err) => {
 		console.log ('error');
-		alert('error - no food to specifications');
+		// alert('error - no food to specifications');
+		document.getElementById("yelp_result").innerHTML = ''; 
+
+		document.getElementById("alerts").innerHTML += 
+		`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong>Oh no! hungrymao could not find any food matching your specifications.</strong> Hint: sometimes too many restrictions could starve poor mao. Maybe try again!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  		<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		`;
+		
+		//tried to add vid in alert but it's not really necessary 
+		// <br>
+		// <video width="300" height="200" autoplay="autoplay">
+		// 	<source src="media/sad_cat.mp4" type="video/mp4" />
+		// </video>
+
 		//have to prompt a message like "sorry, no food with your specifications could be found"
 	})
 
@@ -473,9 +498,14 @@ function display_data(data){
 	}
 
 	document.getElementById("yelp_result").innerHTML = ''; 
+	
+	document.getElementById("yelp_result").innerHTML += 
+	`
+		<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
+	`;
 
 	document.getElementById("yelp_result").innerHTML += 
-	`<img style="margin-top: 5%;" src="${image_url}" height="200" width="300"><br><br>`;
+	`<img src="${image_url}" height="200" width="300"><br><br>`;
 
 	if (got_img == false ){
 		document.getElementById("yelp_result").innerHTML += no_food_txt + "<br>";
