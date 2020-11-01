@@ -1,4 +1,55 @@
 
+// FORM part - username and password
+
+// Scenario 1: User clicks 'Continue as guest' button
+function guest_user() {
+	// auto-scroll to the 'how it works' section
+	document.getElementById('pink_container').scrollIntoView();
+	return false;
+}
+
+// Scenario 2: User clicks 'Help me decide again' button
+function real_user() {
+	var username = document.getElementById('username').value;
+	var password = document.getElementById('password').value;
+	var errorstring = '';
+
+
+	console.log(username);
+	// Error 1: Empty user or pw
+	if ( username == '' || password == '') {
+		console.log("Username / Password is empty!!");
+		errorstring += "Your username/password is empty!";
+	}
+
+	// Error 2: Filled but Wrong password 
+	else if ( password != '' && password != 'opensesame' ) {
+		console.log("wrong password!!");
+		// show the placeholder again
+		document.getElementById('password').value = '';
+		document.getElementById('password').setAttribute("placeholder", "Password (hint: it's opensesame)");
+
+		errorstring += "Wrong Password! Refer to the hint!";
+
+	}
+
+	// NO ERRORS YAYYY
+	else {
+		console.log("Everything is correct yay!!!");
+		// auto-scroll to 'How it Works' section 
+		document.getElementById('pink_container').scrollIntoView();
+		return false;
+	}
+
+	// Have Error 
+	if ( errorstring != '' ) {
+		document.getElementById("login-errors").innerText = errorstring;
+	}
+
+	return false;
+}
+// ============== F O R M   V A L I D A T I O N   I S   C O M P L E T E ===================
+
 
 //set default degree (360*5)
 var degree = 1800;
@@ -31,7 +82,7 @@ var catArrayForWheel = ['<img src="media/wheel_icons_cats/black_cat.png" height=
 const filterArray = ["vegetarian", "halal", "vegan"];
 
 // Filter, Wheel, Text beside wheel
-function defaultview(choiceArray) {
+function defaultview(username) {
 
 	// Part 1: Filter
 	var filterstr = `
@@ -74,7 +125,7 @@ function defaultview(choiceArray) {
 	<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 	<div id="beside_wheel_text">
 		<h4>Welcome!</h4> 
-		Click the ✋ icon on the wheel to randomise your food choice!
+		Click the middle of the wheel to randomise your food choice!
 	</div>
 	`;
 
@@ -88,11 +139,11 @@ var count_repeat = 1;
 function repeatspin(choiceArray) {
 	document.getElementById("yelp_result").innerHTML = ''; 
 	var wheelstr = '';
-	for (var choiceObject of choiceArray) {
+	for (var catpic of catArrayForWheel) {
 		wheelstr += `
 		<div class="sec">
 			<span class="fa text wheelIcon">
-				${choiceObject.icon}
+				${catpic}
 			</span>
 		</div>
 			`;
@@ -112,7 +163,7 @@ function repeatspin(choiceArray) {
 		<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 		<div id="beside_wheel_text">
 			<h4>You choose to spin again!</h4> 
-			Click the ✋ icon on the wheel to randomise your food choice!
+			Click the middle of the wheel to randomise your food choice!
 			<br>
 			Hope you will like the choice this time!
 		</div>
@@ -125,7 +176,7 @@ function repeatspin(choiceArray) {
 			<img src="${random_cat}" style = "height: 200px;">
 			<div id="beside_wheel_text">
 				<h4>You have spinned ${count_repeat} times already!!!</h4> 
-				Click the ✋ icon on the wheel to randomise your food choice!
+				Click the middle of the wheel to randomise your food choice!
 				<br>
 				Hope you will like the choice this time!
 			</div>
@@ -137,7 +188,7 @@ function repeatspin(choiceArray) {
 			<iframe src="https://giphy.com/embed/rN2EZm3CSXHY1QoGrq" width="200" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hills-pet-nutrition-science-diet-rN2EZm3CSXHY1QoGrq"></a></p>
 			<div id="beside_wheel_text">
 				<h4>OMG! You have spinned <b>${count_repeat} times</b> already!!!</h4> 
-				Click the ✋ icon on the wheel to randomise your food choice!
+				Click the middle of the wheel to randomise your food choice!
 				<br>
 				Hope you will <span style = "color: #D54B73;">FINALLY</span> like the choice this time!
 			</div>

@@ -6,6 +6,11 @@ body{
 	font-family: 'Montserrat', sans-serif;
 }
 
+/* make scrolling smooth - esp for auto-scroll */
+html {
+	scroll-behavior: smooth;
+}
+
 a{
 	color:#edb400;
 }
@@ -164,7 +169,7 @@ a{
 
 
 #spin:after{
-	content:"✋";
+	content:"";
 	text-align:center;
 	line-height:68px;
 	color:#CCC;

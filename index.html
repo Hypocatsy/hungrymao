@@ -54,6 +54,7 @@
             border-radius: 20px;
             padding: 10px;
         }
+
         #username, #password{
             background: #EFFAEC;
             border: 1px solid #56713A;
@@ -84,6 +85,12 @@
             animation: swing 1s ease;
             animation-iteration-count: 1;
         }
+
+        #login-errors {
+            margin-top: 20px;
+            color:#56713A;
+        }
+        
         /* wheel stuff */
         #wheeltextdiv {
             text-align: center;
@@ -247,8 +254,9 @@
     </nav>
     <!-- END NAVIGATION -->
 
-    <!-- START CONTAINER -->
-
+    <!-- START FORM -->
+    <form action="">
+        <!-- START CONTAINER -->
         <div class="container mt-4 mb-4">
             <!-- start row 1 -->
             <div class="row">
@@ -262,20 +270,26 @@
                         <img class="animate__animated animate__fadeInTopLeft" src="media/cat.svg" style="width: 70%; margin-top: -35px;">
                         <div class="container text-center">
                             <input type="text" name="username" id="username" placeholder="Username">
-                            <input type="text" name="password" id="password" placeholder="Password (hint: it's opensesame)">
-                            <button type="submit" class="btn text-nowrap" id="decide_btn">Help me decide again!</button><br>
-                            <button type="submit" class="btn text-nowrap" id="guest_btn">Continue as a Guest</button>
+                            <input type="password" name="password" id="password" placeholder="Password (hint: it's opensesame)">
+                            <button type="submit" class="btn text-nowrap" id="decide_btn" onclick="return real_user()">Help me decide again!</button><br>
+                            <button type="submit" class="btn text-nowrap" id="guest_btn" onclick="return guest_user()">Continue as a Guest</button>
+                        </div>
+
+                        <div id="login-errors">
+
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end row 1 -->
-            
         </div>
     <!-- END CONTAINER   -->
+    </form>
+    <!-- END FORM -->
+
 
     <!-- pink container -->
-    <div class="container-fluid">
+    <div class="container-fluid" id="pink_container">
         <!-- start row 2 -->
         <div class="row mt-4" style = "background-color: #FDE6E6;">
             <div class="container">
@@ -318,7 +332,9 @@
                          </div>
             
                         <div id="spin">
-                            <div id="inner-spin"></div>
+                            <div id="inner-spin">
+                                <img src='../is216-Project/media/damnhungry_cat.png' height='55' width='55'>
+                            </div>
                         </div>
             
                         <div id="shine"></div>
