@@ -1,6 +1,40 @@
 <!doctype html>
 <html lang="en">
 
+<!-- 
+
+A SUMMARY OF THE DETAILS IN THIS HTML FILE
+==========================================
+HEAD PART
+- Internal CSS -> approx line 70 to 250
+==========================================
+BODY PART -> approx line 260 to 440
+
+*** Below are the Main Components ***
+1. hungrymao pink header 
+
+2. Username and Password Input Fields -> user can choose to log in OR continue as a guest
+
+3. How hungrymao's food randomiser works
+
+4. User inputs:
+    - Location
+    - Food Restrictions
+
+5. Spinning wheel
+    - After spinning, user can:
+        a. Accept the cuisine (continue to step 6)
+        b. Spin wheel again (repeat step 5)
+
+6. Display ONE restaurant in the pink container
+    - 2 buttons (Yes and Next)
+        a. Click 'yes' -> Display 'Yay you have found your food'
+        b. Next -> Display another restaurant
+    - Restaurant information    
+    - 'Go to Yelp' button
+
+-->
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -229,7 +263,7 @@
     <title>hungrymao is hungry!</title>
   </head>
 
-  <body style="background-color: #FFFCF6;" onload="defaultview(choiceArray)">
+  <body style="background-color: #FFFCF6;">
     <!-- <h1>Hello, world!</h1> -->
 
     <!-- Navigation -->
@@ -284,6 +318,7 @@
                     <div class="container mt-4 mb-4" id="login">
                         <img class="animate__animated animate__fadeInTopLeft" src="media/cat.svg" style="width: 70%; margin-top: -35px;">
                         <div class="container">
+                            <!-- input fields - username and password -->
                             <div class="container-fluid" id="login-input">
                                 <label for="username" id="username_label">Username</label>
                                 <input type="text" name="username" id="username">
@@ -291,10 +326,8 @@
                                 <label for="password" id="password_label">Password</label>
                                 <input type="password" name="password" id="password" placeholder="(hint: it's opensesame)">
                             </div>
-
-                           
-
-                            <button type="submit" class="btn text-nowrap" id="decide_btn" onclick="return real_user()">Help me decide again!</button><br>
+                            <!-- buttons -->
+                            <button type="submit" class="btn text-nowrap" id="decide_btn" onclick="return login_user()">Help me decide again!</button><br>
                             <button type="submit" class="btn text-nowrap" id="guest_btn" onclick="return guest_user()">Continue as a Guest</button>
                         </div>
 

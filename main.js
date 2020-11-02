@@ -1,3 +1,86 @@
+/*
+Summary of the different functions and what they do
+============================================================
+
+FORM PART
+
+1. guest_user() function (approx line 47-53)
+	- This is called when user clicks on 'Continue as a guest' button
+	- What it does:
+		-> auto-scroll user to the 'How hungrymao's randomiser works' section
+
+2. login_user() function (approx line 56-95)
+	- This is called when user clicks on 'Help me decide again' button
+	- What it does:
+		-> validate login details
+		-> if all successful, auto-scroll user to the 'How hungrymao's randomiser works' section
+
+============================================================
+
+WHEEL INFORMATION
+
+1. default_view(username='') function (approx line 130-180)
+	- This is called by guest_user() OR login_user() function
+	- What it does:
+		-> Display food restriction options
+			- When user clicks 'Filter' button, it leads to getRestrictions() function
+		-> Display wheel icons
+		-> Display text beside wheel
+
+2. $(document).ready(function()... (approx line 184-273)
+	- This allows wheel to spin properly when user clicks on the middle of the wheel
+	- If this is a repeated spin, it calls repeatspin() function
+
+============================================================
+AFTER USER SPINS WHEEL 
+
+(FIRST TIME SPIN)
+
+1. chosen_view() function (approx line 280-302)
+	- This is called when wheel stops
+	- What it does:
+		-> Displays the chosen cuisine and some text for user
+		-> 2 buttons
+			- 'Confirm cuisine and proceed' -> 
+			- 'I dont want this! Choose again!' -> goes back to $(document).ready(function()...
+
+(REPEATED SPIN)
+
+1. repeatspin() function (approx line 318-385)
+	- This is called when wheel stops
+	- What it does:
+		-> similar to chosen_view() function but it shows user different text bc they are so indecisive :')
+
+============================================================
+
+RETRIEVE FOOD RESTRICTIONS
+
+1. getRestrictions() function
+	- What it does:
+		-> retrieve user's restrictions and stores it for later use in call_api()
+
+============================================================
+
+RETRIEVE API FROM YELP
+
+1. call_api(cuisine) function (approx line 488-561)
+	- What it does:
+		-> Retrieve a restaurant which fits the following criteria:
+			a. User's food restrictions
+			b. Within 3000 radius of user's location
+
+2. display_data() function (approx line 564-660)
+	- What it does:
+		-> Display these information:
+			1. Photo
+			2. Name 
+			3. Rating (with the stars)
+			4. Price Range
+			5. Address
+			6. Link to Yelp
+============================================================
+*/
+
 
 // FORM part - username and password
 
@@ -5,11 +88,13 @@
 function guest_user() {
 	// auto-scroll to the 'how it works' section
 	document.getElementById('pink_container').scrollIntoView();
+	// call default_view function
+	default_view();
 	return false;
 }
 
 // Scenario 2: User clicks 'Help me decide again' button
-function real_user() {
+function login_user() {
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
 	var errorstring = '';
@@ -34,6 +119,8 @@ function real_user() {
 	else {
 		// reset login-errors div to empty
 		document.getElementById("login-errors").innerText = '';
+		// call default_view function
+		default_view(username);
 
 		// auto-scroll to 'How it Works' section 
 		document.getElementById('pink_container').scrollIntoView();
@@ -81,7 +168,7 @@ var catArrayForWheel = ['<img src="media/wheel_icons_cats/black_cat.png" height=
 const filterArray = ["vegetarian", "halal", "vegan"];
 
 // Filter, Wheel, Text beside wheel
-function defaultview(username) {
+function default_view(username='') {
 
 	// Part 1: Filter
 	var filterstr = `
@@ -135,6 +222,125 @@ function defaultview(username) {
 
 }
 
+$(document).ready(function(){
+	/*WHEEL SPIN FUNCTION*/
+	$('#spin').click(function(){
+		// reset counter each time user spin the wheel
+		var mycounter = 0;
+
+		//add 1 every click
+		clicks ++;
+
+		/*multiply the degree by number of clicks
+	  generate random number between 1 - 360,
+    then add to the new degree*/
+		var newDegree = degree*clicks;
+
+		// console.log(newDegree);
+
+		var extraDegree = Math.floor(Math.random() * (360 - 1 + 1)) + 1;
+		totalDegree = newDegree+extraDegree;
+
+		/*let's make the spin btn to tilt every
+		time the edge of the section hits
+		the indicator*/
+		$('#wheel .sec').each(function(){
+			var t = $(this);
+			var noY = 0;
+
+			var c = 0;
+			var n = 700;
+			var interval = setInterval(function () {
+				c++;
+				if (c === n) {
+					clearInterval(interval);
+					mycounter ++;
+					// console.log("===========================");
+					// console.log("MY COUNTER:", mycounter);
+					
+				}
+
+				// console.log(document.getElementsByClassName("sec"));
+
+				var aoY = t.offset().top;
+				// $("#txt").html(aoY);
+
+				// if counter is a multiple of 6 -- considering multiple spins
+				if (mycounter == 6) {
+					// console.log("============ mycounter reached 6 ===============");
+
+					// console.log("aoY is", aoY);
+
+					// console.log("wheel html is here");
+					// console.log(document.getElementById("spin"));
+
+					// console.log("spin ends here");
+					chosen_view();
+				}
+
+				/*23.7 is the minumum offset number that
+				each section can get, in a 30 angle degree.
+				So, if the offset reaches 23.7, then we know
+				that it has a 30 degree angle and therefore,
+				exactly aligned with the spin btn*/
+				if(aoY < 23.89){
+					console.log('<<<<<<<<');
+					$('#spin').addClass('spin');
+					setTimeout(function () {
+						$('#spin').removeClass('spin');
+					}, 80);
+
+				}
+			}, 10);
+
+			$('#inner-wheel').css({
+				'transform' : 'rotate(' + totalDegree + 'deg)'
+			});
+
+			noY = t.offset().top;
+
+			
+		});
+
+		
+
+
+	});
+
+
+
+
+});//DOCUMENT READY
+
+function randomize(choiceArray){
+    var i = Math.floor(Math.random() * 5);
+    return choiceArray[i];
+}
+
+
+function chosen_view() {
+	console.log("=== CHOSEN_VIEW() starts ===");
+
+    // getRotation();
+    // alert('got rotation')
+    var chosen_cuisine = randomize(choiceArray);
+    // alert('called randomise')
+    console.log(chosen_cuisine);
+	// insert text
+	var msg = `
+	<span class="fa text">${chosen_cuisine.icon}</span>
+	<div id="beside_wheel_text">
+		<h4>Yay😋</h4> 
+		You are fated to eat <span  class="font-weight-bold">${chosen_cuisine.cuisine}</span> food!
+	</div>
+	<button type="button" class="btn text-nowrap" id="yes_button" onclick=call_api("${chosen_cuisine.cuisine}")>Confirm cuisine and proceed</button>
+	<button type="button" class="btn text-nowrap" id="no_button" onclick="repeatspin(choiceArray)">I don't want this! Choose again!</button>
+	`;
+	document.getElementById("wheeltextdiv").innerHTML = msg;
+
+	console.log("=== CHOSEN_VIEW() ends ===");
+	// console.log('test');
+}
 var count_repeat = 1;
 
 // This function is called when user chooses the "I dont want this cuisine!!" button
@@ -275,127 +481,6 @@ function randomCat(catArray){
     
 // 	}
 // }
-
-
-$(document).ready(function(){
-	/*WHEEL SPIN FUNCTION*/
-	$('#spin').click(function(){
-		// reset counter each time user spin the wheel
-		var mycounter = 0;
-
-		//add 1 every click
-		clicks ++;
-
-		/*multiply the degree by number of clicks
-	  generate random number between 1 - 360,
-    then add to the new degree*/
-		var newDegree = degree*clicks;
-
-		// console.log(newDegree);
-
-		var extraDegree = Math.floor(Math.random() * (360 - 1 + 1)) + 1;
-		totalDegree = newDegree+extraDegree;
-
-		/*let's make the spin btn to tilt every
-		time the edge of the section hits
-		the indicator*/
-		$('#wheel .sec').each(function(){
-			var t = $(this);
-			var noY = 0;
-
-			var c = 0;
-			var n = 700;
-			var interval = setInterval(function () {
-				c++;
-				if (c === n) {
-					clearInterval(interval);
-					mycounter ++;
-					// console.log("===========================");
-					// console.log("MY COUNTER:", mycounter);
-					
-				}
-
-				// console.log(document.getElementsByClassName("sec"));
-
-				var aoY = t.offset().top;
-				// $("#txt").html(aoY);
-
-				// if counter is a multiple of 6 -- considering multiple spins
-				if (mycounter == 6) {
-					// console.log("============ mycounter reached 6 ===============");
-
-					// console.log("aoY is", aoY);
-
-					// console.log("wheel html is here");
-					// console.log(document.getElementById("spin"));
-
-					// console.log("spin ends here");
-					chosen_view();
-				}
-
-				/*23.7 is the minumum offset number that
-				each section can get, in a 30 angle degree.
-				So, if the offset reaches 23.7, then we know
-				that it has a 30 degree angle and therefore,
-				exactly aligned with the spin btn*/
-				if(aoY < 23.89){
-					console.log('<<<<<<<<');
-					$('#spin').addClass('spin');
-					setTimeout(function () {
-						$('#spin').removeClass('spin');
-					}, 80);
-
-				}
-			}, 10);
-
-			$('#inner-wheel').css({
-				'transform' : 'rotate(' + totalDegree + 'deg)'
-			});
-
-			noY = t.offset().top;
-
-			
-		});
-
-		
-
-
-	});
-
-
-
-
-});//DOCUMENT READY
-
-function randomize(choiceArray){
-    var i = Math.floor(Math.random() * 5);
-    return choiceArray[i];
-}
-
-
-function chosen_view() {
-	console.log("=== CHOSEN_VIEW() starts ===");
-
-    // getRotation();
-    // alert('got rotation')
-    var chosen_cuisine = randomize(choiceArray);
-    // alert('called randomise')
-    console.log(chosen_cuisine);
-	// insert text
-	var msg = `
-	<span class="fa text">${chosen_cuisine.icon}</span>
-	<div id="beside_wheel_text">
-		<h4>Yay😋</h4> 
-		You are fated to eat <span  class="font-weight-bold">${chosen_cuisine.cuisine}</span> food!
-	</div>
-	<button type="button" class="btn text-nowrap" id="yes_button" onclick=call_api("${chosen_cuisine.cuisine}")>Confirm cuisine and proceed</button>
-	<button type="button" class="btn text-nowrap" id="no_button" onclick="repeatspin(choiceArray)">I don't want this! Choose again!</button>
-	`;
-	document.getElementById("wheeltextdiv").innerHTML = msg;
-
-	console.log("=== CHOSEN_VIEW() ends ===");
-	// console.log('test');
-}
 
 function getRestrictions(){
 	// console.log("test");
