@@ -1,4 +1,54 @@
 
+// FORM part - username and password
+
+// Scenario 1: User clicks 'Continue as guest' button
+function guest_user() {
+	// auto-scroll to the 'how it works' section
+	document.getElementById('pink_container').scrollIntoView();
+	return false;
+}
+
+// Scenario 2: User clicks 'Help me decide again' button
+function real_user() {
+	var username = document.getElementById('username').value;
+	var password = document.getElementById('password').value;
+	var errorstring = '';
+
+	// Error 1: Empty user or pw
+	if ( username == '' || password == '') {
+		console.log("Username / Password is empty!!");
+		errorstring += "Your username/password is empty!";
+	}
+
+	// Error 2: Filled but Wrong password 
+	else if ( password != '' && password != 'opensesame' ) {
+		// show the placeholder again
+		document.getElementById('password').value = '';
+		document.getElementById('password').setAttribute("placeholder", "(hint: it's opensesame)");
+
+		errorstring += "Wrong Password! Refer to the hint!";
+
+	}
+
+	// NO ERRORS YAYYY
+	else {
+		// reset login-errors div to empty
+		document.getElementById("login-errors").innerText = '';
+
+		// auto-scroll to 'How it Works' section 
+		document.getElementById('pink_container').scrollIntoView();
+		return false;
+	}
+
+	// Have Error 
+	if ( errorstring != '' ) {
+		document.getElementById("login-errors").innerText = errorstring;
+	}
+
+	return false;
+}
+// ============== F O R M   V A L I D A T I O N   I S   C O M P L E T E ===================
+
 
 //set default degree (360*5)
 var degree = 1800;
@@ -20,10 +70,18 @@ var choiceArray = [
     {"cuisine" : "Mexican", "icon": '<img src="media/wheel_icons/mexican.png" height="50" width="50">' }, 
 ];
 
+var catArrayForWheel = ['<img src="media/wheel_icons_cats/black_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/brown_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/cat_with_yarn.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/grey_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/orange_cat.png" height="50" width="50">',
+						'<img src="media/wheel_icons_cats/yellow_cat.png" height="50" width="50">' 					
+];
+
 const filterArray = ["vegetarian", "halal", "vegan"];
 
 // Filter, Wheel, Text beside wheel
-function defaultview(choiceArray) {
+function defaultview(username) {
 
 	// Part 1: Filter
 	var filterstr = `
@@ -48,11 +106,11 @@ function defaultview(choiceArray) {
 	document.getElementById("filterdiv").innerHTML = filterstr;
 
 	var wheelstr = '';
-	for (var choiceObject of choiceArray) {
+	for (var catpic of catArrayForWheel) {
 		wheelstr += `
 		<div class="sec">
 			<span class="fa text wheelIcon">
-				${choiceObject.icon}
+				${catpic}
 			</span>
 		</div>
 			`;
@@ -66,7 +124,7 @@ function defaultview(choiceArray) {
 	<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 	<div id="beside_wheel_text">
 		<h4>Welcome!</h4> 
-		Click the ✋ icon on the wheel to randomise your food choice!
+		Click the middle of the wheel to randomise your food choice!
 	</div>
 	`;
 
@@ -80,11 +138,11 @@ var count_repeat = 1;
 function repeatspin(choiceArray) {
 	document.getElementById("yelp_result").innerHTML = ''; 
 	var wheelstr = '';
-	for (var choiceObject of choiceArray) {
+	for (var catpic of catArrayForWheel) {
 		wheelstr += `
 		<div class="sec">
 			<span class="fa text wheelIcon">
-				${choiceObject.icon}
+				${catpic}
 			</span>
 		</div>
 			`;
@@ -104,7 +162,7 @@ function repeatspin(choiceArray) {
 		<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 		<div id="beside_wheel_text">
 			<h4>You choose to spin again!</h4> 
-			Click the ✋ icon on the wheel to randomise your food choice!
+			Click the middle of the wheel to randomise your food choice!
 			<br>
 			Hope you will like the choice this time!
 		</div>
@@ -117,7 +175,7 @@ function repeatspin(choiceArray) {
 			<img src="${random_cat}" style = "height: 200px;">
 			<div id="beside_wheel_text">
 				<h4>You have spinned ${count_repeat} times already!!!</h4> 
-				Click the ✋ icon on the wheel to randomise your food choice!
+				Click the middle of the wheel to randomise your food choice!
 				<br>
 				Hope you will like the choice this time!
 			</div>
@@ -129,7 +187,7 @@ function repeatspin(choiceArray) {
 			<iframe src="https://giphy.com/embed/rN2EZm3CSXHY1QoGrq" width="200" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hills-pet-nutrition-science-diet-rN2EZm3CSXHY1QoGrq"></a></p>
 			<div id="beside_wheel_text">
 				<h4>OMG! You have spinned <b>${count_repeat} times</b> already!!!</h4> 
-				Click the ✋ icon on the wheel to randomise your food choice!
+				Click the middle of the wheel to randomise your food choice!
 				<br>
 				Hope you will <span style = "color: #D54B73;">FINALLY</span> like the choice this time!
 			</div>
@@ -402,7 +460,24 @@ function call_api(cuisine){
 	})
 	.catch((err) => {
 		console.log ('error');
-		alert('error - no food to specifications');
+		// alert('error - no food to specifications');
+		document.getElementById("yelp_result").innerHTML = ''; 
+
+		document.getElementById("alerts").innerHTML += 
+		`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong>Oh no! hungrymao could not find any food matching your specifications.</strong> Hint: sometimes too many restrictions could starve poor mao. Maybe try again!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  		<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		`;
+		
+		//tried to add vid in alert but it's not really necessary 
+		// <br>
+		// <video width="300" height="200" autoplay="autoplay">
+		// 	<source src="media/sad_cat.mp4" type="video/mp4" />
+		// </video>
+
 		//have to prompt a message like "sorry, no food with your specifications could be found"
 	})
 
@@ -435,14 +510,14 @@ function display_data(data){
 	}
 	
 	// google maps
-	let latitude = selected_restaurant.coordinates.latitude;
-	let longitude = selected_restaurant.coordinates.longitude;
+// 	let latitude = selected_restaurant.coordinates.latitude;
+// 	let longitude = selected_restaurant.coordinates.longitude;
 
-   if (!image_url==""){
-	   alert('call maps');
-	   initMap(latitude, longitude);
-	   alert('initmap done')
-   }
+//    if (!image_url==""){
+// 	   alert('call maps');
+// 	   initMap(latitude, longitude);
+// 	   alert('initmap done')
+//    }
 //    google maps end
 	console.log(image_url);
 
@@ -473,6 +548,11 @@ function display_data(data){
 	}
 
 	document.getElementById("yelp_result").innerHTML = ''; 
+	
+	document.getElementById("yelp_result").innerHTML += 
+	`
+		<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
+	`;
 
 	document.getElementById("yelp_result").innerHTML += 
 	`<img src="${image_url}" height="200" width="300"><br><br>`;
@@ -487,7 +567,7 @@ function display_data(data){
 	 <img src="${star}"><br>
 	 <b>Price: ${price}</b><br>
 	 <b>Address: ${address} Singapore ${postal_code}</b><br>
-	 <button type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
+	 <button style="margin-top: 3%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
 	`
 
 	;
@@ -496,38 +576,38 @@ function display_data(data){
 
 
 // Initialize and add the map
-function initMap(latitude, longitude, name) {
+// function initMap(latitude, longitude, name) {
 
-	var api_results = document.getElementById("api_results");  
-	api_results.innerHTML += `<div id="map" style = "width: 200px; height: 400px;"></div>`;
+// 	var api_results = document.getElementById("api_results");  
+// 	api_results.innerHTML += `<div id="map" style = "width: 200px; height: 400px;"></div>`;
 	
-	const myLocation = { lat: latitude, lng: longitude };
-	console.log(myLocation);
-	// The map, centered at myLocation
-	const map = new google.maps.Map(document.getElementById("map"), {
-	zoom: 10,
-	center: myLocation,
-	});
-	// The marker, positioned at myLocation
-	const marker = new google.maps.Marker({
-	position: myLocation,
-	map: map,
-	draggable: false
-	});
+// 	const myLocation = { lat: latitude, lng: longitude };
+// 	console.log(myLocation);
+// 	// The map, centered at myLocation
+// 	const map = new google.maps.Map(document.getElementById("map"), {
+// 	zoom: 10,
+// 	center: myLocation,
+// 	});
+// 	// The marker, positioned at myLocation
+// 	const marker = new google.maps.Marker({
+// 	position: myLocation,
+// 	map: map,
+// 	draggable: false
+// 	});
 
-	var information = new google.maps.InfoWindow();
-	infoWindow.setPosition(myLocation);
-	infoWindow.setContent(`${name}is here!`);
-	infoWindow.open(map);
-	map.setCenter(myLocation);
+// 	var information = new google.maps.InfoWindow();
+// 	infoWindow.setPosition(myLocation);
+// 	infoWindow.setContent(`${name}is here!`);
+// 	infoWindow.open(map);
+// 	map.setCenter(myLocation);
 
-	marker.addListener('click', function() {
-		information.open(map, marker);
-	});
+// 	marker.addListener('click', function() {
+// 		information.open(map, marker);
+// 	});
 
-	// var information = new google.maps.InfoWindow({
-	// 	content: `<h4>${name} is here!</h4>`
-	// 	});
+// 	// var information = new google.maps.InfoWindow({
+// 	// 	content: `<h4>${name} is here!</h4>`
+// 	// 	});
 		
 
-  }
+//   }
