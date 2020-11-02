@@ -553,7 +553,11 @@ function call_api(cuisine){
 
 		//API json response
 		// console.log(res.data.businesses)
-		display_data(res.data.businesses);
+		alert('in call_api then')
+		var restaurant_objects = res.data.businesses;
+		// console.log(restaurant_objects);
+		// return restaurant_objects;
+		display_data(restaurant_objects, r_count, selected_restaurant);
 		
 		
 	})
@@ -582,25 +586,56 @@ function call_api(cuisine){
 
 }
 
+var r_count = 0;
+var selected_restaurant;
 
+function display_data(restaurant_objects, r_count, selected_restaurant){
 
-function display_data(business_data_arr){
 	
-	// console.log(business_data_arr);
-	let selected_restaurant = randomize(business_data_arr);
-	business_data_arr.pop(selected_restaurant);
-	// console.log(business_data_arr);
-	// console.log(selected_restaurant);
+	alert('in display_data')
+	
+	if (restaurant_objects.length > 10){
+		restaurant_objects.length = 10;
+	}	
+	console.log(restaurant_objects);
+	alert('10 objects retrieved in display_data');
+	console.log(r_count);
+
+
+	// //remove first restaurant of ten
+	// let selected_restaurant = restaurant_objects.shift();
+	
+	
+
+	// if (continue_display && count< restaurant_objects.length){
+
+	var selected_restaurant = restaurant_objects[r_count];
+	console.log(selected_restaurant);
+	console.log(r_count);
+
+	show_restaurant_data(selected_restaurant, r_count);
+	return selected_restaurant;
+	// }
+
+}
+
+function show_restaurant_data(selected_restaurant, r_count){
+	alert('in show_restaurant_data')
+	console.log('selected restaurant in srd')
+	console.log(selected_restaurant);
+	r_count++;
+	// console.log(image_url);
 	var got_img = true;
 	let id = selected_restaurant.id;
 	let name = selected_restaurant.name;
 	let image_url = selected_restaurant.image_url;
-	// console.log(image_url);
 	let yelp_url = selected_restaurant.url;
 	let rating = selected_restaurant.rating;
 	let address = selected_restaurant.location.address1;
 	let postal_code = selected_restaurant.location.zip_code;
 	let price = selected_restaurant.price;
+
+	alert(`this is ${price}`)
 
 	var star = "";
 	if (image_url == ""){
@@ -608,18 +643,6 @@ function display_data(business_data_arr){
 		var no_food_txt = "We could not find a picture of the food so here's a cat pic!";
 		got_img = false;
 	}
-	
-	// google maps
-// 	let latitude = selected_restaurant.coordinates.latitude;
-// 	let longitude = selected_restaurant.coordinates.longitude;
-
-//    if (!image_url==""){
-// 	   alert('call maps');
-// 	   initMap(latitude, longitude);
-// 	   alert('initmap done')
-//    }
-//    google maps end
-	console.log(image_url);
 
 	if (rating == 0){
 		star = "media/yelp_stars/large_0.png";	
@@ -654,7 +677,7 @@ function display_data(business_data_arr){
 	// 	<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
 	// `;
 
-	// circle buttons
+	// next/ yes buttons
 	document.getElementById("yelp_result").innerHTML += 
 	`
 		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" style="margin-top: 5px; width: 10%;"></img>
@@ -664,8 +687,9 @@ function display_data(business_data_arr){
 	`;
 
 	document.getElementById("round_button_no").addEventListener("click", function(){
-		display_data(business_data_arr);
+		show_restaurant_data(selected_restaurant, r_count);
 	});
+
 
 	document.getElementById("yelp_result").innerHTML += 
 	`<img src="${image_url}" height="200" width="300"><br><br>`;
@@ -682,9 +706,14 @@ function display_data(business_data_arr){
 	 <b>Address: ${address} Singapore ${postal_code}</b><br>
 	 <button style="margin-top: 3%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
 	`;
+
+	return count;
+	
 }
 
-function food_selected(){
+
+function food_selected(continue_display){
+	continue_display = false;
 	document.getElementById("alerts_").innerHTML = '';
 	document.getElementById("alerts_").innerHTML += 
 	`
@@ -697,9 +726,9 @@ function food_selected(){
 	`;
 }
 
-function fill_data_again(){
+// function fill_data_again(){
 
-}
+// }
 
 // Initialize and add the map
 // function initMap(latitude, longitude, name) {
@@ -737,3 +766,14 @@ function fill_data_again(){
 		
 
 //   }
+
+	// google maps
+// 	let latitude = selected_restaurant.coordinates.latitude;
+// 	let longitude = selected_restaurant.coordinates.longitude;
+
+//    if (!image_url==""){
+// 	   alert('call maps');
+// 	   initMap(latitude, longitude);
+// 	   alert('initmap done')
+//    }
+//    google maps end
