@@ -14,8 +14,6 @@ function real_user() {
 	var password = document.getElementById('password').value;
 	var errorstring = '';
 
-
-	console.log(username);
 	// Error 1: Empty user or pw
 	if ( username == '' || password == '') {
 		console.log("Username / Password is empty!!");
@@ -24,10 +22,9 @@ function real_user() {
 
 	// Error 2: Filled but Wrong password 
 	else if ( password != '' && password != 'opensesame' ) {
-		console.log("wrong password!!");
 		// show the placeholder again
 		document.getElementById('password').value = '';
-		document.getElementById('password').setAttribute("placeholder", "Password (hint: it's opensesame)");
+		document.getElementById('password').setAttribute("placeholder", "(hint: it's opensesame)");
 
 		errorstring += "Wrong Password! Refer to the hint!";
 
@@ -35,7 +32,9 @@ function real_user() {
 
 	// NO ERRORS YAYYY
 	else {
-		console.log("Everything is correct yay!!!");
+		// reset login-errors div to empty
+		document.getElementById("login-errors").innerText = '';
+
 		// auto-scroll to 'How it Works' section 
 		document.getElementById('pink_container').scrollIntoView();
 		return false;

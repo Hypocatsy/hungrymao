@@ -85,6 +85,15 @@
             animation: swing 1s ease;
             animation-iteration-count: 1;
         }
+        #login-input {
+            text-align: left;
+            padding: 0px;
+            margin-bottom: 20px;
+        }
+        label {
+            color:#56713A;
+            margin-bottom: 0px;
+        }
 
         #login-errors {
             margin-top: 20px;
@@ -153,7 +162,7 @@
         #inputcontainer {
             padding-top: 20px;
         }
-
+        
         #location {
             background: #FEF1EE;
             border: 1px solid #56713A;
@@ -268,15 +277,25 @@
                 <div class="col">
                     <div class="container mt-4 mb-4" id="login">
                         <img class="animate__animated animate__fadeInTopLeft" src="media/cat.svg" style="width: 70%; margin-top: -35px;">
-                        <div class="container text-center">
-                            <input type="text" name="username" id="username" placeholder="Username">
-                            <input type="password" name="password" id="password" placeholder="Password (hint: it's opensesame)">
+                        <div class="container">
+                            <div class="container-fluid" id="login-input">
+                                <label for="username" id="username_label">Username</label>
+                                <input type="text" name="username" id="username">
+    
+                                <label for="password" id="password_label">Password</label>
+                                <input type="password" name="password" id="password" placeholder="(hint: it's opensesame)">
+                            </div>
+
+                           
+
                             <button type="submit" class="btn text-nowrap" id="decide_btn" onclick="return real_user()">Help me decide again!</button><br>
                             <button type="submit" class="btn text-nowrap" id="guest_btn" onclick="return guest_user()">Continue as a Guest</button>
                         </div>
 
                         <div id="login-errors">
-
+                            <!-- Empty if there is no errors
+                                 Filled by real_user() function in main.js if there's errors
+                            -->
                         </div>
                     </div>
                 </div>
