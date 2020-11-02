@@ -549,10 +549,18 @@ function display_data(data){
 
 	document.getElementById("yelp_result").innerHTML = ''; 
 	
+	// document.getElementById("yelp_result").innerHTML += 
+	// `
+	// 	<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
+	// `;
+
+	// circle buttons
 	document.getElementById("yelp_result").innerHTML += 
 	`
-		<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
-	`;
+		<img src='media/buttons/next.svg' class= "animate__animated animate__bounce mt-2 mb-2" id="round_button" style="width: 10%;" ></img>
+		<img src='media/buttons/yes.svg' class= "animate__animated animate__bounce mt-2 mb-2" id="round_button" style="width: 10%" ></img></br>
+
+	`
 
 	document.getElementById("yelp_result").innerHTML += 
 	`<img src="${image_url}" height="200" width="300"><br><br>`;
