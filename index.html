@@ -72,12 +72,12 @@ BODY PART -> approx line 260 to 440
     
      <!-- Google Maps API -->
    
-    <script async defer
+    <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug&callback=initMap">  
-    </script>
+    </script> -->
 
      <!-- Delay loading dynamic map -->
-     <script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script>
+     <!-- <script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script> -->
 
     
     <!-- Internal style -->
@@ -106,6 +106,7 @@ BODY PART -> approx line 260 to 440
         input{
             margin: 5px 0px;
         }
+
         button{
             margin: 3px 0px;
             transition: all 0.2s ease-in-out;
@@ -160,6 +161,11 @@ BODY PART -> approx line 260 to 440
             color: white;
         }
         #guest_btn, #yes_button, #filter_button, #yelp_button {
+            /* margin: 3px 0px;
+            transition: all 0.2s ease-in-out;
+            padding: 5px 15px;
+            height: 40px;
+            font-size: 100%; */
             background-color: #56713A;
             border-radius: 30px;
             color: white;
@@ -263,7 +269,7 @@ BODY PART -> approx line 260 to 440
     <title>hungrymao is hungry!</title>
   </head>
 
-  <body style="background-color: #FFFCF6;">
+  <body onload="default_view()" style="background-color: #FFFCF6;">
     <!-- <h1>Hello, world!</h1> -->
 
     <!-- Navigation -->
@@ -437,7 +443,10 @@ BODY PART -> approx line 260 to 440
             <!-- Testing (should only be visible if api is called) -->
         </div>
             <!-- <div id="map" style = "width: 580px; height: 666px;"></div> -->
-
+        
+        <div class="container" id="alerts_" style="margin-top: 5px;">
+                <!-- Testing (should only be visible if api is called) -->
+        </div>
     </div>
     <!-- end row 2 -->
 </div>
