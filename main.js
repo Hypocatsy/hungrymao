@@ -120,9 +120,12 @@ function defaultview(username) {
 
 
 	// Part 3: Text beside the wheel
+
+	// <i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 	var beside_wheel_str = `
-	<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+	
 	<div id="beside_wheel_text">
+		<img src="media/gifs/meow.gif" style = "width: 40%;"></img>
 		<h4>Welcome!</h4> 
 		Click the middle of the wheel to randomise your food choice!
 	</div>
