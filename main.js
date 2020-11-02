@@ -561,7 +561,7 @@ function call_api(cuisine){
 		console.log ('error');
 		// alert('error - no food to specifications');
 		document.getElementById("yelp_result").innerHTML = ''; 
-
+		document.getElementById("alerts").innerHTML = '';
 		document.getElementById("alerts").innerHTML += 
 		`<div class="alert alert-warning alert-dismissible fade show" role="alert">
 			<strong>Oh no! hungrymao could not find any food matching your specifications.</strong> Hint: sometimes too many restrictions could starve poor mao. Maybe try again!
@@ -582,11 +582,13 @@ function call_api(cuisine){
 
 }
 
+
+
 function display_data(business_data_arr){
 	
 	// console.log(business_data_arr);
 	let selected_restaurant = randomize(business_data_arr);
-	// business_data_arr.pop(selected_restaurant);
+	business_data_arr.pop(selected_restaurant);
 	// console.log(business_data_arr);
 	// console.log(selected_restaurant);
 	var got_img = true;
@@ -655,11 +657,15 @@ function display_data(business_data_arr){
 	// circle buttons
 	document.getElementById("yelp_result").innerHTML += 
 	`
-		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" onclick=display_data(${business_data_arr}) style="margin-top: 5px; width: 10%;"></img>
+		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" style="margin-top: 5px; width: 10%;"></img>
 		
 		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 10%;"></img></br>
 
 	`;
+
+	document.getElementById("round_button_no").addEventListener("click", function(){
+		display_data(business_data_arr);
+	});
 
 	document.getElementById("yelp_result").innerHTML += 
 	`<img src="${image_url}" height="200" width="300"><br><br>`;
