@@ -20,7 +20,7 @@ FORM PART
 WHEEL INFORMATION
 
 1. default_view(username='') function (approx line 130-180)
-	- This is called by guest_user() OR login_user() function; it is also displayed onload
+	- This is called by guest_user() OR login_user() function
 	- What it does:
 		-> Display food restriction options
 			- When user clicks 'Filter' button, it leads to getRestrictions() function
@@ -79,15 +79,7 @@ RETRIEVE API FROM YELP
 			5. Address
 			6. Link to Yelp
 ============================================================
-
-OTHERS
-
-1. food_selected() function (approx line 679-690)
-	- What it does:
-		-> Alert user that they have found food when they click "yes" button
 */
-
-//fill in the page before form
 
 
 // FORM part - username and password
@@ -550,7 +542,7 @@ function call_api(cuisine){
 	.then((res) => {
 		
 		// console.log(res);
-		display_data(res.data.businesses);
+		display_data(res.data);
 		
 		
 	})
@@ -579,12 +571,13 @@ function call_api(cuisine){
 
 }
 
-function display_data(business_data_arr){
-	
-	// console.log(business_data_arr);
-	let selected_restaurant = randomize(business_data_arr);
-	// business_data_arr.pop(selected_restaurant);
-	// console.log(business_data_arr);
+function display_data(data){
+	// console.log(data);
+	business_arr = data.businesses
+	// console.log(business_arr);
+	let selected_restaurant = randomize(business_arr);
+	business_arr.pop(selected_restaurant);
+	// console.log(business_arr);
 	// console.log(selected_restaurant);
 	var got_img = true;
 	let id = selected_restaurant.id;
@@ -652,11 +645,10 @@ function display_data(business_data_arr){
 	// circle buttons
 	document.getElementById("yelp_result").innerHTML += 
 	`
-		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" onclick=display_data(${business_data_arr}) style="margin-top: 5px; width: 10%;"></img>
-		
-		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 10%;"></img></br>
+		<img src='media/buttons/next.svg' class= "animate__animated animate__bounce mt-2 mb-2" id="round_button" style="width: 10%;" ></img>
+		<img src='media/buttons/yes.svg' class= "animate__animated animate__bounce mt-2 mb-2" id="round_button" style="width: 10%" ></img></br>
 
-	`;
+	`
 
 	document.getElementById("yelp_result").innerHTML += 
 	`<img src="${image_url}" height="200" width="300"><br><br>`;
@@ -672,25 +664,12 @@ function display_data(business_data_arr){
 	 <b>Price: ${price}</b><br>
 	 <b>Address: ${address} Singapore ${postal_code}</b><br>
 	 <button style="margin-top: 3%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
-	`;
-}
-
-function food_selected(){
-	document.getElementById("alerts_").innerHTML = '';
-	document.getElementById("alerts_").innerHTML += 
 	`
-	<div class="alert alert-success alert-dismissible fade show" role="alert">
-		<strong>You have found food! Hope you enjoy it!</strong>
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	`;
+
+	;
 }
 
-function fill_data_again(){
 
-}
 
 // Initialize and add the map
 // function initMap(latitude, longitude, name) {
