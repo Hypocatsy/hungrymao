@@ -361,6 +361,7 @@ function repeatspin(choiceArray) {
 			<span class="fa text wheelIcon">
 				${catpic}
 			</span>
+
 		</div>
 			`;
 	}
@@ -376,12 +377,13 @@ function repeatspin(choiceArray) {
 	if (count_repeat == 1) {
 		console.log("You have spinned " + count_repeat + " times!!!!");
 		var beside_wheel_str = `
-		<i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
+		<img src="media/gifs/white.gif" style = "width: 40%;"></img>
 		<div id="beside_wheel_text">
 			<h4>You choose to spin again!</h4> 
 			Click the middle of the wheel to randomise your food choice!
 			<br>
 			Hope you will like the choice this time!
+			</br>p.s. hungrymao is very dizzy!🥺 
 		</div>
 		`;
 	}
@@ -395,6 +397,7 @@ function repeatspin(choiceArray) {
 				Click the middle of the wheel to randomise your food choice!
 				<br>
 				Hope you will like the choice this time!
+				</br>p.s. hungrymao is very dizzy!🥺 
 			</div>
 			`;
 		}
@@ -407,6 +410,7 @@ function repeatspin(choiceArray) {
 				Click the middle of the wheel to randomise your food choice!
 				<br>
 				Hope you will <span style = "color: #D54B73;">FINALLY</span> like the choice this time!
+				</br> p.s. hungrymao is very dizzy!🥺 
 			</div>
 			`;
 		}
@@ -503,8 +507,23 @@ function getRestrictions(){
 	return restrictionsArr;
 }
 
+var api_here = false;
+
+function loading(api_here){
+	
+	while(api_here = false){
+
+		document.getElementById("api_results").innerHTML = `
+		<img class = "mx-auto" src="media/gifs/loading.gif" style = "width: 60%;"></img>
+		`;
+	};
+
+
+}
 
 function call_api(cuisine){
+
+	loading(api_here);
 
 	const country = 'singapore';
 	const radius = '3000';
@@ -557,7 +576,9 @@ function call_api(cuisine){
 		var restaurant_objects = res.data.businesses;
 		// console.log(restaurant_objects);
 		// return restaurant_objects;
+		api_here = true;
 		display_data(restaurant_objects, r_count, selected_restaurant);
+		
 		
 		
 	})
