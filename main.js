@@ -550,6 +550,9 @@ function call_api(cuisine){
 	.then((res) => {
 		
 		// console.log(res);
+
+		//API json response
+		// console.log(res.data.businesses)
 		display_data(res.data.businesses);
 		
 		
