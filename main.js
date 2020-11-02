@@ -507,19 +507,18 @@ function getRestrictions(){
 	return restrictionsArr;
 }
 
-var api_here = false;
+// var api_here = false;
 
-function loading(api_here){
+function loading(){
 	
-	while(api_here = false){
 
 		document.getElementById("api_results").innerHTML = `
 		<img class = "mx-auto" src="media/gifs/loading.gif" style = "width: 60%;"></img>
 		`;
-	};
+};
 
 
-}
+
 
 function call_api(cuisine){
 
@@ -576,7 +575,7 @@ function call_api(cuisine){
 		var restaurant_objects = res.data.businesses;
 		// console.log(restaurant_objects);
 		// return restaurant_objects;
-		api_here = true;
+		// api_here = true;
 		display_data(restaurant_objects, r_count, selected_restaurant);
 		
 		
