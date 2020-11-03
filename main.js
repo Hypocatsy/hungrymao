@@ -113,7 +113,7 @@ function guest_user() {
 	document.getElementById('pink_container').scrollIntoView();
 	// call default_view function
 	var username = '';
-	console.log(`username is ${username}`)
+	// console.log(`username is ${username}`)
 
 	default_view(username);
 	return false;
@@ -146,7 +146,7 @@ function login_user(username, password) {
 		// reset login-errors div to empty
 		document.getElementById("login-errors").innerText = '';
 		// call default_view function
-		console.log(`username is ${username}`);
+		// console.log(`username is ${username}`);
 		var usernamestring = " " + username;
 		default_view(usernamestring);
 
@@ -551,10 +551,10 @@ function call_api(cuisine){
 	const radius = '3000';
 	const locale = 'en_SG';
 	let restrictions = getRestrictions();
-	console.log("Restrictions:", restrictions);
-	console.log("Cuisine",cuisine);
+	// console.log("Restrictions:", restrictions);
+	// console.log("Cuisine",cuisine);
 	let postal_code = document.getElementById('location').value;
-	console.log("Postal Code:", postal_code);
+	// console.log("Postal Code:", postal_code);
 
 
 	//gerry's key
@@ -562,7 +562,7 @@ function call_api(cuisine){
 	//haoyue's key
 	// let API_KEY = "ecoDlzYBGkeG6bfeg8T0hm4cwLDDvkU1CIPt6r7PAkOG90utpmbN6wjsXrMA4gj6QV3hG-dwo70InJCLU5nsg7c2-AA090ZOfjBlHlzl6tzw8aRkUrnW8d-6m6OX3Yx";
 
-	console.log(API_KEY);
+	// console.log(API_KEY);
 	base_url = "https://api.yelp.com/v3/businesses/search?term=";
 	url_with_cuisine = base_url + cuisine;
 
@@ -585,7 +585,7 @@ function call_api(cuisine){
 	final_url = url_with_location + "&radius=" + radius + "&locale=" + locale;
 
 	
-	console.log(final_url);
+	// console.log(final_url);
 
 	axios.get(`${'https://cors-anywhere.herokuapp.com/'}${final_url}`, 
 	{
@@ -597,8 +597,8 @@ function call_api(cuisine){
 		// }
 	})
 	.then((res) => {
-		console.log("i am inside .then res");
-		console.log(res);
+		// console.log("i am inside .then res");
+		// console.log(res);
 
 		//API json response
 		// console.log(res.data.businesses)
@@ -606,7 +606,7 @@ function call_api(cuisine){
 		// console.log(restaurant_objects);
 		// return restaurant_objects;
 		// api_here = true;
-		console.log(document.getElementById("my_cats").innerHTML);
+		// console.log(document.getElementById("my_cats").innerHTML);
 		document.getElementById("my_cats").innerHTML = '';
 		// console.log(document.getElementById("api_results").innerHTML);
 		// document.getElementById("api_results").innerHTML = `
