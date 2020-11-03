@@ -1,5 +1,6 @@
 /*
-Summary of the different functions and what they do
+
+A SUMMARY OF THE FUNCTIONS IN THIS JS FILE
 ============================================================
 
 FORM PART
@@ -15,7 +16,7 @@ FORM PART
 		-> validate login details
 		-> if all successful, auto-scroll user to the 'How hungrymao's randomiser works' section
 
-============================================================
+=================================================================================================
 
 WHEEL INFORMATION
 
@@ -31,10 +32,11 @@ WHEEL INFORMATION
 	- This allows wheel to spin properly when user clicks on the middle of the wheel
 	- If this is a repeated spin, it calls repeatspin() function
 
-============================================================
+=================================================================================================
+
 AFTER USER SPINS WHEEL 
 
-(FIRST TIME SPIN)
+**FIRST TIME SPIN**
 
 1. chosen_view() function (approx line 280-302)
 	- This is called when wheel stops
@@ -44,14 +46,14 @@ AFTER USER SPINS WHEEL
 			- 'Confirm cuisine and proceed' -> 
 			- 'I dont want this! Choose again!' -> goes back to $(document).ready(function()...
 
-(REPEATED SPIN)
+**REPEATED SPIN**
 
 1. repeatspin() function (approx line 318-385)
 	- This is called when wheel stops
 	- What it does:
 		-> similar to chosen_view() function but it shows user different text bc they are so indecisive :')
 
-============================================================
+=================================================================================================
 
 RETRIEVE FOOD RESTRICTIONS
 
@@ -59,7 +61,7 @@ RETRIEVE FOOD RESTRICTIONS
 	- What it does:
 		-> retrieve user's restrictions and stores it for later use in call_api()
 
-============================================================
+=================================================================================================
 
 RETRIEVE API FROM YELP
 
@@ -78,13 +80,14 @@ RETRIEVE API FROM YELP
 			4. Price Range
 			5. Address
 			6. Link to Yelp
-============================================================
+=================================================================================================
 
 OTHERS
 
 1. food_selected() function (approx line 679-690)
 	- What it does:
 		-> Alert user that they have found food when they click "yes" button
+=================================================================================================
 */
 
 //fill in the page before form
@@ -495,6 +498,8 @@ function randomCat(catArray){
 // }
 
 function getRestrictions(){
+	document.getElementById('all_wheel_stuff').scrollIntoView();
+
 	// console.log("test");
     const restrictionsArr = [];
 	var items = document.querySelectorAll('input[name="restrictions"]:checked');
@@ -504,6 +509,7 @@ function getRestrictions(){
 		restrictionsArr.push(item.value);
 		// console.log(item);
 	}
+
 	return restrictionsArr;
 }
 
@@ -522,7 +528,9 @@ function loading(){
 
 function call_api(cuisine){
 
-	loading(api_here);
+	var api_retrieved = false;
+	
+	console.log(Date());
 
 	const country = 'singapore';
 	const radius = '3000';
@@ -557,27 +565,27 @@ function call_api(cuisine){
 	
 	// console.log(final_url);
 
-	axios.get(`${'https://cors-anywhere.herokuapp.com/'}${final_url}`, {
-	headers: {
-		Authorization: `Bearer ${API_KEY}`
-	},
-	params: {
-		// categories: 'breakfast_brunch',
-	}
+	axios.get(`${'https://cors-anywhere.herokuapp.com/'}${final_url}`, 
+	{
+		headers: {
+			Authorization: `Bearer ${API_KEY}`
+		},
+		params: {
+			// categories: 'breakfast_brunch',
+		}
 	})
 	.then((res) => {
 		
-		// console.log(res);
+		console.log(res);
 
 		//API json response
 		// console.log(res.data.businesses)
-		alert('in call_api then')
 		var restaurant_objects = res.data.businesses;
 		// console.log(restaurant_objects);
 		// return restaurant_objects;
 		// api_here = true;
+		api_retrieved = true;
 		display_data(restaurant_objects, r_count, selected_restaurant);
-		
 		
 		
 	})
@@ -610,9 +618,10 @@ var r_count = 0;
 var selected_restaurant;
 
 function display_data(restaurant_objects, r_count, selected_restaurant){
+	console.log(Date());
 
 	
-	alert('in display_data')
+	// alert('in display_data')
 	
 	if (restaurant_objects.length > 10){
 		restaurant_objects.length = 10;

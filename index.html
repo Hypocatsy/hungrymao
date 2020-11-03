@@ -55,6 +55,8 @@ BODY PART -> approx line 260 to 440
     <!-- Font family -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <!-- Main.js -->
     <script src="main.js"></script>
 
@@ -135,6 +137,9 @@ BODY PART -> approx line 260 to 440
             color:#56713A;
             margin-bottom: 0px;
         }
+        #typing-errors {
+            color:#56713A;
+        } 
 
         #login-errors {
             margin-top: 20px;
@@ -330,8 +335,18 @@ BODY PART -> approx line 260 to 440
                                 <input type="text" name="username" id="username">
     
                                 <label for="password" id="password_label">Password</label>
-                                <input type="password" name="password" id="password" placeholder="(hint: it's opensesame)">
+                                <input type="password" name="password" id="password" v-model="password" placeholder="(hint: it's opensesame)">
+
                             </div>
+
+                            <!-- <div id="typing-errors">
+                                <p v-if=" typing_wrongly() ">
+                                    Ohno, your password seems wrong! 
+                                    <br>
+                                    Hint: opensesame
+                                </p>
+                            </div> -->
+
                             <!-- buttons -->
                             <button type="submit" class="btn text-nowrap" id="decide_btn" onclick="return login_user()">Help me decide again!</button><br>
                             <button type="submit" class="btn text-nowrap" id="guest_btn" onclick="return guest_user()">Continue as a Guest</button>
@@ -383,7 +398,7 @@ BODY PART -> approx line 260 to 440
     
     <!-- WHEEL & TEXT CONTAINER -->
 
-    <div class="container mt-4 mb-4">
+    <div class="container mt-4 mb-4" id="all_wheel_stuff">
         <!-- start row 1 -->
         <div class="row">
             <div class="col-md-6">
@@ -455,8 +470,30 @@ BODY PART -> approx line 260 to 440
 
 
 
+    <!-- Vue - for password -->
+    <script>
+        // var app = new Vue ({
+        //     el: '#login-input',
+        //     data: {
+        //         password: ''
+        //     },
+        //     methods: {
+        //         typing_wrongly: function() {
+        //             var correctPassword = 'opensesame';
+        //             // var isCorrect = false;
 
+        //             var count = 0;
 
+        //             for (var i = 0; i < len(password); i++) {
+        //                 if ( password[i] != correctPassword[count] ) {
+        //                     return true;
+        //                 }
+        //                 count ++;
+        //             }
+        //         }
+        //     }
+        // })
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
