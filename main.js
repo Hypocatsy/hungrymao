@@ -421,6 +421,7 @@ function repeatspin(choiceArray) {
 		document.getElementById("yelp_result").innerHTML = ''; 
 	}
 	
+	r_count = 0;
 	// document.getElementById("alert_").innerHTML = ''; 
 	// document.getElementById("alert").innerHTML = ''; 
 	var wheelstr = '';
@@ -533,7 +534,7 @@ function loading(){
 
 
 function call_api(cuisine){
-	document.getElementById('api_results').scrollIntoView();
+	
 	var api_retrieved = false;
 
 	
@@ -760,7 +761,7 @@ function show_restaurant_data(){
 		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 10%;"></img></br>
 
 	`;
-
+	
 	// document.getElementById("round_button_no").addEventListener("click", function(){
 	// 	show_restaurant_data();
 	// });
@@ -774,8 +775,8 @@ function show_restaurant_data(){
 	}
 
 	document.getElementById("yelp_result").innerHTML += 
-	`<b>${name}</b><br>
-	 <b>Rating</b><br>
+	`<h4><b>${name}</b></h4><br>
+	 <b>Rating: </b>
 	 <img src="${star}"><br>
 	 <b>Price: ${price}</b><br>
 	 <b>Address: ${address} Singapore ${postal_code}</b><br>
@@ -783,6 +784,7 @@ function show_restaurant_data(){
 	`;
 
 	// return count;
+	// document.getElementById('yelp_results').scrollIntoView();
 	
 }
 
