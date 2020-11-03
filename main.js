@@ -520,6 +520,9 @@ function loading(){
 
 
 function call_api(cuisine){
+
+	var api_retrieved = false;
+
 	
 	document.getElementById("api_results").innerHTML = `
 	<img src="media/loading_cat.gif" height="100" width="100" style="text-align:center; clear:both;">
@@ -780,7 +783,7 @@ function no_more_food(){
 	document.getElementById("alerts_").innerHTML += 
 	`
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		<strong>There's not more food!</strong> Maybe this cuisine is just not for you... try again with another cuisine?
+		<strong>There's no more food!</strong> Maybe this cuisine is just not for you... try again with another cuisine?
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
