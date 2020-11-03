@@ -591,7 +591,9 @@ function call_api(cuisine){
 		// return restaurant_objects;
 		// api_here = true;
 		console.log(document.getElementById("api_results").innerHTML);
-		document.getElementById("api_results").innerHTML = '';
+		document.getElementById("api_results").innerHTML = `
+			<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
+		`;; 
 		select_restaurant(restaurant_objects);
 		// display_data(restaurant_objects);
 		
@@ -600,9 +602,7 @@ function call_api(cuisine){
 	.catch((err) => {
 		// console.log ('error');
 		// alert('error - no food to specifications');
-		document.getElementById("api_results").innerHTML = `
-			<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
-		`;; 
+		
 		document.getElementById("alerts_").innerHTML = '';
 		document.getElementById("alerts").innerHTML = '';
 		document.getElementById("alerts").innerHTML += 
