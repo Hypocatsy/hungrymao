@@ -586,6 +586,7 @@ function call_api(cuisine){
 		// api_here = true;
 		api_retrieved = true;
 		display_data(restaurant_objects, r_count, selected_restaurant);
+		// display_data(restaurant_objects);
 		
 		
 	})
@@ -617,6 +618,7 @@ function call_api(cuisine){
 var r_count = 0;
 var selected_restaurant;
 
+// function display_data(restaurant_objects, r_count, selected_restaurant)
 function display_data(restaurant_objects, r_count, selected_restaurant){
 	console.log(Date());
 
@@ -643,7 +645,7 @@ function display_data(restaurant_objects, r_count, selected_restaurant){
 	console.log(r_count);
 
 	show_restaurant_data(selected_restaurant, r_count);
-	return selected_restaurant;
+	// return selected_restaurant;
 	// }
 
 }
@@ -652,7 +654,7 @@ function show_restaurant_data(selected_restaurant, r_count){
 	alert('in show_restaurant_data')
 	console.log('selected restaurant in srd')
 	console.log(selected_restaurant);
-	r_count++;
+	r_count += 1;
 	// console.log(image_url);
 	var got_img = true;
 	let id = selected_restaurant.id;
@@ -736,7 +738,7 @@ function show_restaurant_data(selected_restaurant, r_count){
 	 <button style="margin-top: 3%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
 	`;
 
-	return count;
+	// return count;
 	
 }
 
