@@ -407,7 +407,10 @@ function chosen_view() {
 
 // This function is called when user chooses the "I dont want this cuisine!!" button
 function repeatspin(choiceArray) {
-	document.getElementById("yelp_result").innerHTML = ''; 
+	if (document.getElementById("yelp_result")){
+		document.getElementById("yelp_result").innerHTML = ''; 
+	}
+	
 	// document.getElementById("alert_").innerHTML = ''; 
 	// document.getElementById("alert").innerHTML = ''; 
 	var wheelstr = '';
@@ -520,7 +523,7 @@ function loading(){
 
 
 function call_api(cuisine){
-
+	document.getElementById('api_results').scrollIntoView();
 	var api_retrieved = false;
 
 	
