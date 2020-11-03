@@ -417,7 +417,10 @@ function chosen_view() {
 
 // This function is called when user chooses the "I dont want this cuisine!!" button
 function repeatspin(choiceArray) {
-	document.getElementById("yelp_result").innerHTML = ''; 
+	if (document.getElementById("yelp_result")){
+		document.getElementById("yelp_result").innerHTML = ''; 
+	}
+	
 	// document.getElementById("alert_").innerHTML = ''; 
 	// document.getElementById("alert").innerHTML = ''; 
 	var wheelstr = '';
@@ -530,7 +533,7 @@ function loading(){
 
 
 function call_api(cuisine){
-
+	document.getElementById('api_results').scrollIntoView();
 	var api_retrieved = false;
 
 	
@@ -604,6 +607,10 @@ function call_api(cuisine){
 		// api_here = true;
 		console.log(document.getElementById("my_cats").innerHTML);
 		document.getElementById("my_cats").innerHTML = '';
+		// console.log(document.getElementById("api_results").innerHTML);
+		// document.getElementById("api_results").innerHTML = `
+		// 	<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
+		// `;; 
 		select_restaurant(restaurant_objects);
 		// display_data(restaurant_objects);
 		
@@ -615,6 +622,7 @@ function call_api(cuisine){
 		if (err.response) {
 			console.log(err.response.status);
 		}
+		
 		document.getElementById("alerts_").innerHTML = '';
 		document.getElementById("alerts").innerHTML = '';
 		document.getElementById("alerts").innerHTML += 
