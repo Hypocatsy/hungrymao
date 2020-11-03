@@ -217,9 +217,15 @@ var catArrayForWheel = ['<img src="media/wheel_icons_cats/black_cat.png" height=
 
 const filterArray = ["vegetarian", "halal", "vegan"];
 
-// Filter, Wheel, Text beside wheel
-function default_view(myUsername) {
+// Filter, Wheel
+/* Jewel - my rationale for this new function
 
+	i separate the wheel and its icons part from default_view function
+	because when page loads, i want to SHOW THE FULL WHEEL but i dont want to show the text!!!
+	When page loads, user HAS NOT logged in / continue as guest so i cannot retrieve the username, thats why idw to call default view
+	So now i split wheel part into this new function
+*/	
+function default_wheel() {
 	// document.getElementById("current_location").innerHTML = 
 	// `
 	// 	<h3>Current Location</h3> 
@@ -266,6 +272,10 @@ function default_view(myUsername) {
 	// Part 2: Wheel - add cuisines into wheel html
 	document.getElementById("inner-wheel").innerHTML = wheelstr;
 
+}
+
+// Text beside wheel
+function default_view(myUsername) {
 
 	// Part 3: Text beside the wheel
 
@@ -524,11 +534,12 @@ function call_api(cuisine){
 	var api_retrieved = false;
 
 	
-	document.getElementById("api_results").innerHTML = `
-	<img src="media/loading_cat.gif" height="100" width="100" style="text-align:center; clear:both;">
-	<br>
-	<p style="vertical-align:bottom; color:#56713A;">Hungrymao is finding a restaurant. . . . . .</p>`;
-	console.log(document.getElementById("api_results").innerHTML);
+	document.getElementById("my_cats").innerHTML = `
+		<img src="media/loading_cat.gif" height="100" width="100" style="text-align:center; clear:both;">
+		<br>
+		<p style="vertical-align:bottom; color:#56713A;">Hungrymao is finding a restaurant. . . . . .</p>
+	`;
+	console.log(document.getElementById("my_cats").innerHTML);
 
 	// console.log(Date());
 
@@ -536,17 +547,18 @@ function call_api(cuisine){
 	const radius = '3000';
 	const locale = 'en_SG';
 	let restrictions = getRestrictions();
-	// console.log(restrictions);
-	// console.log(cuisine);
+	console.log("Restrictions:", restrictions);
+	console.log("Cuisine",cuisine);
 	let postal_code = document.getElementById('location').value;
-	// console.log(postal_code);
+	console.log("Postal Code:", postal_code);
 
 
 	//gerry's key
-	// let API_KEY = "Jr3jT_un64Dlz67LnS7SWPFgd-U4dHn54djDo5laW_qsaVcyecReYcobd2QUYSdK4f2_FYfrx4kc41CavEwd8NIzXvp7G6DvPYXDfkSL9srtiwrgcyuoPnB0_JF0X3Yx";
+	let API_KEY = "Jr3jT_un64Dlz67LnS7SWPFgd-U4dHn54djDo5laW_qsaVcyecReYcobd2QUYSdK4f2_FYfrx4kc41CavEwd8NIzXvp7G6DvPYXDfkSL9srtiwrgcyuoPnB0_JF0X3Yx";
 	//haoyue's key
-	let API_KEY = "ecoDlzYBGkeG6bfeg8T0hm4cwLDDvkU1CIPt6r7PAkOG90utpmbN6wjsXrMA4gj6QV3hG-dwo70InJCLU5nsg7c2-AA090ZOfjBlHlzl6tzw8aRkUrnW8d-6m6OX3Yx";
+	// let API_KEY = "ecoDlzYBGkeG6bfeg8T0hm4cwLDDvkU1CIPt6r7PAkOG90utpmbN6wjsXrMA4gj6QV3hG-dwo70InJCLU5nsg7c2-AA090ZOfjBlHlzl6tzw8aRkUrnW8d-6m6OX3Yx";
 
+	console.log(API_KEY);
 	base_url = "https://api.yelp.com/v3/businesses/search?term=";
 	url_with_cuisine = base_url + cuisine;
 
@@ -569,20 +581,20 @@ function call_api(cuisine){
 	final_url = url_with_location + "&radius=" + radius + "&locale=" + locale;
 
 	
-	// console.log(final_url);
+	console.log(final_url);
 
 	axios.get(`${'https://cors-anywhere.herokuapp.com/'}${final_url}`, 
 	{
 		headers: {
 			Authorization: `Bearer ${API_KEY}`
 		},
-		params: {
-			// categories: 'breakfast_brunch',
-		}
+		// params: {
+		// 	// categories: 'breakfast_brunch',
+		// }
 	})
 	.then((res) => {
-		
-		// console.log(res);
+		console.log("i am inside .then res");
+		console.log(res);
 
 		//API json response
 		// console.log(res.data.businesses)
@@ -590,8 +602,8 @@ function call_api(cuisine){
 		// console.log(restaurant_objects);
 		// return restaurant_objects;
 		// api_here = true;
-		console.log(document.getElementById("api_results").innerHTML);
-		document.getElementById("api_results").innerHTML = '';
+		console.log(document.getElementById("my_cats").innerHTML);
+		document.getElementById("my_cats").innerHTML = '';
 		select_restaurant(restaurant_objects);
 		// display_data(restaurant_objects);
 		
@@ -600,9 +612,9 @@ function call_api(cuisine){
 	.catch((err) => {
 		// console.log ('error');
 		// alert('error - no food to specifications');
-		document.getElementById("api_results").innerHTML = `
-			<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
-		`;; 
+		if (err.response) {
+			console.log(err.response.status);
+		}
 		document.getElementById("alerts_").innerHTML = '';
 		document.getElementById("alerts").innerHTML = '';
 		document.getElementById("alerts").innerHTML += 
@@ -630,6 +642,9 @@ function call_api(cuisine){
 
 // function display_data(restaurant_objects, r_count, selected_restaurant)
 function select_restaurant(restaurant_objects){
+	document.getElementById("my_cats").innerHTML = `
+			<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
+		`;
 	// console.log(Date());
 
 
