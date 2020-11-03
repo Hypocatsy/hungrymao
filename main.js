@@ -598,7 +598,7 @@ function call_api(cuisine){
 		// console.log ('error');
 		// alert('error - no food to specifications');
 		document.getElementById("api_results").innerHTML = `
-			<img src="media/gifs/happy.gifhappy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
+			<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
 		`;; 
 		document.getElementById("alerts_").innerHTML = '';
 		document.getElementById("alerts").innerHTML = '';
