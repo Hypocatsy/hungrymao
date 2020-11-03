@@ -508,13 +508,6 @@ function call_api(cuisine){
 	var api_retrieved = false;
 	
 	// console.log(Date());
-<<<<<<< HEAD
-
-	// while (api_retrieved == false) {
-		
-	// }
-=======
->>>>>>> 9cfe342db8a85869ba4622c06c01f4a5370a8462
 
 	const country = 'singapore';
 	const radius = '3000';
