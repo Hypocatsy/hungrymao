@@ -388,6 +388,8 @@ function chosen_view() {
 // This function is called when user chooses the "I dont want this cuisine!!" button
 function repeatspin(choiceArray) {
 	document.getElementById("yelp_result").innerHTML = ''; 
+	document.getElementById("alert_").innerHTML = ''; 
+	document.getElementById("alert").innerHTML = ''; 
 	var wheelstr = '';
 	for (var catpic of catArrayForWheel) {
 		wheelstr += `
