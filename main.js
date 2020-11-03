@@ -140,7 +140,7 @@ function login_user() {
 
 	// Have Error 
 	if ( errorstring != '' ) {
-		document.getElementById("login-errors").innerText = errorstring;
+		document.getElementById("login-errors").innerHTML = `<b class="animate__animated animate__flash text-danger">${errorstring}</b>`;
 	}
 
 	return false;
