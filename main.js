@@ -220,6 +220,17 @@ const filterArray = ["vegetarian", "halal", "vegan"];
 // Filter, Wheel, Text beside wheel
 function default_view(myUsername) {
 
+	// document.getElementById("current_location").innerHTML = 
+	// `
+	// 	<h3>Current Location</h3> 
+    //     <input type="text" name="location" id="location" placeholder="633702">
+	// `;
+
+	// document.getElementById("inner-spin").innerHTML = 
+	// `
+	// 	<img src='../is216-Project/media/damnhungry_cat.png' height='55' width='55'>
+	// `;
+
 	// Part 1: Filter
 	var filterstr = `
 	<h3>Food Restrictions</h3> 
@@ -397,8 +408,8 @@ function chosen_view() {
 // This function is called when user chooses the "I dont want this cuisine!!" button
 function repeatspin(choiceArray) {
 	document.getElementById("yelp_result").innerHTML = ''; 
-	document.getElementById("alert_").innerHTML = ''; 
-	document.getElementById("alert").innerHTML = ''; 
+	// document.getElementById("alert_").innerHTML = ''; 
+	// document.getElementById("alert").innerHTML = ''; 
 	var wheelstr = '';
 	for (var catpic of catArrayForWheel) {
 		wheelstr += `
@@ -526,10 +537,13 @@ function call_api(cuisine){
 	// console.log(cuisine);
 	let postal_code = document.getElementById('location').value;
 	// console.log(postal_code);
+
+
 	//gerry's key
 	// let API_KEY = "Jr3jT_un64Dlz67LnS7SWPFgd-U4dHn54djDo5laW_qsaVcyecReYcobd2QUYSdK4f2_FYfrx4kc41CavEwd8NIzXvp7G6DvPYXDfkSL9srtiwrgcyuoPnB0_JF0X3Yx";
 	//haoyue's key
 	let API_KEY = "ecoDlzYBGkeG6bfeg8T0hm4cwLDDvkU1CIPt6r7PAkOG90utpmbN6wjsXrMA4gj6QV3hG-dwo70InJCLU5nsg7c2-AA090ZOfjBlHlzl6tzw8aRkUrnW8d-6m6OX3Yx";
+
 	base_url = "https://api.yelp.com/v3/businesses/search?term=";
 	url_with_cuisine = base_url + cuisine;
 
