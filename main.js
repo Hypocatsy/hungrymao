@@ -89,7 +89,11 @@ OTHERS
 		-> Alert user that they have found food when they click "yes" button
 =================================================================================================
 */
+// global username & pw
 
+var username = document.getElementById('username').value;
+var password = document.getElementById('password').value;
+alert(`user is ${username} ${password}`);
 //fill in the page before form
 
 
@@ -105,9 +109,9 @@ function guest_user() {
 }
 
 // Scenario 2: User clicks 'Help me decide again' button
-function login_user() {
-	var username = document.getElementById('username').value;
-	var password = document.getElementById('password').value;
+function login_user(username, password) {
+	// var username = document.getElementById('username').value;
+	// var password = document.getElementById('password').value;
 	var errorstring = '';
 
 	// Error 1: Empty user or pw
@@ -516,7 +520,6 @@ function getRestrictions(){
 // var api_here = false;
 
 function loading(){
-	
 
 		document.getElementById("api_results").innerHTML = `
 		<img class = "mx-auto" src="media/gifs/loading.gif" style = "width: 60%;"></img>
@@ -530,7 +533,11 @@ function call_api(cuisine){
 
 	var api_retrieved = false;
 	
-	console.log(Date());
+	// console.log(Date());
+
+	// while (api_retrieved == false) {
+		
+	// }
 
 	const country = 'singapore';
 	const radius = '3000';
