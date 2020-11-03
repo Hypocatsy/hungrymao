@@ -99,9 +99,9 @@ OTHERS
 */
 // global username & pw
 
-var username = document.getElementById('username').value;
-var password = document.getElementById('password').value;
-alert(`user is ${username} ${password}`);
+// var username = document.getElementById('username').value;
+// var password = document.getElementById('password').value;
+// alert(`user is ${username} ${password}`);
 //fill in the page before form
 
 
@@ -112,14 +112,17 @@ function guest_user() {
 	// auto-scroll to the 'how it works' section
 	document.getElementById('pink_container').scrollIntoView();
 	// call default_view function
-	default_view();
+	var username = '';
+	console.log(`username is ${username}`)
+
+	default_view(username);
 	return false;
 }
 
 // Scenario 2: User clicks 'Help me decide again' button
 function login_user(username, password) {
-	// var username = document.getElementById('username').value;
-	// var password = document.getElementById('password').value;
+	var username = document.getElementById('username').value;
+	var password = document.getElementById('password').value;
 	var errorstring = '';
 
 	// Error 1: Empty user or pw
@@ -143,7 +146,9 @@ function login_user(username, password) {
 		// reset login-errors div to empty
 		document.getElementById("login-errors").innerText = '';
 		// call default_view function
-		default_view(username);
+		console.log(`username is ${username}`);
+		var usernamestring = " " + username;
+		default_view(usernamestring);
 
 		// auto-scroll to 'How it Works' section 
 		document.getElementById('pink_container').scrollIntoView();
@@ -213,7 +218,7 @@ var catArrayForWheel = ['<img src="media/wheel_icons_cats/black_cat.png" height=
 const filterArray = ["vegetarian", "halal", "vegan"];
 
 // Filter, Wheel, Text beside wheel
-function default_view(username='') {
+function default_view(myUsername) {
 
 	// Part 1: Filter
 	var filterstr = `
@@ -258,7 +263,7 @@ function default_view(username='') {
 	
 	<div id="beside_wheel_text">
 		<img src="media/gifs/meow.gif" style = "width: 40%;"></img>
-		<h4>Welcome!</h4> 
+		<h4>Welcome${myUsername}!</h4> 
 		Click the middle of the wheel to randomise your food choice!
 	</div>
 	`;
@@ -476,7 +481,7 @@ function randomCat(catArray){
 
 
 function getRestrictions(){
-	// document.getElementById('all_wheel_stuff').scrollIntoView();
+	document.getElementById('all_wheel_stuff').scrollIntoView();
 
 	// console.log("test");
     const restrictionsArr = [];
@@ -504,9 +509,13 @@ function loading(){
 
 
 function call_api(cuisine){
-
-	var api_retrieved = false;
 	
+	document.getElementById("api_results").innerHTML = `
+	<img src="media/loading_cat.gif" height="100" width="100" style="text-align:center; clear:both;">
+	<br>
+	<p style="vertical-align:bottom; color:#56713A;">Hungrymao is finding a restaurant. . . . . .</p>`;
+	console.log(document.getElementById("api_results").innerHTML);
+
 	// console.log(Date());
 
 	const country = 'singapore';
@@ -561,7 +570,8 @@ function call_api(cuisine){
 		// console.log(restaurant_objects);
 		// return restaurant_objects;
 		// api_here = true;
-		api_retrieved = true;
+		console.log(document.getElementById("api_results").innerHTML);
+		document.getElementById("api_results").innerHTML = '';
 		select_restaurant(restaurant_objects);
 		// display_data(restaurant_objects);
 		
@@ -581,15 +591,15 @@ function call_api(cuisine){
 			</button>
 		</div>
 		`;
-		
-		//tried to add vid in alert but it's not really necessary 
-		// <br>
-		// <video width="300" height="200" autoplay="autoplay">
-		// 	<source src="media/sad_cat.mp4" type="video/mp4" />
-		// </video>
-
-		//have to prompt a message like "sorry, no food with your specifications could be found"
 	})
+	// 	//tried to add vid in alert but it's not really necessary 
+	// 	// <br>
+	// 	// <video width="300" height="200" autoplay="autoplay">
+	// 	// 	<source src="media/sad_cat.mp4" type="video/mp4" />
+	// 	// </video>
+
+	// 	//have to prompt a message like "sorry, no food with your specifications could be found"
+	// })
 
 }
 
@@ -599,6 +609,7 @@ function call_api(cuisine){
 // function display_data(restaurant_objects, r_count, selected_restaurant)
 function select_restaurant(restaurant_objects){
 	// console.log(Date());
+
 
 	
 	// alert('in display_data')
