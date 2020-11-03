@@ -583,7 +583,7 @@ function call_api(cuisine){
 	.catch((err) => {
 		// console.log ('error');
 		// alert('error - no food to specifications');
-		document.getElementById("yelp_result").innerHTML = `
+		document.getElementById("api_results").innerHTML = `
 			<img src="media/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
 		`;; 
 		document.getElementById("alerts_").innerHTML = '';
