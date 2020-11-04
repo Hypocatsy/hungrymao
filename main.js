@@ -385,9 +385,9 @@ $(document).ready(function(){
 
 // Geolocation API
 //==============================================================================
-var postal_code = "";
+var global_postal_code = "";
 
-function initMap() {
+function initMap(postal_code) {
 	alert('in initmap');
 	
 	if (navigator.geolocation) {
@@ -403,7 +403,9 @@ function initMap() {
 			
 			// Step 4 (if user chooses Allow)
 			// get postal code (& address) given lat, lng
+			
 			getLocation(pos);
+			
 		
 
 	
@@ -473,6 +475,7 @@ function onGeolocateSuccess(coordinates) {
 	console.log(addr);
 	var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&key=" + googleAPIKey;
 	var xhttp = new XMLHttpRequest();
+	var postal_code = "";
 	xhttp.onreadystatechange = function() {
 		console.log(`${this.readyState},${this.status}`);
 		if (this.readyState == 4 && this.status == 200) {
@@ -503,6 +506,15 @@ function onGeolocateSuccess(coordinates) {
 				manual_geo();
 			}
 		}
+		if (postal_code != true){
+			alert(`postal code is ${postal_code}`);
+			global_postal_code += postal_code;
+			console.log(`global postal code is ${global_postal_code}`);
+			return postal_code;
+		}
+
+
+		
 	};
 	
 	xhttp.open("GET", url, true);
@@ -696,7 +708,7 @@ function call_api(cuisine){
 	let restrictions = getRestrictions();
 	// console.log("Restrictions:", restrictions);
 	// console.log("Cuisine",cuisine);
-	// let postal_code = document.getElementById('location').value;
+	let postal_code = document.getElementById('location').value;
 	// console.log("Postal Code:", postal_code);
 
 
