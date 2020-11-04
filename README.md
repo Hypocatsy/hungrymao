@@ -1,5 +1,6 @@
 # is216 Project
 <h1>Can't decide what to eat? Hungrymao is hungry too! Let's find good food together 😹</h1>
+
 # <h3>Preview!!🥰</h3>
 ![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/readme_media/app.gif)
 
@@ -23,7 +24,7 @@ If you're super hungry, and can't decide what to eat, you might not want to sign
 
 </p> 
 
-# <h2>Hungrymao's recommendations</h2></br> 🍱
+# Hungrymao's recommendations 🍱
 ![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/readme_media/rec.png)</br>
 
 <p>Hungrymao won't be sad if you don't like the suggestion, so don't be afraid to press [thank you, next](https://www.youtube.com/watch?v=gl1aHhXnN1k)</br>
@@ -41,5 +42,7 @@ Food plates vector - somewhere on https://www.freepik.com/ </br>
 Food recommendations - Yelp API </br> </p>
 
 # Done by 🍫
-<p>![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/logo.svg)
-✨ @depressed-9987 @jeweltan27 @leyyih @Hypocatsy ✨ </p>
+
+![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/logo.svg)
+
+<p>✨ @depressed-9987 @jeweltan27 @leyyih @Hypocatsy ✨</p>
