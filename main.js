@@ -389,19 +389,7 @@ var postal_code = "";
 
 function initMap() {
 	alert('in initmap');
-	// This is <div> in Line 56
-	// map = new google.maps.Map(document.getElementById('map'), {
-	// 	center: {lat: 39.0392, lng: 125.7625},
-	// 	zoom: 12
-	// });
-	// info window is the one showing "Location found" message
-	// infoWindow = new google.maps.InfoWindow;
-
-	// this attempts to get user permission to access location
-	// Try HTML5 geolocation.
-
-	// Step 3
-	// Uses geolocation library to retrieve user's location
+	
 	if (navigator.geolocation) {
 		
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -418,17 +406,7 @@ function initMap() {
 			getLocation(pos);
 		
 
-		// 	// Step 5 (position user's location on the map)
-		// 	// display Lat Lng info in the div
-		// 	//document.getElementById("locationInfo").innerHTML = "Lat: " + pos.lat + " Lng: " + pos.lng;
-		// 	// set user position to infoWindow
-		// 	infoWindow.setPosition(pos);
-		// 	infoWindow.setContent('I know where you live!');
-		// 	infoWindow.open(map);
-		// 	map.setCenter(pos);
-		// }, function() {
-		// 	handleLocationError(true, infoWindow, map.getCenter());
-		// 	//handleLocationError();
+	
 		});
 	} else { // error handling
 		// Browser doesn't support Geolocation
@@ -439,26 +417,19 @@ function initMap() {
 	}
 }
 
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-// 	infoWindow.setPosition(pos);
-// 	infoWindow.setContent(browserHasGeolocation ?
-// 						'Error: The Geolocation service failed.' :
-// 						'Error: Your browser doesn\'t support geolocation.');
-// 	infoWindow.open(map);
+
 // } 
 
 // Step 4 (if user chooses Block)
 function handleLocationError() {
 	console.log("Error: Geolocation service failed!");
 	manual_geo();
-	// document.getElementById("locationInfo").style.display = "block"; 
-	// document.getElementById("locationInfo").innerHTML = "Sorry, we couldn't get Postal Code. Please enter manually!";
 }
 
 //let user key in postal code if geolocation fails
 
 function manual_geo(){
-	document.getElementById('current_location') = `                
+	document.getElementById('current_location').innerHTML = `                
 	<h4>We couldn't find your location, so please key in your postal code</h4> 
 	<input type="text" name="location" id="location" placeholder="633702">
 	`;
@@ -483,6 +454,7 @@ function onGeolocateSuccess(coordinates) {
   
   function onGeolocateError(error) {
 	console.warn(error.code, error.message);
+	manual_geo();
    
 	if (error.code === 1) {
 	  // they said no
@@ -520,9 +492,6 @@ function onGeolocateSuccess(coordinates) {
 					// handleLocationError();
 				} else {
 					alert('got location')
-					// document.getElementById("locationInfo").style.display = "block";
-					// document.getElementById("locationInfo").innerHTML = "Hello, we got your current location!";
-					// document.getElementById("postCode").value = postCode;
 				}
 			   
 			} catch(err) { // show error message
