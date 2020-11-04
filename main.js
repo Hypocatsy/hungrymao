@@ -708,7 +708,13 @@ function call_api(cuisine){
 	let restrictions = getRestrictions();
 	// console.log("Restrictions:", restrictions);
 	// console.log("Cuisine",cuisine);
+	
 	let postal_code = document.getElementById('location').value;
+	if (postal_code == ""){
+		postal_code = global_postal_code;
+		console.log(postal_code);
+		console.log(global_postal_code);
+	}
 	// console.log("Postal Code:", postal_code);
 
 
