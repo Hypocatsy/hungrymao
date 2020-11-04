@@ -388,7 +388,7 @@ $(document).ready(function(){
 var global_postal_code = "";
 
 function initMap(postal_code) {
-	alert('in initmap');
+	// alert('in initmap');
 	
 	if (navigator.geolocation) {
 		
@@ -442,7 +442,7 @@ function manual_geo(){
 
 
 function geolocate() {
-	alert('in geolocate')
+	// alert('in geolocate')
 	if (window.navigator && window.navigator.geolocation) {
 	  navigator.geolocation.getCurrentPosition(onGeolocateSuccess, onGeolocateError);
 	}
@@ -507,7 +507,7 @@ function onGeolocateSuccess(coordinates) {
 			}
 		}
 		if (postal_code != true){
-			alert(`postal code is ${postal_code}`);
+			// alert(`postal code is ${postal_code}`);
 			global_postal_code += postal_code;
 			console.log(`global postal code is ${global_postal_code}`);
 			return postal_code;
