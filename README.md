@@ -24,7 +24,7 @@ If you're super hungry, and can't decide what to eat, you might not want to sign
 
 </p> 
 
-# <h2>Hungrymao's recommendations</h2></br> 🍱
+# Hungrymao's recommendations 🍱
 ![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/readme_media/rec.png)</br>
 
 <p>Hungrymao won't be sad if you don't like the suggestion, so don't be afraid to press [thank you, next](https://www.youtube.com/watch?v=gl1aHhXnN1k)</br>
