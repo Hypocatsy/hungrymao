@@ -385,6 +385,7 @@ $(document).ready(function(){
 
 // Geolocation API
 //==============================================================================
+var postal_code = "";
 
 function initMap() {
 	alert('in initmap');
@@ -494,7 +495,7 @@ function onGeolocateSuccess(coordinates) {
 
   var googleAPIKey = "AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug";
 
-  function getLocation(pos) {
+  function getLocation(pos, postal_code) {
        
 	var addr =  pos.lat + ", " + pos.lng;
 	console.log(addr);
@@ -508,10 +509,12 @@ function onGeolocateSuccess(coordinates) {
 				// expected response is JSON data
 				var data = JSON.parse(this.responseText);
 				console.log(data);
-				postCode = getPostCode(data); // Retrieve postal code
-				console.log("Postal Code: " + postCode);
+				postal_code = getPostCode(data); // Retrieve postal code
+				console.log("Postal Code: " + postal_code);
+				postal_code += postal_code;
+				alert('postal_code');
 				
-				if(postCode=="") {
+				if(postal_code=="") {
 					console.log("can't get location")
 					// handleLocationError();
 				} else {
@@ -538,10 +541,10 @@ function getPostCode(data) {
 	//console.log('in getPostCode')
 	//console.log(data)
 	var addrcomponents = data["results"][0]["address_components"];
-	var postcode = addrcomponents.filter(postcodeHelper);
+	var postal_code = addrcomponents.filter(postcodeHelper);
 	// country is an array but there should be only one element
-	console.log(postcode)
-	return postcode[0]["long_name"];
+	console.log(postal_code)
+	return postal_code[0]["long_name"];
 }
 
 function postcodeHelper(addr) {  
@@ -719,7 +722,7 @@ function call_api(cuisine){
 	let restrictions = getRestrictions();
 	// console.log("Restrictions:", restrictions);
 	// console.log("Cuisine",cuisine);
-	let postal_code = document.getElementById('location').value;
+	// let postal_code = document.getElementById('location').value;
 	// console.log("Postal Code:", postal_code);
 
 
