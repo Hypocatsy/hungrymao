@@ -511,7 +511,7 @@ function onGeolocateSuccess(coordinates) {
 				var data = JSON.parse(this.responseText);
 				console.log(data);
 				postal_code = getPostCode(data); // Retrieve postal code
-				alert(`${postal_code}`);
+				alert('got postal code');
 				console.log("Postal Code: " + postal_code);
 				
 				
@@ -531,6 +531,7 @@ function onGeolocateSuccess(coordinates) {
 				// document.getElementById("display").innerHTML = err.message;
 				console.log("can't get location")
 				//handleLocationError();
+				manual_geo();
 			}
 		}
 	};
