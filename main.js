@@ -486,7 +486,7 @@ function onGeolocateSuccess(coordinates) {
 				var data = JSON.parse(this.responseText);
 				console.log(data);
 				postal_code = getPostCode(data); // Retrieve postal code
-				alert('got postal code');
+				// alert('got postal code');
 				console.log("Postal Code: " + postal_code);
 				
 				
@@ -494,7 +494,7 @@ function onGeolocateSuccess(coordinates) {
 					console.log("can't get location")
 					// handleLocationError();
 				} else {
-					alert('got location')
+					// alert('got location')
 				}
 			   
 			} catch(err) { // show error message
