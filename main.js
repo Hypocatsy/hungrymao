@@ -744,22 +744,24 @@ function show_restaurant_data(){
 		price = "Not Stated";
 	}
 
-	document.getElementById("yelp_result").innerHTML = ''; 
-	
+	 
+	var str = document.getElementById("yelp_result").innerHTML = '';
 	// document.getElementById("yelp_result").innerHTML += 
 	// `
 	// 	<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
 	// `;
-
+	str += 
+	`<div class="row mt-4 mb-4">
+		<div class="col-md-6 my-auto">
+			<p class="text-left"><b>hungry</b>mao suggests<br></p>`;
 	// next/ yes buttons
 
 	// alert(cuisine);
-	document.getElementById("yelp_result").innerHTML += 
+	str+= 
 	`
-		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" onclick=call_api("${cuisine}") style="margin-top: 5px; width: 10%;"></img>
+		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" onclick=call_api("${cuisine}") style="margin-top: 5px; width: 25%;"></img>
 		
-		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 10%;"></img></br>
-
+		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 25%;"></img></br>
 	`;
 	
 	// document.getElementById("round_button_no").addEventListener("click", function(){
@@ -767,22 +769,27 @@ function show_restaurant_data(){
 	// });
 
 
-	document.getElementById("yelp_result").innerHTML += 
+	str += 
 	`<img src="${image_url}" height="200" width="300"><br><br>`;
 
 	if (got_img == false ){
-		document.getElementById("yelp_result").innerHTML += no_food_txt + "<br>";
+		str += no_food_txt + "<br>";
 	}
-
-	document.getElementById("yelp_result").innerHTML += 
-	`<h4><b>${name}</b></h4><br>
-	 <b>Rating: </b>
-	 <img src="${star}"><br>
-	 <b>Price: ${price}</b><br>
-	 <b>Address: ${address} Singapore ${postal_code}</b><br>
-	 <button style="margin-top: 3%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
+	
+	str += 
+	`	</div>
+		<div class="col-md-6 my-auto pb-4">
+			<h4 class="mb-3 font-weight-bold">${name}</h4>
+			<b>Rating</b><br>
+			<img src="${star}"><br>
+			<b>Price: ${price}</b><br>
+			<b>Address: ${address} Singapore ${postal_code}</b><br>
+			<button style="margin-top: 5%;" type="button" class="btn text-nowrap" id="yelp_button"><a href="${yelp_url}" target="_blank"><b>Go to Yelp</b></a></button><br>
+		</div>
+	</div>
 	`;
-
+	document.getElementById("yelp_result").innerHTML = str;
+	console.log(document.getElementById("yelp_result").innerHTML)
 	// return count;
 	// document.getElementById('yelp_results').scrollIntoView();
 	
