@@ -759,9 +759,9 @@ function show_restaurant_data(){
 	// alert(cuisine);
 	str+= 
 	`
-		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" onclick=call_api("${cuisine}") style="margin-top: 5px; width: 25%;"></img>
+		<img src='media/buttons/next.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_no" onclick=call_api("${cuisine}") style="margin-top: 5px; width: 20%;"></img>
 		
-		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 25%;"></img></br>
+		<img src='media/buttons/yes.svg' class="animate__animated animate__bounce mt-2 mb-2" id="round_button_yes" onclick=food_selected() style="margin-top: 5px; width: 20%;"></img></br>
 	`;
 	
 	// document.getElementById("round_button_no").addEventListener("click", function(){
