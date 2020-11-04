@@ -398,7 +398,7 @@ function initMap(postal_code) {
 				lng: position.coords.longitude
 			}; // -> this pos value is used to extract user's postal code 
 
-			//console.log(pos);
+			console.log(pos);
 			
 			
 			// Step 4 (if user chooses Allow)
