@@ -495,13 +495,14 @@ function onGeolocateSuccess(coordinates) {
 
   var googleAPIKey = "AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug";
 
-  function getLocation(pos, postal_code) {
+  function getLocation(pos) {
        
 	var addr =  pos.lat + ", " + pos.lng;
 	console.log(addr);
 	var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&key=" + googleAPIKey;
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
+		console.log(`${this.readyState},${this.status}`);
 		if (this.readyState == 4 && this.status == 200) {
 			// following code may throw error if user input is invalid address
 			// so we use try-catch block to handle errors
@@ -510,9 +511,9 @@ function onGeolocateSuccess(coordinates) {
 				var data = JSON.parse(this.responseText);
 				console.log(data);
 				postal_code = getPostCode(data); // Retrieve postal code
+				alert(`${postal_code}`);
 				console.log("Postal Code: " + postal_code);
-				postal_code += postal_code;
-				alert('postal_code');
+				
 				
 				if(postal_code=="") {
 					console.log("can't get location")
