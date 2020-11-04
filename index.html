@@ -386,12 +386,13 @@ BODY PART -> approx line 260 to 440
     <!-- end pink container -->
 
     <!-- User input & Filtering Container-->
-    <div class="container mt-4 mb-4" id="inputcontainer">
+    <div class="container mt-4 mb-4" id="inputcontainer" style="margin: auto;">
         <div class="row">
             <!-- User's Location -->
             <div class="col" id="current_location">
-                <h3>Current Location</h3> 
-                <input type="text" name="location" id="location" placeholder="633702">
+                <!-- <h4>We couldn't find your location, so please key in your postal code</h4> 
+                <input type="text" name="location" id="location" placeholder="633702"> -->
+            
             </div>
             <!-- User's Food Restrictions -->
             <div class="col">
@@ -511,6 +512,9 @@ BODY PART -> approx line 260 to 440
            $(window).scrollTop(0);
        });
     </script> -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug&callback=initMap">  
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

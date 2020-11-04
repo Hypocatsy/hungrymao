@@ -383,6 +383,172 @@ $(document).ready(function(){
 
 });//DOCUMENT READY
 
+// Geolocation API
+//==============================================================================
+
+function initMap() {
+	alert('in initmap');
+	// This is <div> in Line 56
+	// map = new google.maps.Map(document.getElementById('map'), {
+	// 	center: {lat: 39.0392, lng: 125.7625},
+	// 	zoom: 12
+	// });
+	// info window is the one showing "Location found" message
+	// infoWindow = new google.maps.InfoWindow;
+
+	// this attempts to get user permission to access location
+	// Try HTML5 geolocation.
+
+	// Step 3
+	// Uses geolocation library to retrieve user's location
+	if (navigator.geolocation) {
+		
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var pos = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude
+			}; // -> this pos value is used to extract user's postal code 
+
+			//console.log(pos);
+			
+			
+			// Step 4 (if user chooses Allow)
+			// get postal code (& address) given lat, lng
+			getLocation(pos);
+		
+
+		// 	// Step 5 (position user's location on the map)
+		// 	// display Lat Lng info in the div
+		// 	//document.getElementById("locationInfo").innerHTML = "Lat: " + pos.lat + " Lng: " + pos.lng;
+		// 	// set user position to infoWindow
+		// 	infoWindow.setPosition(pos);
+		// 	infoWindow.setContent('I know where you live!');
+		// 	infoWindow.open(map);
+		// 	map.setCenter(pos);
+		// }, function() {
+		// 	handleLocationError(true, infoWindow, map.getCenter());
+		// 	//handleLocationError();
+		});
+	} else { // error handling
+		// Browser doesn't support Geolocation
+		handleLocationError(false, infoWindow, map.getCenter());
+		console.log(" Browser doesn't support Geolocation");
+		manual_geo();
+		// handleLocationError();
+	}
+}
+
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+// 	infoWindow.setPosition(pos);
+// 	infoWindow.setContent(browserHasGeolocation ?
+// 						'Error: The Geolocation service failed.' :
+// 						'Error: Your browser doesn\'t support geolocation.');
+// 	infoWindow.open(map);
+// } 
+
+// Step 4 (if user chooses Block)
+function handleLocationError() {
+	console.log("Error: Geolocation service failed!");
+	manual_geo();
+	// document.getElementById("locationInfo").style.display = "block"; 
+	// document.getElementById("locationInfo").innerHTML = "Sorry, we couldn't get Postal Code. Please enter manually!";
+}
+
+//let user key in postal code if geolocation fails
+
+function manual_geo(){
+	document.getElementById('current_location') = `                
+	<h4>We couldn't find your location, so please key in your postal code</h4> 
+	<input type="text" name="location" id="location" placeholder="633702">
+	`;
+}
+
+
+// console.log(`Lat: ${startLat}, Lon: ${startLon}`);
+
+
+function geolocate() {
+	alert('in geolocate')
+	if (window.navigator && window.navigator.geolocation) {
+	  navigator.geolocation.getCurrentPosition(onGeolocateSuccess, onGeolocateError);
+	}
+}
+
+function onGeolocateSuccess(coordinates) {
+	const { latitude, longitude } = coordinates.coords;
+	console.log('Found coordinates: ', latitude, longitude);
+	alert(`lat: ${latitude} long: ${longitude}`);
+  }
+  
+  function onGeolocateError(error) {
+	console.warn(error.code, error.message);
+   
+	if (error.code === 1) {
+	  // they said no
+	} else if (error.code === 2) {
+	  // position unavailable
+	} else if (error.code === 3) {
+	  // timeout
+	}
+  }
+
+  var googleAPIKey = "AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug";
+
+  function getLocation(pos) {
+       
+	var addr =  pos.lat + ", " + pos.lng;
+	console.log(addr);
+	var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&key=" + googleAPIKey;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			// following code may throw error if user input is invalid address
+			// so we use try-catch block to handle errors
+			try { 
+				// expected response is JSON data
+				var data = JSON.parse(this.responseText);
+				console.log(data);
+				postCode = getPostCode(data); // Retrieve postal code
+				console.log("Postal Code: " + postCode);
+				
+				if(postCode=="") {
+					console.log("can't get location")
+					// handleLocationError();
+				} else {
+					alert('got location')
+					// document.getElementById("locationInfo").style.display = "block";
+					// document.getElementById("locationInfo").innerHTML = "Hello, we got your current location!";
+					// document.getElementById("postCode").value = postCode;
+				}
+			   
+			} catch(err) { // show error message
+				// not a good idea to directly show err.message 
+				// as it may contain sensitive info
+				// document.getElementById("display").innerHTML = err.message;
+				console.log("can't get location")
+				//handleLocationError();
+			}
+		}
+	};
+	
+	xhttp.open("GET", url, true);
+	xhttp.send();
+}
+function getPostCode(data) {
+	//console.log('in getPostCode')
+	//console.log(data)
+	var addrcomponents = data["results"][0]["address_components"];
+	var postcode = addrcomponents.filter(postcodeHelper);
+	// country is an array but there should be only one element
+	console.log(postcode)
+	return postcode[0]["long_name"];
+}
+
+function postcodeHelper(addr) {  
+	return addr["types"][0] == "postal_code" ;
+}
+
+// =========================================================================================
 function randomize(choiceArray){
     var i = Math.floor(Math.random() * 5);
     return choiceArray[i];
