@@ -252,7 +252,9 @@ BODY PART -> approx line 260 to 440
             text-align: center;
             
         }
-
+        /* #happycat {
+            margin-bottom: 20px;
+        } */
 
 
         .btn-circle {
@@ -459,9 +461,11 @@ BODY PART -> approx line 260 to 440
 <!-- Pink container - should only appear after api is called -->
 <div class="container-fluid">
     <!-- start row 2 -->
-    <div class="row mt-4" style = "background-color: #FDE6E6;" id="api_results" style = "position:relative; "> 
-        <!-- Cats div showing my loading cat and happy cat -->
-        <div class="container" id="my_cats" style="text-align:center;">
+    <!-- <div class="row mt-4" style = "background-color: #FDE6E6;" id="api_results" style = "position:relative; ">  -->
+        <div class="row mt-4" id="api_results" style = "position:relative; "> 
+
+        <!-- Loading cat div -->
+        <div class="container" id="loadcat" style="text-align:center;">
 
         </div>
 
@@ -472,7 +476,10 @@ BODY PART -> approx line 260 to 440
         
         <div class="container" id="alerts_" style="margin-top: 5px;">
                 <!-- Testing (should only be visible if api is called) -->
-        </div>
+        </div
+        >
+        <!-- Happy cat div (show after food is retrieved) -->
+        <div class="container" id="happycat" style="text-align:center;">
     </div>
     <!-- end row 2 -->
 </div>
