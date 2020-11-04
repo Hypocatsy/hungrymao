@@ -33,11 +33,48 @@ WHEEL INFORMATION
 	- If this is a repeated spin, it calls repeatspin() function
 
 =================================================================================================
-COLLECT USER LOCATION
+
+USE GEOLOCATION API
 
 1. initMap() function
+	- if can retrieve location -> call getLocation() function
+	- else, call 
+		a. handleLocationError() function
+		b. manual_geo() function
+
+2. handleLocationError() function
+	- call manual_geo() function
+
+3. manual_geo() function 
+	- tell user in 'current_location' div that you cannot find location
+	- user has to input manually
+
+4. geolocate() function
+
+5. onGeolocateSuccess() function
+
+6. onGeolocateError() function
+	- call manual_geo() function
+
+7. getLocation() function
+	- make xhttp request from API
+	- if successful -> retrieve postal code, then store in global variable global_postal_code
+	- else -> call manual_geo()
+
+8. getPostCode() function
+
+9. postcodeHelper() function
 
 =================================================================================================
+AFTER USER FILL IN POSTAL CODE AND CLICK "FIND ME FOOD"
+
+1. validate_postal() function
+	- perform validation on postal code
+	- 3 types of errors:
+		a. input is empty
+		b. input is Not a Number
+		3. input is not 6 digits (aka invalid)
+	- displays errors to user so that user retype postal code
 
 AFTER USER SPINS WHEEL 
 
@@ -68,7 +105,7 @@ RETRIEVE FOOD RESTRICTIONS
 
 =================================================================================================
 
-RETRIEVE API FROM YELP
+RETRIEVE API FROM YELP 
 
 1. call_api(cuisine) function 
 	- What it does:
@@ -436,9 +473,12 @@ function handleLocationError() {
 //let user key in postal code if geolocation fails
 
 function manual_geo(){
-	document.getElementById('current_location').innerHTML = `                
+	document.getElementById('postal_stuff').innerHTML = `                
 	<h4 style="color:">We couldn't find your location, so please key in your postal code</h4> 
 	<input type="text" name="location" id="location" placeholder="633702">
+	<br>
+	<button class="btn" id="validate_button" onclick="validate_postal()">Find my food!!</button>
+
 	`;
 }
 
@@ -539,9 +579,53 @@ function postcodeHelper(addr) {
 	return addr["types"][0] == "postal_code" ;
 }
 
+
+// =========================================================================================
+
+// Validate user's postal code
+function validate_postal(my_postalcode) {
+	my_postalcode = document.getElementById("location").value;
+	console.log(my_postalcode);
+	var invalid_str = '';
+	// empty of full of white space
+	if (my_postalcode.trim() == '') {
+		invalid_str = `
+		<b class="animate__animated animate__flash text-danger">
+				Postal code is empty!
+				<br>
+				Please help hungrymao find the right place!
+		</b>`;
+	}
+	// not a number
+	else if (isNaN(my_postalcode)) {
+		invalid_str = `
+			<b class="animate__animated animate__flash text-danger">
+				Postal code should be a number!
+				<br>
+				Please help hungrymao find the right place!
+			</b>`;
+	}
+	// invalid postal code
+	else if (my_postalcode.length != 6) {
+		invalid_str = `
+			<b class="animate__animated animate__flash text-danger">
+				Oh no! Doesn't look like a postal code!
+				<br>
+				Please help hungrymao find the right place!
+			</b>`;
+	}
+	// postal code is valid
+	else {
+		invalid_str = `
+			Yay! Hungrymao is satisfied with your postal code!`;
+	}
+	document.getElementById("invalid_postal").innerHTML = invalid_str;
+}
+
 // =========================================================================================
 function randomize(choiceArray){
-    var i = Math.floor(Math.random() * 5);
+	var i = Math.floor(Math.random() * 6);
+	console.log(i);
     return choiceArray[i];
 }
 
@@ -574,6 +658,8 @@ function chosen_view() {
 
 // This function is called when user chooses the "I dont want this cuisine!!" button
 function repeatspin(choiceArray) {
+	document.getElementById("happycat").innerHTML = '';
+
 	if (document.getElementById("yelp_result")){
 		document.getElementById("yelp_result").innerHTML = ''; 
 	}
@@ -763,6 +849,7 @@ function call_api(cuisine){
 		// }
 	})
 	.then((res) => {
+		document.getElementById("api_results").scrollIntoView();
 		// console.log("i am inside .then res");
 		// console.log(res);
 
@@ -781,7 +868,13 @@ function call_api(cuisine){
 		// document.getElementById("api_results").innerHTML = `
 		// 	<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
 		// `;; 
+
+		// remove all yellow alerts and happy cat when user find food again
+		document.getElementById("happycat").innerHTML = '';
+
+		document.getElementById("alerts_").innerHTML = '';
 		document.getElementById("alerts").innerHTML = '';
+
 		select_restaurant(restaurant_objects);
 		// display_data(restaurant_objects);
 		
@@ -961,7 +1054,13 @@ function show_restaurant_data(){
 	
 	// display happy cats 
 	document.getElementById("happycat").innerHTML = `
-			<img src="media/gifs/happy.gif" height="100" width="100" style="text-align:left;">
+		<div class="row">
+			<div class="col">
+				<img src="media/gifs/happy.gif" height="100" width="100" style="text-align:left;">
+				<img src="media/gifs/happy.gif" height="100" width="100" style="text-align:left;">
+				<img src="media/gifs/happy.gif" height="100" width="100" style="text-align:left;">
+			</div>
+		</div>
 		`;
 	console.log(document.getElementById("happycat").innerHTML);
 
