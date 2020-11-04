@@ -707,13 +707,16 @@ function call_api(cuisine){
 	
 	var api_retrieved = false;
 
+	// show the pink div only when api is called, if not theres a weird pink part initially when theres nth inside
+	document.getElementById("api_results").style.backgroundColor = '#FDE6E6';
+
 	
-	document.getElementById("my_cats").innerHTML = `
-		<img src="media/loading_cat.gif" height="100" width="100" style="text-align:center; clear:both;">
+	document.getElementById("loadcat").innerHTML = `
+		<img src="media/loading_cat.gif" height="100" width="100">
 		<br>
 		<p style="vertical-align:bottom; color:#56713A;">Hungrymao is finding a restaurant. . . . . .</p>
 	`;
-	console.log(document.getElementById("my_cats").innerHTML);
+	console.log(document.getElementById("loadcat").innerHTML);
 
 	// console.log(Date());
 
@@ -777,7 +780,10 @@ function call_api(cuisine){
 		// return restaurant_objects;
 		// api_here = true;
 		// console.log(document.getElementById("my_cats").innerHTML);
-		document.getElementById("my_cats").innerHTML = '';
+
+		// remove loading cat when food is retrieved
+		document.getElementById("loadcat").innerHTML = '';
+		console.log(document.getElementById("loadcat").innerHTML);
 		// console.log(document.getElementById("api_results").innerHTML);
 		// document.getElementById("api_results").innerHTML = `
 		// 	<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
@@ -821,13 +827,9 @@ function call_api(cuisine){
 
 // function display_data(restaurant_objects, r_count, selected_restaurant)
 function select_restaurant(restaurant_objects){
-	document.getElementById("my_cats").innerHTML = `
-			<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
-		`;
-	// console.log(Date());
-
-
 	
+
+
 	// alert('in display_data')
 	
 	if (restaurant_objects.length > 10){
@@ -921,7 +923,7 @@ function show_restaurant_data(){
 	// 	<button type="button" class="btn btn-circle btn-lg" id="no_thanks" style="margin-top: 5%;"></button><br>
 	// `;
 	str += 
-	`<div class="row mt-4 mb-4">
+	`<div class="row mt-4 mb-2">
 		<div class="col-md-6 my-auto">
 			<p class="text-left"><b>hungry</b>mao suggests<br></p>`;
 	// next/ yes buttons
@@ -963,6 +965,12 @@ function show_restaurant_data(){
 	// return count;
 	// document.getElementById('yelp_results').scrollIntoView();
 	
+	// display happy cats 
+	document.getElementById("happycat").innerHTML = `
+			<img src="media/gifs/happy.gif" height="100" width="100" style="text-align:left;">
+		`;
+	console.log(document.getElementById("happycat").innerHTML);
+
 }
 
 
