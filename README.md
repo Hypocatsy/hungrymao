@@ -16,7 +16,7 @@ If you're super hungry, and can't decide what to eat, you might not want to sign
 ![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/readme_media/extended.gif)</br>
 
 <p>*hungrymao will snack while you decide*</br>
- 1. Key in your postal code (if you don't remember, ![let hungrymao Google it for you](https://lmgtfy.app/?q=my+postal+code+here) </br>
+ 1. Hungrymao uses your default location to find food. Key in your postal code to find food for later (if you don't remember, ![let hungrymao Google it for you](https://lmgtfy.app/?q=my+postal+code+here) </br>
  2. Key in your food restrictions, or not.</br>
  3. Find the cat eating bread, and spin the wheel. You can spin as many times as you want, but hungrymao can only help you with Japanese, Korean, Indian, Italian, Chinese, and     Mexican Food. </br>
  
