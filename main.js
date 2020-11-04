@@ -432,7 +432,7 @@ function handleLocationError() {
 
 function manual_geo(){
 	document.getElementById('current_location').innerHTML = `                
-	<h4>We couldn't find your location, so please key in your postal code</h4> 
+	<h4 style="color:">We couldn't find your location, so please key in your postal code</h4> 
 	<input type="text" name="location" id="location" placeholder="633702">
 	`;
 }
