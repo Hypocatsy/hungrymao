@@ -403,6 +403,8 @@ BODY PART -> approx line 260 to 440
                     <div class="col">
                         <p>by default, we use your current location!</p>
                     </div>
+                </div>
+                <div>
                     <!-- allow user to key in location manually -> they may not be eating at their current location so we give an option -->
                     <div class="col">
                         <h3>Find food for later</h3> 
@@ -410,10 +412,11 @@ BODY PART -> approx line 260 to 440
                     </div>
                 </div>
             </div>            
-        <!-- User's Food Restrictions -->
-        <div class="col">
-            <div id="filterdiv">
-                <!-- content is filled by main.js - defaultview() function -->
+            <!-- User's Food Restrictions -->
+            <div class="col">
+                <div id="filterdiv">
+                    <!-- content is filled by main.js - defaultview() function -->
+                </div>
             </div>
         </div>
     </div>
@@ -470,12 +473,12 @@ BODY PART -> approx line 260 to 440
         </div>
 
     </div>
-<!-- END CONTAINER   -->
+    <!-- END CONTAINER   -->
 
-<!-- Pink container - should only appear after api is called -->
-<div class="container-fluid">
-    <!-- start row 2 -->
-    <!-- <div class="row mt-4" style = "background-color: #FDE6E6;" id="api_results" style = "position:relative; ">  -->
+    <!-- Pink container - should only appear after api is called -->
+    <div class="container-fluid">
+        <!-- start row 2 -->
+        <!-- <div class="row mt-4" style = "background-color: #FDE6E6;" id="api_results" style = "position:relative; ">  -->
         <div class="row mt-4" id="api_results" style = "position:relative; "> 
 
         <!-- Loading cat div -->
@@ -494,10 +497,10 @@ BODY PART -> approx line 260 to 440
         >
         <!-- Happy cat div (show after food is retrieved) -->
         <div class="container" id="happycat" style="text-align:center;">
+        </div>
+        <!-- end row 2 -->
     </div>
-    <!-- end row 2 -->
-</div>
-<!-- end pink container -->
+    <!-- end pink container -->
 
 
 
