@@ -5,12 +5,12 @@ A SUMMARY OF THE FUNCTIONS IN THIS JS FILE
 
 FORM PART
 
-1. guest_user() function (approx line 113-119)
+1. guest_user() function 
 	- This is called when user clicks on 'Continue as a guest' button
 	- What it does:
 		-> auto-scroll user to the 'How hungrymao's randomiser works' section
 
-2. login_user() function (approx line 122-131)
+2. login_user() function 
 	- This is called when user clicks on 'Help me decide again' button
 	- What it does:
 		-> validate login details
@@ -20,7 +20,7 @@ FORM PART
 
 WHEEL INFORMATION
 
-1. default_view(username='') function (approx line 218-270)
+1. default_view(username='') function 
 	- This is called by guest_user() OR login_user() function; it is also displayed onload
 	- What it does:
 		-> Display food restriction options
@@ -33,12 +33,17 @@ WHEEL INFORMATION
 	- If this is a repeated spin, it calls repeatspin() function
 
 =================================================================================================
+COLLECT USER LOCATION
+
+1. initMap() function
+
+=================================================================================================
 
 AFTER USER SPINS WHEEL 
 
 **FIRST TIME SPIN**
 
-1. chosen_view() function (approx line 368-391)
+1. chosen_view() function
 	- This is called when wheel stops
 	- What it does:
 		-> Displays the chosen cuisine and some text for user
@@ -48,7 +53,7 @@ AFTER USER SPINS WHEEL
 
 **REPEATED SPIN**
 
-1. repeatspin() function (approx line 395-446)
+1. repeatspin() function 
 	- This is called when wheel stops
 	- What it does:
 		-> similar to chosen_view() function but it shows user different text bc they are so indecisive :')
@@ -57,7 +62,7 @@ AFTER USER SPINS WHEEL
 
 RETRIEVE FOOD RESTRICTIONS
 
-1. getRestrictions() function (approx line 478-492)
+1. getRestrictions() function 
 	- What it does:
 		-> retrieve user's restrictions and stores it for later use in call_api()
 
@@ -65,20 +70,20 @@ RETRIEVE FOOD RESTRICTIONS
 
 RETRIEVE API FROM YELP
 
-1. call_api(cuisine) function (approx line 470-594)
+1. call_api(cuisine) function 
 	- What it does:
 		-> Retrieve a restaurant which fits the following criteria:
 			a. User's food restrictions
 			b. Within 3000 radius of user's location
 
-2. select_restaurant() function (approx line 600-636)
+2. select_restaurant() function 
 	- What it does:
 		-> Chooses a restaurant from the returned list from api
 =================================================================================================
 
 OTHERS
 
-1. show_restaurant_data() function (approx line 638-731)
+1. show_restaurant_data() function
 	- What it does:
 		-> Display these information:
 			1. Photo
@@ -88,11 +93,11 @@ OTHERS
 			5. Address
 			6. Link to Yelp 
 
-2. food_selected() function (approx line 731-746)
+2. food_selected() function 
 	- What it does:
 		-> Alert user that they have found food when they click "yes" button
 
-3. no_more_food() function (approx line 748-759)
+3. no_more_food() function 
 	- What it does:
 		-> Alert user that they have exhausted all food options
 =================================================================================================
@@ -776,6 +781,7 @@ function call_api(cuisine){
 		// document.getElementById("api_results").innerHTML = `
 		// 	<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
 		// `;; 
+		document.getElementById("alerts").innerHTML = '';
 		select_restaurant(restaurant_objects);
 		// display_data(restaurant_objects);
 		
