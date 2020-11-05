@@ -624,7 +624,7 @@ function validate_postal(my_postalcode) {
 
 // =========================================================================================
 function randomize(choiceArray){
-	var i = Math.floor(Math.random() * 6);
+	var i = Math.floor(Math.random() * (choiceArray.length));
 	console.log(i);
     return choiceArray[i];
 }
@@ -766,12 +766,12 @@ function getRestrictions(){
 
 // var api_here = false;
 
-function loading(){
+// function loading(){
 
-		document.getElementById("api_results").innerHTML = `
-		<img class = "mx-auto" src="media/gifs/loading.gif" style = "width: 60%;"></img>
-		`;
-};
+// 		document.getElementById("api_results").innerHTML = `
+// 		<img class = "mx-auto" src="media/gifs/loading.gif" style = "width: 60%;"></img>
+// 		`;
+// };
 
 
 
