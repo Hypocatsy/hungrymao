@@ -474,7 +474,9 @@ function handleLocationError() {
 
 function manual_geo(){
 	document.getElementById('postal_stuff').innerHTML = `                
-	<h4 style="color:">We couldn't find your location, so please key in your postal code</h4> 
+	<h4>
+		We couldn't find your location, so please key in your postal code
+	</h4> 
 	<input type="text" name="location" id="location" placeholder="633702">
 	<br>
 	<button class="btn" id="validate_button" onclick="validate_postal()">Find my food!!</button>
@@ -1048,7 +1050,7 @@ function show_restaurant_data(){
 	</div>
 	`;
 	document.getElementById("yelp_result").innerHTML = str;
-	console.log(document.getElementById("yelp_result").innerHTML)
+	// console.log(document.getElementById("yelp_result").innerHTML)
 	// return count;
 	// document.getElementById('yelp_results').scrollIntoView();
 	
@@ -1062,7 +1064,7 @@ function show_restaurant_data(){
 			</div>
 		</div>
 		`;
-	console.log(document.getElementById("happycat").innerHTML);
+	// console.log(document.getElementById("happycat").innerHTML);
 
 }
 

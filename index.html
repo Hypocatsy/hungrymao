@@ -240,7 +240,9 @@ BODY PART -> approx line 260 to 440
             display: inline; 
             margin: 0px 10px;
         }
-        
+        .row {
+            margin-bottom: 10px;
+        }
         .col {
             text-align: center;
         }
@@ -408,7 +410,12 @@ BODY PART -> approx line 260 to 440
                 <div class="row">
                     <!-- allow user to key in location manually -> they may not be eating at their current location so we give an option -->
                     <div class="col" id="postal_stuff">
-                        <h3>Find food for later</h3> 
+                        <h4>
+                            I don't want to use my current location!
+                            <br>
+                            Find food for later
+                        </h4>
+
                         <input type="text" name="location" id="location" placeholder="633702">
                         <button class="btn" id="validate_button" onclick="validate_postal()">Find my food!!</button>
                     </div>
