@@ -166,7 +166,7 @@ BODY PART -> approx line 260 to 440
             margin-top: 20px;
             color:#56713A;
         }
-        #current_location {
+        #current_location, #invalid_postal {
             color:#56713A;
 
         }
@@ -176,7 +176,7 @@ BODY PART -> approx line 260 to 440
             border-radius: 30px;
             color: white;
         }
-        #guest_btn, #yes_button, #filter_button, #yelp_button {
+        #guest_btn, #yes_button, #filter_button, #yelp_button, #validate_button {
             /* margin: 3px 0px;
             transition: all 0.2s ease-in-out;
             padding: 5px 15px;
@@ -407,9 +407,17 @@ BODY PART -> approx line 260 to 440
                 </div>
                 <div class="row">
                     <!-- allow user to key in location manually -> they may not be eating at their current location so we give an option -->
-                    <div class="col">
+                    <div class="col" id="postal_stuff">
                         <h3>Find food for later</h3> 
                         <input type="text" name="location" id="location" placeholder="633702">
+                        <button class="btn" id="validate_button" onclick="validate_postal()">Find my food!!</button>
+                    </div>
+                </div>
+
+                <!-- for validating postal code -->
+                <div class="row">
+                    <div class="col" id="invalid_postal">
+
                     </div>
                 </div>
             </div>            
