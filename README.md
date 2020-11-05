@@ -39,7 +39,11 @@ If you're super hungry, and can't decide what to eat, you might not want to sign
 Assorted cat photos - somewhere on Google Images </br>
 Cat Gifs - Telegram sticker exports and somewhere on Giphy </br>
 Food plates vector - somewhere on https://www.freepik.com/ </br>
-Food recommendations - Yelp API </br> </p>
+Food recommendations - Yelp API </br> 
+Your location - hungrymao is stalking you (turn around 👀 and check) </br>
+ >  Just kidding, it's Google's Map and Geocoding API 🤣 </br>
+
+</p>
 
 # Done by 🍫
 
