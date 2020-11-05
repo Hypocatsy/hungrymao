@@ -397,7 +397,7 @@ $(document).ready(function(){
 				that it has a 30 degree angle and therefore,
 				exactly aligned with the spin btn*/
 				if(aoY < 23.89){
-					console.log('<<<<<<<<');
+					// console.log('<<<<<<<<');
 					$('#spin').addClass('spin');
 					setTimeout(function () {
 						$('#spin').removeClass('spin');
@@ -440,7 +440,7 @@ function initMap(postal_code) {
 				lng: position.coords.longitude
 			}; // -> this pos value is used to extract user's postal code 
 
-			console.log(pos);
+			// console.log(pos);
 			
 			
 			// Step 4 (if user chooses Allow)
@@ -497,7 +497,7 @@ function geolocate() {
 
 function onGeolocateSuccess(coordinates) {
 	const { latitude, longitude } = coordinates.coords;
-	console.log('Found coordinates: ', latitude, longitude);
+	// console.log('Found coordinates: ', latitude, longitude);
 	alert(`lat: ${latitude} long: ${longitude}`);
   }
   
@@ -519,22 +519,22 @@ function onGeolocateSuccess(coordinates) {
   function getLocation(pos) {
        
 	var addr =  pos.lat + ", " + pos.lng;
-	console.log(addr);
+	// console.log(addr);
 	var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&key=" + googleAPIKey;
 	var xhttp = new XMLHttpRequest();
 	var postal_code = "";
 	xhttp.onreadystatechange = function() {
-		console.log(`${this.readyState},${this.status}`);
+		// console.log(`${this.readyState},${this.status}`);
 		if (this.readyState == 4 && this.status == 200) {
 			// following code may throw error if user input is invalid address
 			// so we use try-catch block to handle errors
 			try { 
 				// expected response is JSON data
 				var data = JSON.parse(this.responseText);
-				console.log(data);
+				// console.log(data);
 				postal_code = getPostCode(data); // Retrieve postal code
 				// alert('got postal code');
-				console.log("Postal Code: " + postal_code);
+				// console.log("Postal Code: " + postal_code);
 				
 				
 				if(postal_code=="") {
@@ -627,7 +627,7 @@ function validate_postal(my_postalcode) {
 // =========================================================================================
 function randomize(choiceArray){
 	var i = Math.floor(Math.random() * (choiceArray.length));
-	console.log(i);
+	// console.log(i);
     return choiceArray[i];
 }
 
