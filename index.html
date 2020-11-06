@@ -82,13 +82,15 @@ BODY PART -> approx line 260 to 440
      <!-- Delay loading dynamic map -->
      <!-- <script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script> -->
 
-     <script> 
-     history.scrollRestoration = "manual";
+    <!-- After refresh/reload it will scroll to the top of the page -->
+    <script> 
+        history.scrollRestoration = "manual";
 
-    $(window).on('beforeunload', function(){
-        $(window).scrollTop(0);
-    });
+        $(window).on('beforeunload', function(){
+            $(window).scrollTop(0);
+        });
     </script>
+
     <!-- Internal style -->
     <style>
         #login{
@@ -102,11 +104,11 @@ BODY PART -> approx line 260 to 440
             background: #EFFAEC;
             border: 1px solid #56713A;
             border-radius: 10px;
-            
             width: 100%;
             height: 40px;
             padding-left: 10px;
         }
+
         ::placeholder {
             color: #5F8953;
             padding: 2px;
@@ -125,80 +127,11 @@ BODY PART -> approx line 260 to 440
             height: 40px;
             font-size: 100%;
         }
+
+        /* csswand */
         button:hover, #round_button_yes:hover, #round_button_no:hover {
             animation: swing 1s ease;
             animation-iteration-count: 1;
-        }
-
-        #cat_logo:hover{
-            animation: swing 1s ease;
-            animation-iteration-count: 1;
-        }
-
-        #login-input {
-            text-align: left;
-            padding: 0px;
-            margin-bottom: 20px;
-        }
-        label {
-            color:#56713A;
-            margin-bottom: 0px;
-        }
-        #typing-errors {
-            color:#56713A;
-        } 
-
-        #login-errors {
-            margin-top: 20px;
-            color:#56713A;
-        }
-        
-        /* wheel stuff */
-        #wheeltextdiv {
-            text-align: center;
-            vertical-align: middle;
-        }
-        #fork_knife {
-            margin-top: 80px;
-            color:#56713A;
-        }
-        #beside_wheel_text {
-            margin-top: 20px;
-            color:#56713A;
-        }
-        #current_location, #invalid_postal {
-            color:#56713A;
-
-        }
-        /* Button */
-        #decide_btn{
-            background: #D54B73;
-            border-radius: 30px;
-            color: white;
-        }
-        #guest_btn, #yes_button, #filter_button, #yelp_button, #validate_button {
-            /* margin: 3px 0px;
-            transition: all 0.2s ease-in-out;
-            padding: 5px 15px;
-            height: 40px;
-            font-size: 100%; */
-            background-color: #56713A;
-            border-radius: 30px;
-            color: white;
-        }
-        #no_button {
-            background-color: rgb(160, 2, 2);
-            border-radius: 30px;
-            color: white;
-        }
-
-        a:link, a:visited,a:hover, a:active {
-            text-decoration: none;
-            color: white;
-        }
-
-        #yelp_result {
-            color: #56713A; 
         }
         @keyframes swing {
             15% {
@@ -220,6 +153,77 @@ BODY PART -> approx line 260 to 440
             transform: translateX(0);
             }
         }
+
+        #cat_logo:hover{
+            animation: swing 1s ease;
+            animation-iteration-count: 1;
+        }
+
+        #login-input {
+            text-align: left;
+            padding: 0px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color:#56713A;
+            margin-bottom: 0px;
+        }
+
+        #login-errors {
+            margin-top: 20px;
+            color:#56713A;
+        }
+        
+        /* wheel stuff */
+        #wheeltextdiv {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #fork_knife {
+            margin-top: 80px;
+            color:#56713A;
+        }
+
+        #beside_wheel_text {
+            margin-top: 20px;
+            color:#56713A;
+        }
+
+        #current_location, #invalid_postal,#typing-errors {
+            color:#56713A;
+        }
+        
+        /* Button */
+        #decide_btn{
+            background: #D54B73;
+            border-radius: 30px;
+            color: white;
+        }
+
+        #guest_btn, #yes_button, #filter_button, #yelp_button, #validate_button {
+            background-color: #56713A;
+            border-radius: 30px;
+            color: white;
+        }
+
+        #no_button {
+            background-color: rgb(160, 2, 2);
+            border-radius: 30px;
+            color: white;
+        }
+
+        a:link, a:visited,a:hover, a:active {
+            text-decoration: none;
+            color: white;
+        }
+
+        #yelp_result {
+            color: #56713A; 
+            text-align: center;
+        }
+        
         /* user input & filtering by restrictions */
         #inputcontainer {
             padding-top: 20px;
@@ -240,9 +244,11 @@ BODY PART -> approx line 260 to 440
             display: inline; 
             margin: 0px 10px;
         }
+
         .row {
             margin-bottom: 10px;
         }
+
         .col {
             text-align: center;
         }
@@ -251,18 +257,10 @@ BODY PART -> approx line 260 to 440
             text-align: left;
             padding-left: 20%;
         }
+
         .form-check-label {
             color:  #56713A;
         }
-
-        #yelp_result {
-            text-align: center;
-            
-        }
-        /* #happycat {
-            margin-bottom: 20px;
-        } */
-
 
         .btn-circle {
         width: 30px;
@@ -283,16 +281,20 @@ BODY PART -> approx line 260 to 440
         line-height: 1.33;
         border-radius: 25px;
         }
+
+        /* pink div style for the steps */
         .steps{
             font-size: 100%;
             color: #395F2E; 
             text-align: center;
         }
+
         h6{
             font-size: 75%;
             color: #395F2E; 
             text-align: center;
         }
+
         .number{
             border-radius: 50%;
             background-color: #FFB6A5;
