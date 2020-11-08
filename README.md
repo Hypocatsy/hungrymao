@@ -42,7 +42,7 @@ Cat Gifs - Telegram sticker exports and somewhere on Giphy </br>
 Food plates vector - somewhere on https://www.freepik.com/ </br>
 Food recommendations - Yelp API </br> 
 Your location - hungrymao is stalking you (turn around 👀 and check) </br>
- >  Just kidding, it's Google's Map and Geocoding API 🤣 </br>
+ >  Just kidding, it's Google's Geocoding API 🤣 </br>
 
 </p>
 
