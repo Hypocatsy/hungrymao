@@ -492,35 +492,6 @@ function manual_geo(){
 }
 
 
-// console.log(`Lat: ${startLat}, Lon: ${startLon}`);
-
-
-function geolocate() {
-	// alert('in geolocate')
-	if (window.navigator && window.navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(onGeolocateSuccess, onGeolocateError);
-	}
-}
-
-function onGeolocateSuccess(coordinates) {
-	const { latitude, longitude } = coordinates.coords;
-	// console.log('Found coordinates: ', latitude, longitude);
-	alert(`lat: ${latitude} long: ${longitude}`);
-  }
-  
-  function onGeolocateError(error) {
-	console.warn(error.code, error.message);
-	manual_geo();
-   
-	if (error.code === 1) {
-	  // they said no
-	} else if (error.code === 2) {
-	  // position unavailable
-	} else if (error.code === 3) {
-	  // timeout
-	}
-  }
-
   var googleAPIKey = "AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug";
 
   function getLocation(pos) {
@@ -552,9 +523,7 @@ function onGeolocateSuccess(coordinates) {
 				}
 			   
 			} catch(err) { // show error message
-				// not a good idea to directly show err.message 
-				// as it may contain sensitive info
-				// document.getElementById("display").innerHTML = err.message;
+				
 				console.log("can't get location")
 				//handleLocationError();
 				manual_geo();
