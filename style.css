@@ -1,3 +1,18 @@
+/* 
+Summary of this CSS file:
+1. General Elements
+2. Login-related stuff
+3. Abit of animation stuff
+4. Pink div - how hungrymao works
+5. User's current location AND filtering restrictions 
+6. Beside wheel's text
+7. All our buttons
+8. Rows and columns
+9. Others
+10. Spinning wheel
+*/
+
+/* General elements */
 *{	margin:0;	padding:0; }
 
 body{
@@ -6,7 +21,6 @@ body{
 	font-family: 'Montserrat', sans-serif;
 }
 
-/* make scrolling smooth - esp for auto-scroll */
 html {
 	scroll-behavior: smooth;
 }
@@ -16,9 +30,9 @@ a{
 }
 
 
+/* START OF SPINNING WHEEL Styling */
 
-
-/*WRAPPER*/
+/* Wrapper */
 #wrapper{
 	margin: 40px auto 0;
 	width:256px;
@@ -30,7 +44,7 @@ a{
 }
 
 
-/*WHEEL*/
+/* Wheel */
 #wheel{
 	width:250px;
 	height:250px;
@@ -142,9 +156,6 @@ a{
 #wheel div.sec .fa.text {
     font-family: 'Arimo', sans-serif;
 }
-
-
-
 
 #spin{
 	width:68px;
@@ -276,8 +287,5 @@ opacity:0.1;
   -webkit-animation: hh 0.1s; /* Chrome, Safari, Opera */
     animation: hh 0.1s;
 }
-
-
-
 
 /* END OF SPINNING WHEEL
