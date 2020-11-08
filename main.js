@@ -20,7 +20,12 @@ FORM PART
 
 WHEEL INFORMATION
 
-1. default_view(username='') function 
+1. default_wheel() function 
+	- This is called when page loads
+	- What it does:
+		-> Display the randomiser wheel
+
+2. default_view(username='') function 
 	- This is called by guest_user() OR login_user() function; it is also displayed onload
 	- What it does:
 		-> Display food restriction options
@@ -28,7 +33,7 @@ WHEEL INFORMATION
 		-> Display wheel icons
 		-> Display text beside wheel
 
-2. $(document).ready(function()... (approx line 272-360)
+3. $(document).ready(function()... (approx line 272-360)
 	- This allows wheel to spin properly when user clicks on the middle of the wheel
 	- If this is a repeated spin, it calls repeatspin() function
 
@@ -76,19 +81,21 @@ AFTER USER FILL IN POSTAL CODE AND CLICK "FIND ME FOOD"
 		3. input is not 6 digits (aka invalid)
 	- displays errors to user so that user retype postal code
 
+=================================================================================================
 AFTER USER SPINS WHEEL 
 
-**FIRST TIME SPIN**
+**FOR FIRST TIME**
 
 1. chosen_view() function
 	- This is called when wheel stops
 	- What it does:
+		-> calls randomize(choiceArray) function which randomizes a cuisine
 		-> Displays the chosen cuisine and some text for user
 		-> 2 buttons
-			- 'Confirm cuisine and proceed' -> 
-			- 'I dont want this! Choose again!' -> goes back to $(document).ready(function()...
+			- 'Confirm cuisine and proceed' -> call_api(cuisine)
+			- 'I dont want this! Choose again!'
 
-**REPEATED SPIN**
+** FOR REPEATED SPINS**
 
 1. repeatspin() function 
 	- This is called when wheel stops
@@ -321,7 +328,6 @@ function default_view(myUsername) {
 
 	// Part 3: Text beside the wheel
 
-	// <i class='fas fa-utensils' style='font-size:48px;' id='fork_knife'></i>
 	var beside_wheel_str = `
 	
 	<div id="beside_wheel_text">
@@ -345,8 +351,8 @@ $(document).ready(function(){
 		clicks ++;
 
 		/*multiply the degree by number of clicks
-	  generate random number between 1 - 360,
-    then add to the new degree*/
+		generate random number between 1 - 360,
+		then add to the new degree*/
 		var newDegree = degree*clicks;
 
 		// console.log(newDegree);
@@ -425,8 +431,9 @@ $(document).ready(function(){
 
 });//DOCUMENT READY
 
-// Geolocation API
 //==============================================================================
+// Geolocation API
+
 var global_postal_code = "";
 
 function initMap(postal_code) {
@@ -731,9 +738,6 @@ function repeatspin(choiceArray) {
 		}
 		
 	}
-
-	
-
 
 	document.getElementById("wheeltextdiv").innerHTML = beside_wheel_str;
 

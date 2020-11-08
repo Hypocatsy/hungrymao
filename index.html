@@ -13,9 +13,9 @@ BODY PART -> approx line 260 to 440
 *** Below are the Main Components ***
 1. hungrymao pink header 
 
-2. Username and Password Input Fields -> user can choose to log in OR continue as a guest
+2. Login Div -> user can choose to log in OR continue as a guest
 
-3. How hungrymao's food randomiser works
+3. Pink Div -> How hungrymao's food randomiser works
 
 4. User inputs:
     - Location
@@ -26,13 +26,15 @@ BODY PART -> approx line 260 to 440
         a. Accept the cuisine (continue to step 6)
         b. Spin wheel again (repeat step 5)
 
-6. Display ONE restaurant in the pink container
-    - 2 buttons (Yes and Next)
-        a. Click 'yes' -> Display 'Yay you have found your food'
-        b. Next -> Display another restaurant
+6. Pink Container -> Display ONE restaurant
+    - 2 buttons ('Yes' and 'Thank you, Next')
+        a. Click 'Yes' -> Display 'Yay you have found your food'
+        b. Click 'Thank you, Next' -> Display another restaurant
     - Restaurant information    
     - 'Go to Yelp' button
-
+    - Alerts:
+        -> no restaurant found
+        -> only 1 restaurant is found 
 -->
 
   <head>
@@ -93,6 +95,9 @@ BODY PART -> approx line 260 to 440
 
     <!-- Internal style -->
     <style>
+        /* ===================================================================== */
+
+        /* Login-related stuff */
         #login{
             background: rgba(253, 230, 230, 0.46);
             border: 1px solid #67A359;
@@ -128,6 +133,23 @@ BODY PART -> approx line 260 to 440
             font-size: 100%;
         }
 
+        #login-input {
+            text-align: left;
+            padding: 0px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color:#56713A;
+            margin-bottom: 0px;
+        }
+
+        #login-errors {
+            margin-top: 20px;
+            color:#56713A;
+        }
+        /* ===================================================================== */
+
         /* csswand */
         button:hover, #round_button_yes:hover, #round_button_no:hover {
             animation: swing 1s ease;
@@ -159,130 +181,9 @@ BODY PART -> approx line 260 to 440
             animation-iteration-count: 1;
         }
 
-        #login-input {
-            text-align: left;
-            padding: 0px;
-            margin-bottom: 20px;
-        }
+        /* ===================================================================== */
 
-        label {
-            color:#56713A;
-            margin-bottom: 0px;
-        }
-
-        #login-errors {
-            margin-top: 20px;
-            color:#56713A;
-        }
-        
-        /* wheel stuff */
-        #wheeltextdiv {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        #fork_knife {
-            margin-top: 80px;
-            color:#56713A;
-        }
-
-        #beside_wheel_text {
-            margin-top: 20px;
-            color:#56713A;
-        }
-
-        #current_location, #invalid_postal,#typing-errors {
-            color:#56713A;
-        }
-        
-        /* Button */
-        #decide_btn{
-            background: #D54B73;
-            border-radius: 30px;
-            color: white;
-        }
-
-        #guest_btn, #yes_button, #filter_button, #yelp_button, #validate_button {
-            background-color: #56713A;
-            border-radius: 30px;
-            color: white;
-        }
-
-        #no_button {
-            background-color: rgb(160, 2, 2);
-            border-radius: 30px;
-            color: white;
-        }
-
-        a:link, a:visited,a:hover, a:active {
-            text-decoration: none;
-            color: white;
-        }
-
-        #yelp_result {
-            color: #56713A; 
-            text-align: center;
-        }
-        
-        /* user input & filtering by restrictions */
-        #inputcontainer {
-            padding-top: 20px;
-        }
-        
-        #location {
-            background: #FEF1EE;
-            border: 1px solid #56713A;
-            border-radius: 20px;
-            height: 50px;
-            margin: auto;
-            margin: 10px 0px;
-            padding-left: 10px;
-        }
-        
-        h3 {
-            color: #395F2E; 
-            display: inline; 
-            margin: 0px 10px;
-        }
-
-        .row {
-            margin-bottom: 10px;
-        }
-
-        .col {
-            text-align: center;
-        }
-
-        .form-check {
-            text-align: left;
-            padding-left: 20%;
-        }
-
-        .form-check-label {
-            color:  #56713A;
-        }
-
-        .btn-circle {
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        padding: 6px 0;
-        font-size: 12px;
-        line-height: 1.428571429;
-        border-radius: 15px;
-        background-color: #56713A;
-        }
-
-        .btn-circle.btn-lg {
-        width: 50px;
-        height: 50px;
-        padding: 10px 16px;
-        font-size: 18px;
-        line-height: 1.33;
-        border-radius: 25px;
-        }
-
-        /* pink div style for the steps */
+        /* Pink div - How Hungrymao works */
         .steps{
             font-size: 100%;
             color: #395F2E; 
@@ -306,13 +207,129 @@ BODY PART -> approx line 260 to 440
             margin-bottom: 10px;
             font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
         }
+
+        /* ===================================================================== */
+
+        /* User's current location AND filtering restrictions */
+        #inputcontainer {
+            padding-top: 20px;
+        }
+        
+        #location {
+            background: #FEF1EE;
+            border: 1px solid #56713A;
+            border-radius: 20px;
+            height: 50px;
+            margin: auto;
+            margin: 10px 0px;
+            padding-left: 10px;
+        }
+        
+        h3 {
+            color: #395F2E; 
+            display: inline; 
+            margin: 0px 10px;
+        }
+        
+        #current_location, #invalid_postal,#typing-errors {
+            color:#56713A;
+        }
+        
+        .form-check {
+            text-align: left;
+            padding-left: 20%;
+        }
+
+        .form-check-label {
+            color:  #56713A;
+        }
+
+        /* ===================================================================== */
+
+        /* wheel stuff */
+        #wheeltextdiv {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #beside_wheel_text {
+            margin-top: 20px;
+            color:#56713A;
+        }
+        
+        /* ===================================================================== */
+
+        /* All our buttons - from different parts (eg. login, filtering, yelp etc.) */
+        #decide_btn{
+            background: #D54B73;
+            border-radius: 30px;
+            color: white;
+        }
+
+        #guest_btn, #yes_button, #filter_button, #yelp_button, #validate_button {
+            background-color: #56713A;
+            border-radius: 30px;
+            color: white;
+        }
+
+        #no_button {
+            background-color: rgb(160, 2, 2);
+            border-radius: 30px;
+            color: white;
+        }
+
+        .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+        background-color: #56713A;
+        }
+
+        .btn-circle.btn-lg {
+        width: 50px;
+        height: 50px;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 25px;
+        }
+
+        /* ===================================================================== */
+
+        /* Rows and columns */
+
+        .row {
+            margin-bottom: 10px;
+        }
+
+        .col {
+            text-align: center;
+        }
+
+        /* ===================================================================== */
+
+        /* Others */
+        a:link, a:visited,a:hover, a:active {
+            text-decoration: none;
+            color: white;
+        }
+
+        #yelp_result {
+            color: #56713A; 
+            text-align: center;
+        }
+
+        /* ===================================================================== */
     </style>
 
     <title>hungrymao is hungry!</title>
   </head>
 
   <body onload="default_wheel()" style="background-color: #FFFCF6;">
-    <!-- <h1>Hello, world!</h1> -->
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-sm navbar static-top" style = "background-color: #FDE6E6;">
@@ -351,7 +368,7 @@ BODY PART -> approx line 260 to 440
     </nav>
     <!-- END NAVIGATION -->
 
-    <!-- START FORM -->
+    <!-- START FORM - Login Stuff -->
     <form action="">
         <!-- START CONTAINER -->
         <div class="container mt-4 mb-4">
@@ -372,17 +389,9 @@ BODY PART -> approx line 260 to 440
                                 <input type="text" name="username" id="username">
     
                                 <label for="password" id="password_label">Password</label>
-                                <input type="password" name="password" id="password" v-model="password" placeholder="(hint: it's opensesame)">
+                                <input type="password" name="password" id="password" placeholder="(hint: it's opensesame)">
 
                             </div>
-
-                            <!-- <div id="typing-errors">
-                                <p v-if=" typing_wrongly() ">
-                                    Ohno, your password seems wrong! 
-                                    <br>
-                                    Hint: opensesame
-                                </p>
-                            </div> -->
 
                             <!-- buttons -->
                             <button type="submit" class="btn text-nowrap" id="decide_btn" onclick="return login_user()">Help me decide again!</button><br>
@@ -391,7 +400,7 @@ BODY PART -> approx line 260 to 440
 
                         <div id="login-errors">
                             <!-- Empty if there is no errors
-                                 Filled by real_user() function in main.js if there's errors
+                                 Filled by login_user() function in main.js if there's errors
                             -->
                         </div>
                     </div>
@@ -404,7 +413,7 @@ BODY PART -> approx line 260 to 440
     <!-- END FORM -->
 
 
-    <!-- pink container -->
+    <!-- Pink div - How hungrymao works-->
     <div class="container-fluid" id="pink_container">
         <!-- start row 2 -->
         <div class="row my-4" style = "background-color: #FDE6E6;">
@@ -434,7 +443,7 @@ BODY PART -> approx line 260 to 440
     </div>
     <!-- end pink container -->
 
-    <!-- User input & Filtering Container-->
+    <!-- User Location & Filtering Restrictions Container-->
     <div class="container mt-4 mb-4" id="inputcontainer" >
         <div class="row">
             <!-- User's Location -->
@@ -471,14 +480,13 @@ BODY PART -> approx line 260 to 440
             <!-- User's Food Restrictions -->
             <div class="col">
                 <div id="filterdiv">
-                    <!-- content is filled by main.js - defaultview() function -->
+                    <!-- content is filled by main.js - default_view() function -->
                 </div>
             </div>
         </div>
     </div>
     
     <!-- WHEEL & TEXT CONTAINER -->
-
     <div class="container mt-4 mb-4" id="all_wheel_stuff">
         <!-- start row 1 -->
         <div class="row">
@@ -488,7 +496,7 @@ BODY PART -> approx line 260 to 440
 
                     <div id="wheel">
                         <div id="inner-wheel">
-                        <!-- content is filled by main.js - defaultview() function -->
+                        <!-- content is filled by main.js - default_view() function -->
                          </div>
             
                         <div id="spin">
@@ -513,7 +521,7 @@ BODY PART -> approx line 260 to 440
 
                     <!-- 
                     Content is filled by main.js
-                        Havent spin wheel: defaultview() function 
+                        Havent spin wheel: default_view() function 
                         Spinned wheel: chosen_view() function 
                     -->
                
@@ -530,6 +538,7 @@ BODY PART -> approx line 260 to 440
 
     </div>
     <!-- END CONTAINER   -->
+
 
     <!-- Pink container - should only appear after api is called -->
     <div class="container-fluid">
@@ -559,38 +568,6 @@ BODY PART -> approx line 260 to 440
     <!-- end pink container -->
 
 
-
-
-    <!-- Vue - for password -->
-    <script>
-        // var app = new Vue ({
-        //     el: '#login-input',
-        //     data: {
-        //         password: ''
-        //     },
-        //     methods: {
-        //         typing_wrongly: function() {
-        //             var correctPassword = 'opensesame';
-        //             // var isCorrect = false;
-
-        //             var count = 0;
-
-        //             for (var i = 0; i < len(password); i++) {
-        //                 if ( password[i] != correctPassword[count] ) {
-        //                     return true;
-        //                 }
-        //                 count ++;
-        //             }
-        //         }
-        //     }
-        // })
-    </script>
-    <!-- Auto-scroll to top after refresh -->
-    <!-- <script>
-        $(document).ready(function(){
-           $(window).scrollTop(0);
-       });
-    </script> -->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEH558hbj5Du9-80nKZsP9GJARaYmJug&callback=initMap">  
     </script>
