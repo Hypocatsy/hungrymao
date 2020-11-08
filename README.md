@@ -8,7 +8,8 @@
 ![hungrymao](https://github.com/Hypocatsy/is216-Project/blob/main/media/readme_media/login.png) </br>
 
 <p>**Sign in as Existing User:** </br>
-Key in any username you like. The password is a secret (*whisper* it's opensesame *whisper*)</br>
+Username: Key in any username you like. </br>
+The password is a secret (*whisper* it's opensesame *whisper*)</br>
 **Guest:**</br>
 If you're super hungry, and can't decide what to eat, you might not want to sign in. But that's okay, hungrymao just won't greet you, lol.</br></p>
 
