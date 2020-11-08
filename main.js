@@ -532,7 +532,7 @@ function manual_geo(){
 		if (postal_code != true){
 			// alert(`postal code is ${postal_code}`);
 			global_postal_code += postal_code;
-			console.log(`global postal code is ${global_postal_code}`);
+			// console.log(`global postal code is ${global_postal_code}`);
 			return postal_code;
 		}
 
@@ -549,7 +549,7 @@ function getPostCode(data) {
 	var addrcomponents = data["results"][0]["address_components"];
 	var postal_code = addrcomponents.filter(postcodeHelper);
 	// country is an array but there should be only one element
-	console.log(postal_code)
+	// console.log(postal_code)
 	return postal_code[0]["long_name"];
 }
 
@@ -563,7 +563,7 @@ function postcodeHelper(addr) {
 // Validate user's postal code
 function validate_postal(my_postalcode) {
 	my_postalcode = document.getElementById("location").value;
-	console.log(my_postalcode);
+	// console.log(my_postalcode);
 	var invalid_str = '';
 	// empty of full of white space
 	if (my_postalcode.trim() == '') {
@@ -764,7 +764,7 @@ function call_api(cuisine){
 		<br>
 		<p style="vertical-align:bottom; color:#56713A;">Hungrymao is finding a restaurant. . . . . .</p>
 	`;
-	console.log(document.getElementById("loadcat").innerHTML);
+	// console.log(document.getElementById("loadcat").innerHTML);
 
 	// console.log(Date());
 
@@ -778,8 +778,8 @@ function call_api(cuisine){
 	let postal_code = document.getElementById('location').value;
 	if (postal_code == ""){
 		postal_code = global_postal_code;
-		console.log(postal_code);
-		console.log(global_postal_code);
+		// console.log(postal_code);
+		// console.log(global_postal_code);
 	}
 	// console.log("Postal Code:", postal_code);
 
