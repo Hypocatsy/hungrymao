@@ -461,7 +461,7 @@ function initMap(postal_code) {
 		});
 	} else { // error handling
 		// Browser doesn't support Geolocation
-		handleLocationError(false, infoWindow, map.getCenter());
+		// handleLocationError(false, infoWindow, map.getCenter());
 		console.log(" Browser doesn't support Geolocation");
 		manual_geo();
 		// handleLocationError();
@@ -987,7 +987,7 @@ function show_restaurant_data(){
 	str += 
 	`<div class="row mt-4 mb-2">
 		<div class="col-md-6 my-auto">
-			<p class="text-left"><b>hungry</b>mao suggests<br></p>`;
+			<p class="text-left"><b>hungry</b>mao <em>suggests</em><br></p>`;
 	// next/ yes buttons
 
 	// alert(cuisine);
