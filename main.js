@@ -532,6 +532,7 @@ function manual_geo(){
 		if (postal_code != true){
 			// alert(`postal code is ${postal_code}`);
 			global_postal_code += postal_code;
+			document.getElementById("location").setAttribute("placeholder", global_postal_code);
 			// console.log(`global postal code is ${global_postal_code}`);
 			return postal_code;
 		}
