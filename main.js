@@ -343,7 +343,8 @@ function default_view(myUsername) {
 
 // my audio for wheel
 var audio = new Audio();
-
+audio.src = "media/nyan_cat.mp3";
+audio.preload = "auto";
 
 // my wheel
 $(document).ready(function(){
