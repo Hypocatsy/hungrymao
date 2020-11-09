@@ -343,6 +343,7 @@ function default_view(myUsername) {
 
 $(document).ready(function(){
 	/*WHEEL SPIN FUNCTION*/
+	// when user clicks the greedy cat which is inside the div with 'spin' id
 	$('#spin').click(function(){
 		// reset counter each time user spin the wheel
 		var mycounter = 0;
@@ -384,7 +385,8 @@ $(document).ready(function(){
 				var aoY = t.offset().top;
 				// $("#txt").html(aoY);
 
-				// if counter is a multiple of 6 -- considering multiple spins
+				// if counter is a multiple of 6 -- considering 6 of 360degree spins
+				// this is when the wheel stops spinning
 				if (mycounter == 6) {
 					// console.log("============ mycounter reached 6 ===============");
 
