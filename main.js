@@ -341,6 +341,12 @@ function default_view(myUsername) {
 
 }
 
+// my audio for wheel
+var audio = new Audio();
+audio.src = "media/nyan_cat.mp3";
+audio.preload = "auto";
+
+// my wheel
 $(document).ready(function(){
 	/*WHEEL SPIN FUNCTION*/
 	// when user clicks the greedy cat which is inside the div with 'spin' id
@@ -349,11 +355,7 @@ $(document).ready(function(){
 		var mycounter = 0;
 
 		// play my cat music
-		mystring = `
-		<audio controls autoplay>
-			<source src="media/nyan_cat.mp3">
-		</audio>`;
-		document.getElementById("myaudio").innerHTML = mystring;
+		audio.play();
 
 		//add 1 every click
 		clicks ++;
@@ -402,11 +404,14 @@ $(document).ready(function(){
 					// console.log(Date())
 					// console.log("========================================")
 					// console.log("STOP MY MUSIC!!!!")
-					mystring = `
-					<audio controls autoplay>
-						<source src="media/celebrate.mp3">
-					</audio>`;
-					document.getElementById("myaudio").innerHTML = mystring;
+
+					// stop nyan cat
+					audio.pause();
+					// change source to celebrate.mp3
+					audio.src = "media/celebrate.mp3";
+					// play celebrate.mp3
+					audio.play();
+				
 
 					chosen_view();
 				}
