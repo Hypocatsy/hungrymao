@@ -860,7 +860,7 @@ function call_api(cuisine){
 
 		// remove loading cat when food is retrieved
 		document.getElementById("loadcat").innerHTML = '';
-		console.log(document.getElementById("loadcat").innerHTML);
+		// console.log(document.getElementById("loadcat").innerHTML);
 		// console.log(document.getElementById("api_results").innerHTML);
 		// document.getElementById("api_results").innerHTML = `
 		// 	<img src="media/gifs/happy.gif" height="100" width="100" style="position: absolute; bottom: 0; left: 40px;">
