@@ -351,7 +351,7 @@ $(document).ready(function(){
 		// play my cat music
 		mystring = `
 		<audio controls autoplay>
-			<source src="nyan_cat.mp3">
+			<source src="media/nyan_cat.mp3">
 		</audio>`;
 		document.getElementById("myaudio").innerHTML = mystring;
 
@@ -404,7 +404,7 @@ $(document).ready(function(){
 					// console.log("STOP MY MUSIC!!!!")
 					mystring = `
 					<audio controls autoplay>
-						<source src="celebrate.mp3">
+						<source src="media/celebrate.mp3">
 					</audio>`;
 					document.getElementById("myaudio").innerHTML = mystring;
 
