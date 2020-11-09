@@ -348,6 +348,13 @@ $(document).ready(function(){
 		// reset counter each time user spin the wheel
 		var mycounter = 0;
 
+		// play my cat music
+		mystring = `
+		<audio controls autoplay>
+			<source src="nyan_cat.mp3">
+		</audio>`;
+		document.getElementById("myaudio").innerHTML = mystring;
+
 		//add 1 every click
 		clicks ++;
 
@@ -388,14 +395,19 @@ $(document).ready(function(){
 				// if counter is a multiple of 6 -- considering 6 of 360degree spins
 				// this is when the wheel stops spinning
 				if (mycounter == 6) {
-					// console.log("============ mycounter reached 6 ===============");
-
 					// console.log("aoY is", aoY);
-
-					// console.log("wheel html is here");
-					// console.log(document.getElementById("spin"));
-
 					// console.log("spin ends here");
+
+					// stop nyancat and celebrate
+					// console.log(Date())
+					// console.log("========================================")
+					// console.log("STOP MY MUSIC!!!!")
+					mystring = `
+					<audio controls autoplay>
+						<source src="celebrate.mp3">
+					</audio>`;
+					document.getElementById("myaudio").innerHTML = mystring;
+
 					chosen_view();
 				}
 
